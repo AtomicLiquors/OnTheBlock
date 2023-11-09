@@ -13,15 +13,16 @@
 ## :clipboard: 개요
 
 "SpringBoot + React 기반 온라인 합주 플랫폼"
-
+- 도메인: 빅데이터(spotify, 영상) 활용 추천 시스템
 - 개발 기간 : 2023. 08. 21. ~ 2023. 10. 06.
 - 참여 인원 : 5인
-- :tada: SSAFY 9기 특화 프로젝트 우수상 :tada:
+- 🏆 SSAFY 9기 특화 프로젝트 우수상 🏆
+- :tada: SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 :tada:
 
 ## 💡 핵심 기능
 
 - 소셜 로그인(카카오, 구글)
-- 솔로 연주 & 합주 녹화 서비스
+- 솔로 연주 & 합주 시스템
 - 키워드에 따른 검색 시스템
 - 선호하는 악기, 유저별 취향 영상에 따른 추천 시스템
 - SNS (댓글, 팔로잉, 실시간 알림 서비스)
@@ -38,7 +39,7 @@
 
 <div align="center">
 <center>
-<a href="https://www.youtube.com/watch?v=WW4unczZsjA&feature=youtu.be"><img src="https://blog.kakaocdn.net/dn/c2yJ7I/btqwXeUM6jI/a3WrMGPo9vakaDzQWepkOK/img.jpg"  width="140"/></a>
+<a href="https://www.youtube.com/watch?v=WW4unczZsjA&feature=youtu.be"><img src="Documents/youtube.jpg"  width="140"/></a>
 </center>
 </div>
 
@@ -100,10 +101,11 @@
     <h3>1. 소셜 로그인</h3><img src="Documents/소셜 로그인.gif">
     <h3>2. 솔로 연주</h3><img src="Documents/솔로 연주.gif">
     <h3>3. 합주</h3><img src="Documents/합주 시작.gif">
-    <h3>4. 볼륨 조절</h3><img src="Documents/볼륨 조절.gif">
-    <h3>5. 영상 검색</h3><img src="Documents/검색.gif">
-    <h3>6. 추천 영상 조회</h3><img src="Documents/추천 영상 조회.gif">
-    <h3>7-1. 영상 댓글</h3><img src="Documents/영상 댓글.gif">
-    <h3>7-2. 유저 팔로잉</h3><img src="Documents/팔로잉.gif">
-    <h3>7-3. 실시간 알림 서비스</h3><img src="Documents/알림.gif">
+    <h3>3-1. 볼륨 조절</h3><img src="Documents/볼륨 조절.gif">
+    <h3>3-2. 싱크 조절</h3><img src="Documents/싱크 조절.gif">
+    <h3>4. 영상 검색</h3><img src="Documents/검색.gif">
+    <h3>5. 추천 영상 조회</h3><img src="Documents/추천 영상 조회.gif">
+    <h3>6-1. 영상 댓글</h3><img src="Documents/영상 댓글.gif">
+    <h3>6-2. 유저 팔로잉</h3><img src="Documents/팔로잉.gif">
+    <h3>6-3. 실시간 알림 서비스</h3><img src="Documents/알림.gif">
 </div>
