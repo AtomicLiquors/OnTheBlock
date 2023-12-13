@@ -6,7 +6,6 @@ import com.ontheblock.www.session.dto.SessionRequest;
 import com.ontheblock.www.song.dto.SongRequest;
 import com.ontheblock.www.video.dto.VideoRequest;
 import com.ontheblock.www.video.service.VideoService;
-import org.apache.commons.fileupload.FileItem;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -17,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-import org.apache.commons.fileupload.disk.DiskFileItem;
-import org.apache.commons.io.IOUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;

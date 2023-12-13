@@ -1,4 +1,4 @@
-package com.ontheblock.www.member.social.domain.google;
+package com.ontheblock.www.social.domain.google;
 
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;

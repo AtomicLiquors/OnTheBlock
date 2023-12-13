@@ -1,4 +1,4 @@
-package com.ontheblock.www.member.social.domain.kakao;
+package com.ontheblock.www.social.domain.kakao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

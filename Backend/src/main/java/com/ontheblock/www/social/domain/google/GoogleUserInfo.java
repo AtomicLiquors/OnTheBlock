@@ -1,4 +1,4 @@
-package com.ontheblock.www.member.social.domain.google;
+package com.ontheblock.www.social.domain.google;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

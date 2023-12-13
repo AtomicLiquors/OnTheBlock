@@ -1,11 +1,12 @@
-package com.ontheblock.www.member.social.service;
+package com.ontheblock.www.social.service;
 
-import com.ontheblock.www.member.JWT.JwtService;
+import com.amazonaws.Response;
 import com.ontheblock.www.member.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
-import com.ontheblock.www.member.social.domain.ResponseLoginMember;
-import com.ontheblock.www.member.social.domain.google.GoogleUserInfo;
-import com.ontheblock.www.member.social.domain.kakao.KakaoProfile;
+import com.ontheblock.www.social.domain.ResponseLoginMember;
+import com.ontheblock.www.social.domain.google.GoogleUserInfo;
+import com.ontheblock.www.social.domain.kakao.KakaoProfile;
+import com.ontheblock.www.social.domain.naver.NaverProfile;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class SocialService {
     public ResponseLoginMember googleLoginOrRegister(GoogleUserInfo googleUserInfo) {
         return makeResponseLoginMember(googleUserInfo.getEmail(), googleUserInfo.getNickname());
     }
+
+    public ResponseLoginMember naverLoginOrRegister(NaverProfile profile){
+        return null;
+    }
+
 
     // ResponseLoginMember 생성 후 반환
     public ResponseLoginMember makeResponseLoginMember(String email, String nickName){

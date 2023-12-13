@@ -1,13 +1,11 @@
-package com.ontheblock.www.member.social.domain.kakao;
+package com.ontheblock.www.social.domain.naver;
 
 import jakarta.servlet.http.HttpServletResponse;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -17,14 +15,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 @RequiredArgsConstructor
-public class KakaoClient {
-    @Value("${kakao.api.key}")
-    private String apiKey;
-    @Value("${kakao.api.host}")
+public class NaverClient {
+    @Value("${naver.client.id}")
+    private String clientId;
+    @Value("${naver.api.host}")
     private String apiURL;
-    @Value("${kakao.auth.host}")
+    @Value("${naver.auth.host}")
     private String authURL;
-    @Value("${kakao.url.redirect}")
+    @Value("${naver.url.redirect}")
     private String redirectURL;
 
     @Value("${front.scheme}")
@@ -32,25 +30,27 @@ public class KakaoClient {
     @Value("${front.host}")
     private String frontHost;
 
-    // http 요청 편하게 함(Spring에서 제공)
     private RestTemplate restTemplate = new RestTemplate();
 
     // Redirect to get authorization code
-    // 로그인 요청 주소(Get: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI})
+
+
+    /*
+    *상태 토큰을 정상적으로 생성했다면 네이버 로그인 페이지를 호출하는 인증 요청문(authentication request)을 생성하도록 합니다. 인증 요청문은 URL 형식으로 되어 있으며 네이버가 제공하는 인증 URL과 클라이언트 아이디, 상태 토큰으로 이루어져 있습니다. 인증 과정은 모두 HTTPS 통신으로 이루어지며 인증 요청문 형식은 다음과 같습니다.
+    * https://nid.naver.com/oauth2.0/authorize?client_id={클라이언트 아이디}&response_type=code&redirect_uri={개발자 센터에 등록한 콜백 URL(URL 인코딩)}&state={상태 토큰}
+    * */
     public void getAuthCode(HttpServletResponse httpServletResponse) throws Exception {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(authURL)
-                .path("/oauth/authorize")
-                .queryParam("client_id", apiKey)
+                .path("/oauth2.0/authorize")
+                .queryParam("client_id", clientId)
                 .queryParam("redirect_uri", redirectURL)
                 .queryParam("response_type", "code")
                 .build();
         httpServletResponse.sendRedirect(uriComponents.toString());
     }
 
-    // Get Token from Kakao using authorization code
-    // 토큰 요청 주소(Post: https://kauth.kakao.com/oauth/token)
     public String getToken(String authCode) throws Exception {
         // make Header
         HttpHeaders httpHeaders=new HttpHeaders();
@@ -59,12 +59,12 @@ public class KakaoClient {
         // make Body
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
-        body.add("client_id", apiKey);
+        body.add("client_id", clientId);
         body.add("redirect_uri", redirectURL);
         body.add("code", authCode);
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
-        HttpEntity<?> kakaoTokenRequest = new HttpEntity<>(body, httpHeaders);
+        HttpEntity<?> naverTokenRequest = new HttpEntity<>(body, httpHeaders);
 
         // HTTP 토큰 요청하기 - 토큰 요청 발급 주소(POST)
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
@@ -73,12 +73,11 @@ public class KakaoClient {
                 .path("/oauth/token")
                 .build();
 
-       KakaoToken kakaoToken = restTemplate.postForObject(uriComponents.toString(), kakaoTokenRequest, KakaoToken.class);
-       return kakaoToken.getAccessToken();
+       NaverToken naverToken = restTemplate.postForObject(uriComponents.toString(), naverTokenRequest, NaverToken.class);
+       return naverToken.getAccessToken();
     }
 
-    // kakao accessToken을 사용하여 카카오 프로필 정보 요청
-    public KakaoProfile getUserInfo(String accessToken) {
+    public NaverProfile getUserInfo(String accessToken) {
         // Make Header
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Bearer " + accessToken);
@@ -91,7 +90,7 @@ public class KakaoClient {
                 .host(apiURL)
                 .path("/v2/user/me")
                 .build();
-        return restTemplate.postForObject(uriComponents.toString(), request, KakaoProfile.class);
+        return restTemplate.postForObject(uriComponents.toString(), request, NaverProfile.class);
     }
 
     public String getFrontURI(int isNewMember, String nickName) {

@@ -1,4 +1,4 @@
-package com.ontheblock.www.member.social.domain;
+package com.ontheblock.www.social.domain;
 
 import com.ontheblock.www.member.Member;
 import lombok.Data;
