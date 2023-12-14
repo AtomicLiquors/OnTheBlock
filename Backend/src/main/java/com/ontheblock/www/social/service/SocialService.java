@@ -31,7 +31,7 @@ public class SocialService {
     }
 
     public ResponseLoginMember naverLoginOrRegister(NaverProfile profile){
-        return null;
+        return makeResponseLoginMember(profile.getEmail(), profile.getNickname());
     }
 
 

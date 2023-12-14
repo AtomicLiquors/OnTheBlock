@@ -14,12 +14,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigInteger;
 import java.net.URI;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,6 @@ import java.util.Map;
 @RequestMapping("/naver")
 @RestController
 @RequiredArgsConstructor
-@SessionAttributes("state")
 public class NaverController {
 
     private final NaverClient naverClient;
@@ -36,21 +36,25 @@ public class NaverController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public void naverLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
-        naverClient.getAuthCode(httpServletResponse);
+    public void naverLoginOrRegister(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
+        naverClient.getAuthCode(httpServletRequest, httpServletResponse);
     }
 
-    /* 수정전 */
     @GetMapping("/redirect")
-    public ResponseEntity<?> naverRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
+    public ResponseEntity<?> naverRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, SessionStatus sessionStatus) throws Exception{
         // To-Do : 404 에러 처리
+        String code = httpServletRequest.getParameter("code");
+        String state = httpServletRequest.getParameter("state");
+        // 여기서 받아오는 거냐, 저장소에서 가져오는 거냐? 확인요망.
 
-        String naverToken = naverClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
+        String naverToken = naverClient.getToken(code, state); // authCode로 token 요청
         System.out.println("네이버 토큰: " + naverToken);
+
         // To-Do : 토큰이 null인 경우 에러처리
         NaverProfile naverProfile = naverClient.getUserInfo(naverToken);
-        System.out.println("유저 정보:" + naverProfile.getEmail());
-        ResponseLoginMember member=socialService.naverLoginOrRegister(naverProfile);
+        // To-Do : NaverClient가 UserInfo를 받아오지 못한 경우 에러처리
+        System.out.println("유저 정보:" + naverProfile);
+        ResponseLoginMember member = socialService.naverLoginOrRegister(naverProfile);
 
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getMemberId());
@@ -87,4 +91,5 @@ public class NaverController {
                 .location(URI.create(frontURI))
                 .build();
     }
+
 }

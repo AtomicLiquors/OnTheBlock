@@ -1,5 +1,6 @@
 package com.ontheblock.www.social.domain.naver;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,9 @@ import java.security.SecureRandom;
 public class NaverClient {
     @Value("${naver.client.id}")
     private String clientId;
+
+    @Value("${naver.client.secret}")
+    private String clientSecret;
     @Value("${naver.api.host}")
     private String apiURL;
     @Value("${naver.auth.host}")
@@ -42,30 +46,35 @@ public class NaverClient {
     *상태 토큰을 정상적으로 생성했다면 네이버 로그인 페이지를 호출하는 인증 요청문(authentication request)을 생성하도록 합니다. 인증 요청문은 URL 형식으로 되어 있으며 네이버가 제공하는 인증 URL과 클라이언트 아이디, 상태 토큰으로 이루어져 있습니다. 인증 과정은 모두 HTTPS 통신으로 이루어지며 인증 요청문 형식은 다음과 같습니다.
     * https://nid.naver.com/oauth2.0/authorize?client_id={클라이언트 아이디}&response_type=code&redirect_uri={개발자 센터에 등록한 콜백 URL(URL 인코딩)}&state={상태 토큰}
     * */
-    public void getAuthCode(HttpServletResponse httpServletResponse) throws Exception {
+    public void getAuthCode(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        String state = generateState();
+
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(authURL)
                 .path("/oauth2.0/authorize")
-                .queryParam("client_id", clientId)
                 .queryParam("redirect_uri", redirectURL)
+                .queryParam("client_id", clientId)
                 .queryParam("response_type", "code")
+                .queryParam("state", state)
                 .build();
+
+        httpServletRequest.getSession().setAttribute("state", state);
         httpServletResponse.sendRedirect(uriComponents.toString());
     }
 
 
 
-    public String getToken(String authCode) throws Exception {
+    public String getToken(String authCode, String state) throws Exception {
         // make Header
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-        String state = generateState();
 
         // make Body
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", clientId);
+        body.add("client_secret", clientSecret);
         body.add("redirect_uri", redirectURL);
         body.add("code", authCode);
         body.add("state", state);
@@ -96,7 +105,7 @@ public class NaverClient {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(apiURL)
-                .path("/v2/user/me")
+                .path("/v1/nid/me")
                 .build();
         return restTemplate.postForObject(uriComponents.toString(), request, NaverProfile.class);
     }
