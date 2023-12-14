@@ -12,6 +12,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 
 @Component
 @RequiredArgsConstructor
@@ -51,10 +54,13 @@ public class NaverClient {
         httpServletResponse.sendRedirect(uriComponents.toString());
     }
 
+
+
     public String getToken(String authCode) throws Exception {
         // make Header
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        String state = generateState();
 
         // make Body
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
@@ -62,6 +68,7 @@ public class NaverClient {
         body.add("client_id", clientId);
         body.add("redirect_uri", redirectURL);
         body.add("code", authCode);
+        body.add("state", state);
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
         HttpEntity<?> naverTokenRequest = new HttpEntity<>(body, httpHeaders);
@@ -70,10 +77,11 @@ public class NaverClient {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(authURL)
-                .path("/oauth/token")
+                .path("/oauth2.0/token")
                 .build();
 
        NaverToken naverToken = restTemplate.postForObject(uriComponents.toString(), naverTokenRequest, NaverToken.class);
+
        return naverToken.getAccessToken();
     }
 
@@ -104,4 +112,11 @@ public class NaverClient {
                 .toString();
     }
 
+    // 상태 토큰으로 사용할 랜덤 문자열 생성
+    public String generateState()
+    {
+        System.out.println("상태 토큰 생성 중...");
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
+    }
 }

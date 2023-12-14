@@ -59,13 +59,18 @@ function Landing() {
                 <S.LoginImage src={googleBtn} />
               </a>
             </div>
+            <div>
+            <a
+                href={
+                  import.meta.env.VITE_REACT_APP_BACKEND +
+                  "ontheblock/api/naver/login"
+                }
+              >
+                네이버 아이디 로그인
+              </a>
+            </div>
           </S.LoginContainer>
         </div>
-
-        {/* 
-        <S.NavigateButton onClick={() => navigate("/main")}>메인 페이지로 이동하는 임시 버튼 나중에 삭제할 거에요</S.NavigateButton>
-
-*/}
       </S.Card>
     </S.Wrap>
   );

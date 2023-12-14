@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ import java.util.Map;
 @RequestMapping("/naver")
 @RestController
 @RequiredArgsConstructor
+@SessionAttributes("state")
 public class NaverController {
 
     private final NaverClient naverClient;
@@ -34,18 +36,19 @@ public class NaverController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public void googleLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
-
-        System.out.println("네이버 로그인");
+    public void naverLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
         naverClient.getAuthCode(httpServletResponse);
     }
 
     /* 수정전 */
     @GetMapping("/redirect")
     public ResponseEntity<?> naverRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
-        String googleToken= naverClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
-        System.out.println("네이버 토큰: "+googleToken);
-        NaverProfile naverProfile = naverClient.getUserInfo(googleToken); // token으로 google member data 요청
+        // To-Do : 404 에러 처리
+
+        String naverToken = naverClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
+        System.out.println("네이버 토큰: " + naverToken);
+        // To-Do : 토큰이 null인 경우 에러처리
+        NaverProfile naverProfile = naverClient.getUserInfo(naverToken);
         System.out.println("유저 정보:" + naverProfile.getEmail());
         ResponseLoginMember member=socialService.naverLoginOrRegister(naverProfile);
 

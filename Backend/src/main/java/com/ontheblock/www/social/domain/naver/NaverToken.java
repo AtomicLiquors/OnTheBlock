@@ -10,6 +10,9 @@ public class NaverToken {
     @JsonProperty("token_type")
     private String tokenType;
 
+    @JsonProperty("state")
+    private String state;
+
     @JsonProperty("access_token")
     private String accessToken;
 
