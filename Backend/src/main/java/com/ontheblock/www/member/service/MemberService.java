@@ -54,13 +54,13 @@ public class MemberService {
 	private static final int MIN_NICKNAME_LENGTH = 1;
 	private static final int MAX_NICKNAME_LENGTH = 11;
 
-	public void changeMemberNickname(Long id, String nickName) {
-		if (nickName != null) {
-			if (nickName.length() < MIN_NICKNAME_LENGTH) {
+	public void changeMemberNickname(Long id, String nickname) {
+		if (nickname != null) {
+			if (nickname.length() < MIN_NICKNAME_LENGTH) {
 				throw new IllegalArgumentException(
 					"Nickname is below the minimum length of " + MIN_NICKNAME_LENGTH + " characters.");
 			}
-			if (nickName.length() > MAX_NICKNAME_LENGTH) {
+			if (nickname.length() > MAX_NICKNAME_LENGTH) {
 				throw new IllegalArgumentException(
 					"Nickname exceeds the maximum length of " + MAX_NICKNAME_LENGTH + " characters.");
 			}
@@ -68,7 +68,7 @@ public class MemberService {
 
 		Member member = mr.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		member.updateNickName(nickName);
+		member.updateNickName(nickname);
 		mr.save(member);
 	}
 
@@ -96,8 +96,8 @@ public class MemberService {
 	}
 
 	// 닉네임 중복 검사
-	public Boolean checkDuplicateNickName(String nickName){
-		Optional<Member> optionalMember=mr.findByNickname(nickName);
+	public Boolean checkDuplicateNickName(String nickname){
+		Optional<Member> optionalMember=mr.findByNickname(nickname);
 		if(optionalMember.isPresent()){
 			return false;
 		}
