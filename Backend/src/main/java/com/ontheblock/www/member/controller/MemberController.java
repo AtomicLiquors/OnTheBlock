@@ -65,9 +65,9 @@ public class MemberController {
 	}
 
 	// 닉네임 중복 조회
-	@GetMapping("/nickName")
-	public ResponseEntity<Boolean> checkDuplicateNickname(@RequestParam("nickName") String nickName){
-		return ResponseEntity.ok(memberService.checkDuplicateNickName(nickName));
+	@GetMapping("/nickname")
+	public ResponseEntity<Boolean> checkDuplicateNickname(@RequestParam("nickname") String nickname){
+		return ResponseEntity.ok(memberService.checkDuplicateNickName(nickname));
 	}
 
 	// 처음 가입했을때 닉네임, 관심 악기, 관심 장르 설정
