@@ -1,14 +1,10 @@
 package com.ontheblock.www.video.service;
 
-import com.ontheblock.www.follow.repository.MemberFollowRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.video.domain.Video;
 import com.ontheblock.www.video.dto.VideoResponse;
 import com.ontheblock.www.video.repository.VideoRepository;
-import com.ontheblock.www.videolike.domain.VideoLike;
-import com.ontheblock.www.videolike.repository.VideoLikeRepository;
-import com.ontheblock.www.videowatch.repository.VideoWatchRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,8 +14,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)

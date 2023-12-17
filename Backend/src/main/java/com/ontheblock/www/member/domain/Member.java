@@ -1,6 +1,5 @@
-package com.ontheblock.www.member;
+package com.ontheblock.www.member.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ontheblock.www.comment.domain.Comment;
 import com.ontheblock.www.genre.domain.MemberGenre;
 import com.ontheblock.www.instrument.domain.MemberInstrument;
@@ -12,7 +11,6 @@ import com.ontheblock.www.videowatch.domain.VideoWatch;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,7 @@ public class Member {
     @Column(name="member_id")
     private Long id;
     @Column(length = 40)
-    private String nickName;
+    private String nickname;
     private String email;
     private String description;
     private String token;
@@ -36,8 +34,8 @@ public class Member {
     public void updateEmail(String email){
         this.email=email;
     }
-    public void updateNickName(String nickName){
-        this.nickName=nickName;
+    public void updateNickname(String nickname){
+        this.nickname =nickname;
     }
     public void updateDescription(String description){
         this.description=description;
@@ -51,13 +49,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<MemberGenre> memberGenres=new ArrayList<>();
-
-    // 중복 조회로 일단 주석 처리
-    // @OneToMany(mappedBy = "follower")
-    // private List<MemberFollow> followings=new ArrayList<>();
-    //
-    // @OneToMany(mappedBy = "following")
-    // private List<MemberFollow> followers=new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<VideoWatch> videoWatches=new ArrayList<>();

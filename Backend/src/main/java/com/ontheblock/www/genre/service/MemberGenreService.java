@@ -9,7 +9,7 @@ import com.ontheblock.www.genre.domain.Genre;
 import com.ontheblock.www.genre.domain.MemberGenre;
 import com.ontheblock.www.genre.repository.GenreRepository;
 import com.ontheblock.www.genre.repository.MemberGenreRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 
 import jakarta.transaction.Transactional;

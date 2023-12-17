@@ -1,9 +1,8 @@
 package com.ontheblock.www.member.interceptor;
 
 import com.ontheblock.www.member.JWT.JwtService;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

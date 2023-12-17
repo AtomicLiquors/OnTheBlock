@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ontheblock.www.instrument.domain.Instrument;
 import com.ontheblock.www.instrument.domain.MemberInstrument;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 
 import java.util.List;
 import java.util.Optional;

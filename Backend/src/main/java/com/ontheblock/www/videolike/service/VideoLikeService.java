@@ -1,6 +1,6 @@
 package com.ontheblock.www.videolike.service;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.notice.service.MemberNoticeService;
 import com.ontheblock.www.video.domain.Video;
@@ -35,7 +35,7 @@ public class VideoLikeService {
         if (!member.getId().equals(video.getMember().getId())) {
             JSONObject noticeContentJson = new JSONObject();
             noticeContentJson.put("id", member.getId());
-            noticeContentJson.put("nickname", member.getNickName());
+            noticeContentJson.put("nickname", member.getNickname());
             noticeContentJson.put("videoId", video.getId());
 
             Integer noticeType = 2;

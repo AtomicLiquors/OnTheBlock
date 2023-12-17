@@ -1,6 +1,6 @@
 package com.ontheblock.www.social.domain;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import lombok.Data;
 
 @Data
@@ -11,7 +11,7 @@ public class ResponseLoginMember {
 
     public ResponseLoginMember(Member member, int isNewMember){
         this.memberId=member.getId();
-        this.nickname=member.getNickName();
+        this.nickname=member.getNickname();
         this.isNewMember=isNewMember;
     }
 }

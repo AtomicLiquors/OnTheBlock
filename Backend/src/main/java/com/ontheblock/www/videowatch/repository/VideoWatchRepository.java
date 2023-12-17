@@ -1,6 +1,6 @@
 package com.ontheblock.www.videowatch.repository;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.video.domain.Video;
 import com.ontheblock.www.videowatch.domain.VideoWatch;
 import org.springframework.data.jpa.repository.JpaRepository;

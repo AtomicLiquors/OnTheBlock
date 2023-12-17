@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.repository;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 
 import org.springframework.data.jpa.repository.JpaRepository;

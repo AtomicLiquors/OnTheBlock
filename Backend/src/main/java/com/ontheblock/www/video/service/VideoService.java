@@ -2,14 +2,12 @@ package com.ontheblock.www.video.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.ontheblock.www.instrument.domain.Instrument;
 import com.ontheblock.www.instrument.repository.InstrumentRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.notice.service.MemberNoticeService;
 import com.ontheblock.www.session.domain.Session;
 import com.ontheblock.www.session.dto.SessionOriginRequest;
-import com.ontheblock.www.session.dto.SessionRequest;
 import com.ontheblock.www.session.dto.SessionResponse;
 import com.ontheblock.www.session.repository.SessionRepository;
 import com.ontheblock.www.session.service.SessionService;
@@ -18,7 +16,6 @@ import com.ontheblock.www.song.repository.SongRepository;
 import com.ontheblock.www.video.domain.Video;
 import com.ontheblock.www.video.dto.VideoRequest;
 import com.ontheblock.www.video.dto.VideoDetailResponse;
-import com.ontheblock.www.video.dto.VideoResponse;
 import com.ontheblock.www.video.repository.VideoRepository;
 import com.ontheblock.www.videolike.domain.VideoLike;
 import com.ontheblock.www.videolike.repository.VideoLikeRepository;
@@ -30,17 +27,14 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.json.simple.JSONObject;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 @Transactional(readOnly = true)
@@ -98,7 +92,7 @@ public class VideoService {
                 // ** 해당 영상을 올린 회원에게 알림 추가 ** (스크랩 한 회원의 id, nickname, 새로 만들어진 영상 videoId)
                 JSONObject noticeContentJson = new JSONObject();
                 noticeContentJson.put("id", memberId);
-                noticeContentJson.put("nickname", member.getNickName());
+                noticeContentJson.put("nickname", member.getNickname());
                 noticeContentJson.put("videoId", video.getId());
 
                 Integer noticeType = 4;

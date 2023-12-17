@@ -1,6 +1,6 @@
 package com.ontheblock.www;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.session.dto.SessionRequest;
 import com.ontheblock.www.song.dto.SongRequest;
@@ -67,7 +67,7 @@ public class videoUpLoadTests {
 
                 if (member.isEmpty()) {
                     Member m = new Member();
-                    m.updateNickName(channelId);
+                    m.updateNickname(channelId);
                     memberRepository.save(m);
                     member = Optional.of(m);
                 }

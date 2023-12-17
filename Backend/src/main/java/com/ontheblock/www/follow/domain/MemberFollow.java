@@ -3,7 +3,7 @@ package com.ontheblock.www.follow.domain;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

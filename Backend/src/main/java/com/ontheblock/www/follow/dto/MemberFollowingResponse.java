@@ -15,7 +15,7 @@ public class MemberFollowingResponse {
 	// 팔로잉 목록
 	public MemberFollowingResponse(List<MemberFollow> followings) {
 		this.followings = followings.stream()
-			.map(f -> new MemberFollowDTO(f.getFollowing().getId(), f.getFollowing().getNickName()))
+			.map(f -> new MemberFollowDTO(f.getFollowing().getId(), f.getFollowing().getNickname()))
 			.collect(Collectors.toList());
 	}
 

@@ -1,7 +1,6 @@
 package com.ontheblock.www.social.service;
 
-import com.amazonaws.Response;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.social.domain.ResponseLoginMember;
 import com.ontheblock.www.social.domain.google.GoogleUserInfo;
@@ -42,7 +41,7 @@ public class SocialService {
         if (!optionalMember.isPresent()) {
             Member member = new Member();
             member.updateEmail(email);
-            member.updateNickName(nickName);
+            member.updateNickname(nickName);
             memberRepository.save(member);
             return new ResponseLoginMember(member,0);
         }

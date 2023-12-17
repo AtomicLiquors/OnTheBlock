@@ -4,20 +4,17 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.ontheblock.www.instrument.domain.Instrument;
 import com.ontheblock.www.instrument.repository.InstrumentRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.session.domain.Session;
 import com.ontheblock.www.session.dto.SessionRequest;
 import com.ontheblock.www.session.repository.SessionRepository;
-import com.ontheblock.www.video.domain.Video;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

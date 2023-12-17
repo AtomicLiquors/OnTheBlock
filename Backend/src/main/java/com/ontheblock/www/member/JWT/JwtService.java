@@ -1,6 +1,5 @@
 package com.ontheblock.www.member.JWT;
 
-import com.ontheblock.www.member.Member;
 import com.ontheblock.www.member.service.MemberService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -15,7 +14,6 @@ import java.util.Date;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import lombok.RequiredArgsConstructor;
 
 @Service
 public class JwtService {

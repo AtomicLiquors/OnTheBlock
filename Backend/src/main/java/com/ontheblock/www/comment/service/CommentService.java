@@ -4,7 +4,7 @@ import com.ontheblock.www.comment.domain.Comment;
 import com.ontheblock.www.comment.dto.CommentRequest;
 import com.ontheblock.www.comment.dto.CommentResponse;
 import com.ontheblock.www.comment.repository.CommentRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.notice.service.MemberNoticeService;
 import com.ontheblock.www.video.domain.Video;
@@ -41,7 +41,7 @@ public class CommentService {
         if (!member.getId().equals(video.getMember().getId())) {
             JSONObject noticeContentJson = new JSONObject();
             noticeContentJson.put("id", member.getId());
-            noticeContentJson.put("nickname", member.getNickName());
+            noticeContentJson.put("nickname", member.getNickname());
             noticeContentJson.put("videoId", video.getId());
 
             Integer noticeType = 3;

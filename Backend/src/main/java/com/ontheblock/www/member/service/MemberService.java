@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.service;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 import com.ontheblock.www.member.repository.MemberRepository;
 
@@ -68,7 +68,7 @@ public class MemberService {
 
 		Member member = mr.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		member.updateNickName(nickname);
+		member.updateNickname(nickname);
 		mr.save(member);
 	}
 

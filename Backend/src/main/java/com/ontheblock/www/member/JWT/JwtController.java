@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.JWT;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -35,7 +35,7 @@ public class JwtController {
       if (jwtService.isRefreshTokenValid(refreshToken, member.getId())) {
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getId());
-        tokenMap.put("nickname", member.getNickName());
+        tokenMap.put("nickname", member.getNickname());
         String newAccessToken = jwtService.createAccessToken(tokenMap); // AccessToken 생성
         String newRefreshToken = jwtService.createRefreshToken(tokenMap);  // RefreshToken 생성
 

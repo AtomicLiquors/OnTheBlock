@@ -1,6 +1,6 @@
 package com.ontheblock.www.videolike.repository;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.video.domain.Video;
 import com.ontheblock.www.videolike.domain.VideoLike;
 import org.springframework.data.jpa.repository.JpaRepository;

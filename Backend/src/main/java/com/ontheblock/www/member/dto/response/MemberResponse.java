@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.dto.response;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import lombok.Data;
 
 @Data
@@ -10,7 +10,7 @@ public class MemberResponse {
 
     public MemberResponse(Member member){
         this.memberId = member.getId();
-        this.nickname = member.getNickName();
+        this.nickname = member.getNickname();
     }
 
 }

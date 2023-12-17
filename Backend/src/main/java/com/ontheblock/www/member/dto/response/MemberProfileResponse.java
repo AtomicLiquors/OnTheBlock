@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.dto.response;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class MemberProfileResponse {
 	// 프로필 정보
 	public MemberProfileResponse(Member member) {
 		this.id = member.getId();
-		this.nickname = member.getNickName();
+		this.nickname = member.getNickname();
 		this.description = member.getDescription();
 	}
 }

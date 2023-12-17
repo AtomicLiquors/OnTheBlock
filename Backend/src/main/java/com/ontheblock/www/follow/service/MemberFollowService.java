@@ -9,7 +9,7 @@ import com.ontheblock.www.follow.domain.MemberFollow;
 import com.ontheblock.www.follow.dto.MemberFollowerResponse;
 import com.ontheblock.www.follow.dto.MemberFollowingResponse;
 import com.ontheblock.www.follow.repository.MemberFollowRepository;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.notice.service.MemberNoticeService;
 
@@ -77,7 +77,7 @@ public class MemberFollowService {
 		// ** 팔로우를 받은 사람에게 알림 추가 **
 		JSONObject noticeContentJson = new JSONObject();
 		noticeContentJson.put("id", follower.getId());
-		noticeContentJson.put("nickname", follower.getNickName());
+		noticeContentJson.put("nickname", follower.getNickname());
 
 		Integer noticeType = 1;
 		memberNoticeService.addMemberNotice(following.getId(), noticeType, noticeContentJson.toString());

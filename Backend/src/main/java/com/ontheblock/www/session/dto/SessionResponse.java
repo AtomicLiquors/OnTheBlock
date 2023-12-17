@@ -1,6 +1,5 @@
 package com.ontheblock.www.session.dto;
 
-import com.ontheblock.www.member.Member;
 import com.ontheblock.www.member.dto.response.MemberResponse;
 import com.ontheblock.www.videosession.domain.VideoSession;
 import lombok.Data;

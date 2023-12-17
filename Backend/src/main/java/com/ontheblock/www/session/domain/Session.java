@@ -1,8 +1,7 @@
 package com.ontheblock.www.session.domain;
 
 import com.ontheblock.www.instrument.domain.Instrument;
-import com.ontheblock.www.member.Member;
-import com.ontheblock.www.session.dto.SessionRequest;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.videosession.domain.VideoSession;
 import jakarta.persistence.*;
 import lombok.*;

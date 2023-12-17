@@ -1,7 +1,7 @@
 package com.ontheblock.www.video.domain;
 
 import com.ontheblock.www.comment.domain.Comment;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.song.domain.Song;
 import com.ontheblock.www.video.dto.VideoRequest;
 import com.ontheblock.www.videolike.domain.VideoLike;

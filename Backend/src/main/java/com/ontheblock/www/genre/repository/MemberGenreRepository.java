@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ontheblock.www.genre.domain.MemberGenre;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 
 @Repository
 public interface MemberGenreRepository extends JpaRepository<MemberGenre, Long> {

@@ -1,6 +1,6 @@
 package com.ontheblock.www.videowatch.domain;
 
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.video.domain.Video;
 import jakarta.persistence.*;
 import lombok.*;

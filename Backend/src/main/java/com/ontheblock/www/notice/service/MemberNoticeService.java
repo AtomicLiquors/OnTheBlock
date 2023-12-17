@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ontheblock.www.member.Member;
+import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.notice.domain.MemberNotice;
 import com.ontheblock.www.notice.repository.EmitterRepository;
 import com.ontheblock.www.notice.repository.MemberNoticeRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
