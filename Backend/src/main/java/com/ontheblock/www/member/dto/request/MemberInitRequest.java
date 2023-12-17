@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class MemberInitRequest {
     Long memberId;
-    String nickName;
+    String nickname;
     List<Instrument> instruments=new ArrayList<>();
     List<Genre> genres=new ArrayList<>();
 }

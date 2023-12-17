@@ -1,8 +1,6 @@
 package com.ontheblock.www.member.controller;
 
-import com.ontheblock.www.genre.domain.Genre;
 import com.ontheblock.www.genre.service.MemberGenreService;
-import com.ontheblock.www.instrument.domain.Instrument;
 import com.ontheblock.www.instrument.service.MemberInstrumentService;
 import com.ontheblock.www.member.dto.request.MemberInitRequest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 import com.ontheblock.www.member.service.MemberService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/member")
@@ -52,7 +48,7 @@ public class MemberController {
 	@PostMapping("/nickname/check")
 	public ResponseEntity<Void> changeMemberNickName(HttpServletRequest request, @RequestParam String nickName) {
 		Long id = (Long)request.getAttribute("id");
-		memberService.changeMemberNickName(id, nickName);
+		memberService.changeMemberNickname(id, nickName);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
@@ -75,7 +71,7 @@ public class MemberController {
 	public ResponseEntity<Void> registMemberInit(HttpServletRequest request,
 												 @RequestBody MemberInitRequest memberInitRequest) {
 		Long id = (Long)request.getAttribute("id");
-		memberService.changeMemberNickName(id, memberInitRequest.getNickName());
+		memberService.changeMemberNickname(id, memberInitRequest.getNickname());
 		memberInstrumentService.addMemberInstrument(id, memberInitRequest.getInstruments());
 		memberGenreService.addMemberGenre(id, memberInitRequest.getGenres());
 		return ResponseEntity.status(HttpStatus.CREATED).build();

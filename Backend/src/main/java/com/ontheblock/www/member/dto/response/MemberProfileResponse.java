@@ -7,13 +7,13 @@ import lombok.Data;
 @Data
 public class MemberProfileResponse {
 	private Long id;
-	private String nickName;
+	private String nickname;
 	private String description;
 
 	// 프로필 정보
 	public MemberProfileResponse(Member member) {
 		this.id = member.getId();
-		this.nickName = member.getNickName();
+		this.nickname = member.getNickName();
 		this.description = member.getDescription();
 	}
 }

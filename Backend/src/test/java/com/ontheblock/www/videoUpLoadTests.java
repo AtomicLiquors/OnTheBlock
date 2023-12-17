@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +56,7 @@ public class videoUpLoadTests {
                 String channelId = (String) jsonObject.get("channelId");
                 String title = (String) jsonObject.get("title");
                 String videoId = (String) jsonObject.get("videoId");
-                Optional<Member> member = memberRepository.findByNickName(channelId);
+                Optional<Member> member = memberRepository.findByNickname(channelId);
                 String videofilePath = "C:/Users/SSAFY/Music/data/bass/ㅎ-영상모음/"+title+".mp4";
 
                 System.out.println(title);

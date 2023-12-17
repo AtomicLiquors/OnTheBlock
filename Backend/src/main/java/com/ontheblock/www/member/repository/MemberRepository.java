@@ -8,14 +8,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByEmail(@Param("email") String email);
 
-    Optional<Member> findByNickName(@Param("nickName") String nickName);
+    Optional<Member> findByNickname(@Param("nickname") String nickname);
 
     // 토큰 반환
     @Query("select m.token from Member m where m.id = :memberId")
