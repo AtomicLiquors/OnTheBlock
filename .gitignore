@@ -299,6 +299,10 @@ Recommend/__pycache__/
 *.py[cod]
 *$py.class
 
+!**/Backend/src/main/**/build/
+!**/Backend/src/main/resources/application.yml
+!**/Backend/src/test/**/build/
+
 Backend/src/main/**/build/
 Backend/src/main/resources/application.yml
 Backend/src/test/**/build/
