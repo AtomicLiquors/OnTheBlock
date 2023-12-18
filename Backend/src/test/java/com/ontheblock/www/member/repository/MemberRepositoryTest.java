@@ -46,7 +46,7 @@ class MemberRepositoryTest {
     }
 
     @Test
-    @DisplayName("회원 ID 조회 테스트")
+    @DisplayName("DB ID로 회원 조회 테스트")
     void findMemberById() throws Exception {
         // given
         Member savedMember =  memberRepository.save(member);
@@ -59,7 +59,21 @@ class MemberRepositoryTest {
     }
 
     @Test
-    @DisplayName("회원 닉네임 조회 테스트")
+    @DisplayName("이메일로 회원 조회 테스트")
+    void findMemberByEmail() throws Exception {
+        // given
+        Member savedMember =  memberRepository.save(member);
+
+        // when
+        Member foundMember = memberRepository.findByEmail(savedMember.getEmail()).orElseThrow(() -> new Exception("회원 조회 실패"));
+
+        // then
+        compareTwoMembers(savedMember, foundMember);
+    }
+
+
+    @Test
+    @DisplayName("닉네임으로 회원 조회 테스트")
     void findMemberByNickname() throws Exception {
         // given
         Member savedMember =  memberRepository.save(member);
@@ -70,6 +84,21 @@ class MemberRepositoryTest {
         // then
         compareTwoMembers(savedMember, foundMember);
     }
+
+
+    @Test
+    @DisplayName("리프레시 토큰으로 회원 조회 테스트")
+    void findRefreshTokenById() throws Exception {
+        // given
+        Member savedMember =  memberRepository.save(member);
+
+        // when
+        String foundToken = memberRepository.findRefreshTokenById(savedMember.getId()).orElseThrow(() -> new Exception("토큰 조회 실패"));
+
+        // then
+        assertThat(savedMember.getToken()).isEqualTo(foundToken);
+    }
+
 
     private void compareTwoMembers(Member member1, Member member2){
         assertThat(member1.getId()).isEqualTo(member2.getId());

@@ -18,7 +18,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 토큰 반환
     @Query("select m.token from Member m where m.id = :memberId")
-    String findByRefreshToken(@Param("memberId") Long memberId);
+    Optional<String> findRefreshTokenById(@Param("memberId") Long memberId);
 
     // Id로 프로필 정보 조회
     @Query("select new com.ontheblock.www.member.dto.response.MemberProfileResponse(m) from Member m where m.id = :id")

@@ -27,11 +27,15 @@ public class MemberService {
 		if (optionalMember.isPresent()) {
 			Member member = optionalMember.get();
 			member.updateToken(refreshToken);
+		} else {
+			 throw new EntityNotFoundException("Member Not Found");
 		}
+		//To-Do : 회원 조회 실패 시 커스텀 에러 발생시키기.
 	}
 
 	public String getRefreshToken(Long memberId) {
-		return mr.findByRefreshToken(memberId);
+		String token = mr.findRefreshTokenById(memberId).orElseThrow(() -> new EntityNotFoundException("Member Not Found"));
+		return token;
 	}
 
 	public void deleteRefreshToken(Long memberId) {
