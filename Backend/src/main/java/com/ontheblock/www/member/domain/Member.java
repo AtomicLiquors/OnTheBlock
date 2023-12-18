@@ -19,11 +19,13 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "member", uniqueConstraints = @UniqueConstraint(columnNames = "nickname"))
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="member_id")
     private Long id;
+
     @Column(length = 40)
     private String nickname;
     private String email;
