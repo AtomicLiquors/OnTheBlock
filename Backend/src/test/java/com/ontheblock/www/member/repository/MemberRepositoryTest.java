@@ -2,6 +2,7 @@ package com.ontheblock.www.member.repository;
 
 import com.ontheblock.www.OntheblockApplication;
 import com.ontheblock.www.member.domain.Member;
+import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -56,6 +57,20 @@ class MemberRepositoryTest {
 
         // then
         compareTwoMembers(savedMember, foundMember);
+    }
+
+    @Test
+    @DisplayName("DB ID로 회원 프로필 조회 테스트")
+    void findMemberProfileInfoById() throws Exception {
+        // given
+        Member savedMember =  memberRepository.save(member);
+
+        // when
+        MemberProfileResponse response = memberRepository.findMemberProfileInfoById(savedMember.getId()).orElseThrow(() -> new Exception("회원 조회 실패"));
+
+        // then
+        assertThat(response.getNickname()).isEqualTo(savedMember.getNickname());
+        assertThat(response.getDescription()).isEqualTo(savedMember.getDescription());
     }
 
     @Test
