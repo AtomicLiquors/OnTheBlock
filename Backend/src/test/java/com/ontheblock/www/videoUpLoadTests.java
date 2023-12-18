@@ -66,10 +66,9 @@ public class videoUpLoadTests {
                 if (id == null) continue;
 
                 if (member.isEmpty()) {
-                    Member m = new Member();
-                    m.updateNickname(channelId);
-                    memberRepository.save(m);
-                    member = Optional.of(m);
+                    Member newMember = Member.of(channelId);
+                    memberRepository.save(newMember);
+                    member = Optional.of(newMember);
                 }
                 Member m = member.get();
 

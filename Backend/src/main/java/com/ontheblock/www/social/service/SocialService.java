@@ -35,13 +35,14 @@ public class SocialService {
 
 
     // ResponseLoginMember 생성 후 반환
-    public ResponseLoginMember makeResponseLoginMember(String email, String nickName){
-        Optional<Member> optionalMember=memberRepository.findByEmail(email);
+    public ResponseLoginMember makeResponseLoginMember(String email, String nickname){
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
         // 새로 가입한 멤버인 경우 새로 생성하여 저장 후 반환
         if (!optionalMember.isPresent()) {
-            Member member = new Member();
+            Member member = Member.of(nickname, email, null, null);
             member.updateEmail(email);
-            member.updateNickname(nickName);
+            member.updateNickname(nickname);
+
             memberRepository.save(member);
             return new ResponseLoginMember(member,0);
         }

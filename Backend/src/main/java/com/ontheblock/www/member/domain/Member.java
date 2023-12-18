@@ -9,6 +9,7 @@ import com.ontheblock.www.video.domain.Video;
 import com.ontheblock.www.videolike.domain.VideoLike;
 import com.ontheblock.www.videowatch.domain.VideoWatch;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Member {
     @Id
@@ -28,17 +29,40 @@ public class Member {
     private String email;
     private String description;
     private String token;
-    public void updateToken(String token){
-        this.token=token;
-    }
+    public void updateToken(String token){ this.token=token; }
     public void updateEmail(String email){
-        this.email=email;
+        this.email = email;
     }
     public void updateNickname(String nickname){
-        this.nickname =nickname;
+        this.nickname = nickname;
     }
     public void updateDescription(String description){
-        this.description=description;
+        this.description = description;
+    }
+
+    public static Member of(String nickname, String email, String description, String token){
+        return new Member(nickname, email, description, token);
+    }
+    public static Member of(String nickname, String email){
+        return new Member(nickname, email);
+    }
+    public static Member of(String nickname){
+        return new Member(nickname);
+    }
+    private Member(String nickname, String email, String description, String token) {
+        this.nickname = nickname;
+        this.email = email;
+        this.description = description;
+        this.token = token;
+    }
+
+    private Member(String nickname, String email) {
+        this.nickname = nickname;
+        this.email = email;
+    }
+
+    private Member(String nickname) {
+        this.nickname = nickname;
     }
 
     @OneToMany(mappedBy = "member")

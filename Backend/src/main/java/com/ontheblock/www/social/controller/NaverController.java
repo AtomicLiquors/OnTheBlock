@@ -48,12 +48,11 @@ public class NaverController {
         // 여기서 받아오는 거냐, 저장소에서 가져오는 거냐? 확인요망.
 
         String naverToken = naverClient.getToken(code, state); // authCode로 token 요청
-        System.out.println("네이버 토큰: " + naverToken);
 
         // To-Do : 토큰이 null인 경우 에러처리
         NaverProfile naverProfile = naverClient.getUserInfo(naverToken);
+
         // To-Do : NaverClient가 UserInfo를 받아오지 못한 경우 에러처리
-        System.out.println("유저 정보:" + naverProfile);
         ResponseLoginMember member = socialService.naverLoginOrRegister(naverProfile);
 
         Map<String, Object> tokenMap = new HashMap<>();
