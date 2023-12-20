@@ -1,7 +1,7 @@
 package com.ontheblock.www.social.controller;
 
 
-import com.ontheblock.www.member.JWT.JwtService;
+import com.ontheblock.www.JWT.JwtService;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.domain.kakao.KakaoClient;
 import com.ontheblock.www.social.domain.kakao.KakaoProfile;

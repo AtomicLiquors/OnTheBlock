@@ -1,4 +1,4 @@
-package com.ontheblock.www.member.JWT;
+package com.ontheblock.www.JWT;
 
 import com.ontheblock.www.member.service.MemberService;
 import io.jsonwebtoken.Claims;

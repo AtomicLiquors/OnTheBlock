@@ -1,9 +1,8 @@
 package com.ontheblock.www.social.controller;
 
-import com.ontheblock.www.member.JWT.JwtService;
+import com.ontheblock.www.JWT.JwtService;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.domain.ResponseLoginMember;
-import com.ontheblock.www.social.domain.google.GoogleUserInfo;
 import com.ontheblock.www.social.domain.naver.NaverClient;
 import com.ontheblock.www.social.domain.naver.NaverProfile;
 import com.ontheblock.www.social.service.SocialService;
@@ -16,11 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.math.BigInteger;
 import java.net.URI;
-import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
