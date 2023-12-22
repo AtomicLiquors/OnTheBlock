@@ -45,12 +45,16 @@ public class Member {
     public static Member of(String nickname, String email, String description, String token){
         return new Member(nickname, email, description, token);
     }
+    public static Member of(Long id, String nickname, String email){
+        return new Member(id, nickname, email);
+    }
     public static Member of(String nickname, String email){
         return new Member(nickname, email);
     }
     public static Member of(String nickname){
         return new Member(nickname);
     }
+
     private Member(String nickname, String email, String description, String token) {
         this.nickname = nickname;
         this.email = email;
@@ -59,6 +63,13 @@ public class Member {
     }
 
     private Member(String nickname, String email) {
+        this.nickname = nickname;
+        this.email = email;
+    }
+
+
+    private Member(Long id, String nickname, String email) {
+        this.id = id;
         this.nickname = nickname;
         this.email = email;
     }

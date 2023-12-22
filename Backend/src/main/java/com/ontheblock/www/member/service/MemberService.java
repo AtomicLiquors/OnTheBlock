@@ -3,10 +3,8 @@ package com.ontheblock.www.member.service;
 import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 import com.ontheblock.www.member.repository.MemberRepository;
-
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,6 +41,7 @@ public class MemberService {
 		member.updateToken("");
 	}
 
+	//To-Do : getMember 메서드의 사용처 확인 후 getMemberInfoById와 명확한 구분 필요.
 	public Member getMember(Long memberId) {
 		Member member = mr.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member Not Found"));
 		return member;
@@ -100,11 +99,9 @@ public class MemberService {
 	}
 
 	// 닉네임 중복 검사
-	public Boolean checkDuplicateNickName(String nickname){
-		Optional<Member> optionalMember=mr.findByNickname(nickname);
-		if(optionalMember.isPresent()){
-			return false;
-		}
-		return true;
+	// To-Do : 리턴되는 true, false 값의 의미를 메서드명으로 유추 가능한지 논의 필요.
+	public Boolean checkDuplicateNickname(String nickname){
+		Optional<Member> optionalMember = mr.findByNickname(nickname);
+		return optionalMember.isEmpty();
 	}
 }
