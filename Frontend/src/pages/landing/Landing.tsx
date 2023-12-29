@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import kakaoBtn from "@/assets/kakao_login_button.png";
 import googleBtn from "@/assets/google_login_button.png"
@@ -8,28 +8,14 @@ import Button from "react-bootstrap/Button";
 import Logo from "@/assets/logo.png";
 import Banner from "@/assets/banners/landing.jpeg";
 
-function Landing() {
+
+const Landing: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <S.Wrap>
       <S.Card>
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundImage: `linear-gradient(to bottom, rgba(117, 85, 63, 0.3), rgba(156, 96, 100, 0.5)),
-            url(${Banner})`,
-            backgroundSize: "cover",
-            width: "100vw",
-            height: "840px",
-            gap: "100px",
-            paddingTop: "50px",
-          }}
-        >
+        <S.Banner>
           <S.Logo src={Logo}></S.Logo>
           <div style={{ textAlign: "center", color: "white", dropShadow: "10px 10px 10px black" }}>
             나의 소소한 연주가, 색다른 합주로 태어나는 커뮤니티
@@ -70,7 +56,7 @@ function Landing() {
               </a>
             </div>
           </S.LoginContainer>
-        </div>
+        </S.Banner>
       </S.Card>
     </S.Wrap>
   );
@@ -113,6 +99,19 @@ const S = {
      width: 600px;
    `,
 
+   Banner: styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, rgba(117, 85, 63, 0.3), rgba(156, 96, 100, 0.5)), url(${Banner});
+    background-size: cover;
+    width: 100vw;
+    height: 840px;
+    gap: 100px;
+    padding-top: 50px;
+   `,
 };
 
 export default Landing;

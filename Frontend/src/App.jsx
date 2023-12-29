@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Landing from "./pages/landing/Landing.jsx";
+import Landing from "./pages/landing/Landing.tsx";
 import Main from "./pages/main/Main.jsx";
 import CompositionRecord from "./pages/record/CompositionRecord.jsx";
 import SessionRecord from "./pages/record/SessionRecord.jsx";
