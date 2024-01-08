@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
 import styled from "styled-components";
 import Logo from "@/assets/logo_white.png";
 

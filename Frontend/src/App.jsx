@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./pages/landing/Landing.tsx";
@@ -16,16 +15,18 @@ import MemberInit from "./pages/memberInit/MemberInit.jsx";
 import VideoModal from "@/components/video/VideoModal.jsx";
 import MyPageGridContent from "@/components/mypage/MyPageGridContent.jsx";
 import MyPageInfoInput from "@/components/mypage/MyPageInfoInput.jsx";
+import "@/App.css";
 
-import "@/assets/fonts/fonts.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // primereact css
 //theme
+/*
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+*/
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>

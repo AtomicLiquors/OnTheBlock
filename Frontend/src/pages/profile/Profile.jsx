@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ProfileInfo } from "@/components";
 import { ProfileContent } from "@/components";
-import { getUserInfo } from "../../api/member";
+import { getUserInfo } from "@/api/member";
 
 
 function Profile() {

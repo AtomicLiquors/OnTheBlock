@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 function Bridge() {
@@ -10,10 +10,16 @@ function Bridge() {
   useEffect(() => {
       // 쿠키를 불러옴
       const cookieString = document.cookie;
+
       // 쿠키에서 데이터를 분리한 후 데이터 저장
-      const accessToken = cookieString.split(';').find((cookie) => cookie.trim().startsWith('accessToken=')).split('=')[1].trim();
-      const refreshToken = cookieString.split(';').find((cookie) => cookie.trim().startsWith('refreshToken=')).split('=')[1].trim();
-      const memberId=  cookieString.split(';').find((cookie) => cookie.trim().startsWith('memberId=')).split('=')[1].trim();
+      const cookies = cookieString.split(';').map((cookie) => {
+        const [name, value] = cookie.trim().split('=');
+        return { [name]: value.trim() };
+      });
+
+      const accessToken = cookies.find((cookie) => 'accessToken' in cookie)?.accessToken;
+      const refreshToken = cookies.find((cookie) => 'refreshToken' in cookie)?.refreshToken;
+      const memberId = cookies.find((cookie) => 'memberId' in cookie)?.memberId;
     
       // 토큰을 로컬에 저장
       localStorage.setItem('accessToken', accessToken);
