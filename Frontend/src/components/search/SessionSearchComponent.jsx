@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import { Button, Badge, ListGroup, ListGroupItem } from "react-bootstrap";
-import { getSearchVideosByKeyword } from "@/api/video";
 import SearchBarComponent from "./SearchBarComponent";
 import { ProfileImg } from "@/components";
 import { getSearchVideosByKeywordForCompose } from "../../api/video";

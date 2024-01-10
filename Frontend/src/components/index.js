@@ -25,7 +25,7 @@ export { default as VideoSearchResultModal } from "./search/VideoSearchResultMod
 export { default as NewRecordModal } from './record/NewRecordModal'
 export { default as NewRecordSessionSearchModal } from "./record/NewRecordSessionSearchModal"
 
-export { default as ThumbnailContainer } from './thumbnail/ThumbnailContainer'
+//export { default as ThumbnailContainer } from './thumbnail/ThumbnailContainer'
 export { default as SearchDropDown } from "./search/SearchDropDown";
 export { default as SearchBarComponent } from "./search/SearchBarComponent";
 export { default as SongSearchComponent } from "./search/SongSearchComponent";

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { CgProfile as ProfileIcon } from "react-icons/cg";
 import { getNotices, deleteNotice } from "../../api/notice";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";

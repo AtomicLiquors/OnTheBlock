@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -51,7 +52,9 @@ public class VideoController {
     @GetMapping("/recommend/check")
     public ResponseEntity<?> getRecommendVideos(HttpServletRequest request){
         Long memberId = (Long)request.getAttribute("id");
-        List<VideoResponse> videos = videoListService.getRecommendVideos(memberId);
+        // List<VideoResponse> videos = videoListService.getRecommendVideos(memberId);
+
+        List<VideoResponse> videos = new ArrayList<>();
         return ResponseEntity.ok().body(videos);
     }
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CgProfile as ProfileIcon } from "react-icons/cg";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import { ProfileImg } from "@/components";

@@ -9,17 +9,14 @@ import {
   SearchBarComponent,
   VideoSearchResultModal,
 } from "@/components";
-import { PiMusicNotesPlus } from "react-icons/pi";
 import { getMyInstruments } from "@/api/instrument";
 import {
   getLatestVideoList,
   getFollowVideos,
   getRecommendVideos,
 } from "@/api/video";
-import { getSongByName } from "@/api/song";
 import { getSearchVideosByKeyword } from "@/api/video";
-
-import * as hooks from "@/hooks";
+import PiMusicNotesPlus from "@/assets/icons/musicplus.png";
 
 function Main() {
   const navigate = useNavigate();
@@ -27,8 +24,6 @@ function Main() {
   const [isNewRecordOpen, setIsNewRecordOpen] = useState(false);
   const [isSessionSearchOpen, setIsSessionSearchOpen] = useState(false);
   const [isVideoSearchResultOpen, setIsVideoSearchResultOpen] = useState(false);
-  //const [isCreatedOpen, setIsCreatedOpen] = useState(false);
-  //모달 사용하지 않음, 삭제대기
   const location = useLocation();
   const [latestVideoList, setLatestVideoList] = useState(null);
   const [followVideoList, setFollowVideoList] = useState(null);
@@ -97,7 +92,7 @@ function Main() {
               업로드한 영상은 마이페이지 - 나의 프로필에서 확인할 수 있습니다.
             </p>
             <S.RecordNewMusicSmallBtn onClick={setIsNewRecordOpen}>
-              <PiMusicNotesPlus size="2em" style={{ paddingBottom: "5px" }} />
+              <img src={PiMusicNotesPlus} width="24px"/> 
               <div>새 연주 시작하기</div>
             </S.RecordNewMusicSmallBtn>
             <div style={{ marginTop: "48px", width: "40%" }}>
@@ -117,7 +112,7 @@ function Main() {
 
             <b>하단의 버튼을 눌러 새 연주를 시작해보세요.</b>
             <S.RecordNewMusicSmallBtn onClick={setIsNewRecordOpen}>
-              <PiMusicNotesPlus size="1em" />
+              <img src={PiMusicNotesPlus} width="24px"/> 
               <div>새 연주 시작하기</div>
             </S.RecordNewMusicSmallBtn>
             <div style={{ marginTop: "48px", width: "40%" }}>

@@ -1,15 +1,15 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
-import Logo from "@/assets/logo_white.png";
+import Logo from "@/assets/logos/logo_white.png";
 
-function ModalFooter() {
-    return (
-      <S.ModalFooter>
-        <S.Logo src={Logo}/>
-      </S.ModalFooter>
-    );
-}
+const ModalFooter = React.memo(function ModalFooter() {
+  return (
+    <S.ModalFooter>
+      <S.Logo src={Logo} alt="Logo" />
+    </S.ModalFooter>
+  );
+});
 
 const S = {
   Modal: styled(Modal)`

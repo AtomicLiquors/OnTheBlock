@@ -4,9 +4,9 @@ import { Thumbnail } from "@/components";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import styled from "styled-components";
 
 // ThumbnailSwiper로 완전히 대체된거면 삭제요망.
+/*
 function ThumbnailContainer() {
   return (
     <Swiper
@@ -40,4 +40,4 @@ const S = {
   
 }
 
-export default ThumbnailContainer;
+export default ThumbnailContainer;*/

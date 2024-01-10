@@ -20,13 +20,9 @@ import "@/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // primereact css
-//theme
-/*
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-//core
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-*/
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>

@@ -10,8 +10,8 @@ export const getUserInfo = (memberId) => {
     return clientWithToken().get(MemberURL + 'check', { params: { memberId } });
 };
 
-export const changeUserNickName = (newNickName) => {
-  return clientWithToken().post(MemberURL + 'nickname/check', {}, { params: { nickName: newNickName } });
+export const changeUserNickname = (newNickname) => {
+  return clientWithToken().post(MemberURL + 'nickname/check', {}, { params: { nickname: newNickname } });
 };
 
 export const changeUserDescription = (newDescription) => {
@@ -19,15 +19,15 @@ export const changeUserDescription = (newDescription) => {
 };
 
 // 닉네임 중복 검사
-export const checkDuplicateNickname=(nickName)=>{
-  return client().get(MemberURL+'nickName', { params: { nickName } });
+export const checkDuplicateNickname=(nickname)=>{
+  return client().get(MemberURL+'nickname', { params: { nickname } });
 }
 
 // 닉네임, 관심 악기, 관심 장르 등록
-export const registMemberInit=(nickName, selectedInstruments, selectedGenres)=>{
+export const registMemberInit=(nickname, selectedInstruments, selectedGenres)=>{
   const memberInitRequest = {
     memberId: localStorage.getItem("memberId"),
-    nickName: nickName,
+    nickname: nickname,
     instruments: selectedInstruments,
     genres: selectedGenres
   };

@@ -51,17 +51,17 @@ function MemberInit() {
 
     const checkNickName=()=>{
         if (nickName.length < 2 || nickName.length > 10) {
-            alert("닉네임은 최소 2글자 이상, 10글자 이하이어야 합니다.");
+            alert("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
             return;
         }
         checkDuplicateNickname(nickName).then((response)=>{
             //console.log(response.data);
             if(response.data==true){
-                setNickNameCheck("사용 가능한 닉네임 입니다!");
+                setNickNameCheck("사용 가능한 닉네임입니다!");
                 setIsNicknameAvailable(true);
             }
             else{
-                setNickNameCheck("이미 존재하는 닉네임 입니다.");
+                setNickNameCheck("이미 존재하는 닉네임입니다.");
                 setIsNicknameAvailable(false);
             }
         })

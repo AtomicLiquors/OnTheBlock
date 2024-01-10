@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { CgProfile as ProfileIcon } from "react-icons/cg";
 import styled from "styled-components";
-import Logo from "@/assets/logo.png";
+import Logo from "@/assets/logos/logo.png";
 import UserDropPanel from "@/components/layout/UserDropPanel";
 import { ProfileImg } from "@/components"
 import { useEffect } from "react";

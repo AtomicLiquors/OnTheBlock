@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  changeUserNickName,
+  changeUserNickname,
   changeUserDescription,
   checkDuplicateNickname,
 } from "@/api/member";
@@ -19,7 +19,7 @@ import { ProfileImg } from "@/components";
 
 function MyPageInfoInput() {
   const navigate = useNavigate();
-  // const { newNickName, newDescription } = useParams();
+  // const { newNickname, newDescription } = useParams();
 
   const MIN_NICKNAME_LENGTH = 2;
   const MAX_NICKNAME_LENGTH = 10;
@@ -27,9 +27,9 @@ function MyPageInfoInput() {
   const MAX_DESCRIPTION_LENGTH = 40;
 
   const [userData, setUserData] = useState(null);
-  const [nickName, setNickName] = useState("");
-  const [nickNameCheck, setNickNameCheck] = useState("");
-  const [isNickNameAvailable, setIsNickNameAvailable] = useState(false);
+  const [nickname, setNickname] = useState("");
+  const [nicknameCheck, setNicknameCheck] = useState("");
+  const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
 
   const [description, setDescription] = useState("");
   const [descriptionCheck, setDescriptionCheck] = useState("");
@@ -50,7 +50,7 @@ function MyPageInfoInput() {
     getMyUserInfo().then((response) => {
       setUserData(response.data);
       if (response.data) {
-        setNickName(response.data.nickName);
+        setNickname(response.data.nickname);
         setDescription(response.data.description);
       }
     });
@@ -65,18 +65,18 @@ function MyPageInfoInput() {
     }
   };
 
-  const checkNickName = () => {
-    if (nickName.length < 2 || nickName.length > 10) {
-      setNickNameCheck("닉네임은 최소 2글자 이상, 10글자 이하이어야 합니다.");
+  const checkNickname = () => {
+    if (nickname.length < 2 || nickname.length > 10) {
+      setNicknameCheck("닉네임은 최소 2글자 이상, 10글자 이하이어야 합니다.");
       return;
     }
-    checkDuplicateNickname(nickName).then((response) => {
+    checkDuplicateNickname(nickname).then((response) => {
       if (response.data == true) {
-        setNickNameCheck("사용 가능한 닉네임입니다!");
-        setIsNickNameAvailable(true);
+        setNicknameCheck("사용 가능한 닉네임입니다!");
+        setIsNicknameAvailable(true);
       } else {
-        setNickNameCheck("이미 존재하는 닉네임입니다.");
-        setIsNickNameAvailable(false);
+        setNicknameCheck("이미 존재하는 닉네임입니다.");
+        setIsNicknameAvailable(false);
       }
     });
   };
@@ -97,10 +97,10 @@ function MyPageInfoInput() {
     }
   };
 
-  const sendChangeUserNickName = async (newNickName) => {
+  const sendChangeUserNickname = async (newNickname) => {
     try {
-      await changeUserNickName(newNickName);
-      localStorage.setItem("nickName", newNickName);
+      await changeUserNickname(newNickname);
+      localStorage.setItem("nickname", newNickname);
       window.location.reload();
     } catch (error) {
     }
@@ -152,7 +152,7 @@ function MyPageInfoInput() {
     <>
       <S.Wrap>
         <S.ProfileImgWrap>
-          <ProfileImg nickName={nickName} size="128" />
+          <ProfileImg nickname={nickname} size="128" />
         </S.ProfileImgWrap>
         <br></br>
         <br></br>
@@ -161,14 +161,14 @@ function MyPageInfoInput() {
         <S.InputWrapper>
           <S.Input
             type="text"
-            value={nickName}
-            onChange={(e) => setNickName(e.target.value)}
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
             placeholder="새 닉네임을 입력하세요."
           />
           <S.ButtonContainer>
             <Button
               variant="secondary"
-              onClick={checkNickName}
+              onClick={checkNickname}
               style={{ marginRight: "10px" }}
             >
               중복 검사
@@ -177,18 +177,18 @@ function MyPageInfoInput() {
               variant="warning"
               onClick={() => {
                 // 닉네임 길이 유효성 검사
-                if (nickName.length < MIN_NICKNAME_LENGTH) {
+                if (nickname.length < MIN_NICKNAME_LENGTH) {
                   alert(
                     "닉네임은 " + MIN_NICKNAME_LENGTH + "자 이상이어야 합니다."
                   );
-                } else if (nickName.length > MAX_NICKNAME_LENGTH) {
+                } else if (nickname.length > MAX_NICKNAME_LENGTH) {
                   alert(
                     "닉네임은 " + MAX_NICKNAME_LENGTH + "자 이하여야 합니다."
                   );
-                } else if (!isNickNameAvailable) {
+                } else if (!isNicknameAvailable) {
                   alert("닉네임 중복을 확인해주세요.");
                 } else {
-                  sendChangeUserNickName(nickName);
+                  sendChangeUserNickname(nickname);
                 }
               }}
             >
@@ -196,7 +196,7 @@ function MyPageInfoInput() {
             </Button>{" "}
           </S.ButtonContainer>
         </S.InputWrapper>
-        {nickNameCheck != "" && <S.MsgBox>{nickNameCheck}</S.MsgBox>}
+        {nicknameCheck != "" && <S.MsgBox>{nicknameCheck}</S.MsgBox>}
         <br></br>
         {/* 자기소개 */}
         자기소개 변경

@@ -1,6 +1,6 @@
 
 import styled from "styled-components";
-import Logo from "@/assets/logo_white.png";
+import Logo from "@/assets/logos/logo_white.png";
 
 function EmptyMsgContainer({ emptyMsg, height }) {
     return (

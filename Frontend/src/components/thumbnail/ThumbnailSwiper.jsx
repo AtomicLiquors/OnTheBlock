@@ -4,8 +4,6 @@ import { Thumbnail, EmptyMsgContainer } from "@/components";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import styled from "styled-components";
-import Logo from "@/assets/logo_white.png";
 
 function ThumbnailSwiper({ videoList, emptyMsg }) {
   return (
@@ -36,7 +34,5 @@ function ThumbnailSwiper({ videoList, emptyMsg }) {
   );
 }
 
-const S = {
-};
 
 export default ThumbnailSwiper;

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import kakaoBtn from "@/assets/kakao_login_button.png";
 import googleBtn from "@/assets/google_login_button.png"
 import Button from "react-bootstrap/Button";
-import Logo from "@/assets/logo.png";
+import Logo from "@/assets/logos/logo_large.png";
 import Banner from "@/assets/banners/landing.jpeg";
 
 

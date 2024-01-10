@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import ModalFooter from "@/components/layout/ModalFooter";
 
-function NewRecordModal({
+const NewRecordModal = React.memo(function NewRecordModal ({
   isModalOpen,
   setIsModalOpen,
   setIsSessionSearchOpen,
@@ -28,7 +28,6 @@ function NewRecordModal({
         <div style={{ background: "black", color: "white" }}>
           <Modal.Header>
             <S.ModalTitle>연주 형태를 선택해 주세요!</S.ModalTitle>
-            {/* <S.CloseButton onClick={() => setIsModalOpen(false)}>X</S.CloseButton> */}
           </Modal.Header>
           <Modal.Body>
             <S.OptionContainer>
@@ -51,7 +50,7 @@ function NewRecordModal({
       </S.Modal>
     </>
   );
-}
+});
 
 const S = {
   Modal: styled(Modal)`
