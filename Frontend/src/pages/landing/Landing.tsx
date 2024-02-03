@@ -56,7 +56,6 @@ const S = {
   LoginContainer: styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
   `,
 
   Subtitle: styled.div`
@@ -69,7 +68,7 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     background-color: #252525;
   `,
 

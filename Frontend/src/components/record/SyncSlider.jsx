@@ -1,6 +1,5 @@
-import { Form, Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import _ from "lodash";
 import FilmStrip from "@/assets/filmstrip.png";
 import { SquareSlider, Ruler, GridIcon, InputNumberTag } from "@/components";
@@ -8,15 +7,20 @@ import { SquareSlider, Ruler, GridIcon, InputNumberTag } from "@/components";
 function SyncSlider({ position, startPoint, setStartPoint, totalFrame, max }) {
   const [tagValue, setTagValue] = useState(startPoint);
 
-  const handleRangeChange = (e) => {
+  const handleTagChange = (e) => {
     setTagValue(Number(e.target.value));
     setStartPoint(Number(e.target.value));
   };
-
-  //마우스 떼면 바뀌게 어떻게 하냐
-  const handleRangeMouseUp = (e) => {
-    setStartPoint(tagValue);
+  
+  const handleRangeChange = (e) => {
+    setTagValue(Number(e.target.value));
+    setVideoStartPointByDebounce();
   };
+
+  const setVideoStartPointByDebounce = _.debounce(() => {
+    setStartPoint(tagValue);
+  }, 300);
+
 
   const handleNumberKeyDown = (e) => {
     if (e.keyCode == 37) {
@@ -26,9 +30,12 @@ function SyncSlider({ position, startPoint, setStartPoint, totalFrame, max }) {
     }
     setStartPoint(tagValue);
   };
-  const setVideoStartPoint = _.debounce(() => {
+
+  
+  //To-Do: 마우스 떼면 바뀌도록 처리.
+  const handleRangeMouseUp = (e) => {
     setStartPoint(tagValue);
-  }, 300);
+  };
 
   return (
     <S.Wrap>
@@ -36,7 +43,7 @@ function SyncSlider({ position, startPoint, setStartPoint, totalFrame, max }) {
         <GridIcon position={position} />
         <InputNumberTag
           value={tagValue}
-          onChange={(e) => handleRangeChange(e)}
+          onChange={(e) => handleTagChange(e)}
           onKeyDown={(e) => handleNumberKeyDown(e)}
         />
       </div>
@@ -126,9 +133,9 @@ function SyncSlider({ position, startPoint, setStartPoint, totalFrame, max }) {
           type="range"
           min={-max}
           max={max - 1}
-          value={tagValue}
+          
           defaultValue={startPoint}
-          onChange={(e) => handleRangeChange(e)}
+          onChange={handleRangeChange}
         />
       </div>
     </S.Wrap>
