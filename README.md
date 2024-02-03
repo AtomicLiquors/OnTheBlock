@@ -14,18 +14,23 @@
         <img src="Documents/motive.png" alt="motive" width="50%" height="50%">
     </a>
     
-    <div>OnTheBlock은 다양한 뮤지션들이 자신의 연주 영상을 공유하고, <br>연주 영상들을 하나의 합주 영상으로 만드는 서비스입니다.<br>
+    
+</div>
+<div align="center">OnTheBlock은 다양한 뮤지션들이 자신의 연주 영상을 공유하고, <br>연주 영상들을 하나의 합주 영상으로 만드는 서비스입니다.<br>
 빅데이터를 활용하여 사용자별 음악 취향, 활동 내역에 따른 영상 추천 시스템을 제공하고, <br>
 좋아요 / 댓글 / 팔로우를 통해 사용자들의 커뮤니케이션을 촉진합니다.</div>
-</div>
 
-"SpringBoot + React 기반 온라인 합주 플랫폼"
-- 도메인: 빅데이터(spotify, 영상) 활용 추천 시스템
+&nbsp;  
+### [상세정보]
+- Back-end : SpringBoot
+- Front-end : React.js
+- 도메인: 빅데이터 추천 시스템(Spotify 곡 정보, 업로드된 영상 정보 기반) 
 - 개발 기간 : 2023. 08. 21. ~ 2023. 10. 06.
-- 참여 인원 : 5인
 - 🏆 SSAFY 9기 특화 프로젝트 우수상 🏆
 - 🎉 SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 🎉
 
+&nbsp;  
+<!--
 ## 💡 핵심 기능
 
 - 소셜 로그인(카카오, 구글)
@@ -41,23 +46,25 @@
 - 시청한 영상(활동데이터)
 - 좋아요한 영상(활동데이터)
 - 업로드한 영상(활동데이터)
+-->
 
-## 🎬 UCC 영상
-
+## 🎬 프로젝트 소개 영상
 <div align="center">
-<center>
-<a href="https://www.youtube.com/watch?v=WW4unczZsjA&feature=youtu.be"><img src="Documents/youtube.jpg"  width="140"/></a>
-</center>
+<a href="https://youtu.be/WW4unczZsjA?feature=shared&t=130"><img src="Documents/youtube.jpg"  width="140"/></a>
+</div>
+<div align="center">
+(2분 10초부터 재생됩니다.)
 </div>
 
 ## 📆 제작 기간 및 인원
 
 제작 기간 : 2023. 08.21 ~ 2023. 10. 06 (7주) <br/>
 참여 인원 : 5인
-|<img src="Documents/jongwon.jpg" width="200" height="200">|<img src="Documents/hyobin.jpg" width="200" height="200">|<img title="" src="Documents/jongseong.jpg" width="200" height="200">|<img src="Documents/joonhee.png" width="200" height="200">|<img src="Documents/taegue.jpg" width="200" height="200">|
+|<img src="Documents/members/jongwon.jpg" width="50" height="50" style="border-radius:50%">|<img src="Documents/members/hyobin.jpg" width="50" height="50">|<img title="" src="Documents/members/jongseong.jpg" width="50" height="50">|<img src="Documents/members/joonhee.png" width="50" height="50">|<img src="Documents/members/taegue.jpg" width="50" height="50">|
 |:--:|:--:|:--:|:--:|:--:|
 |<a href="https://github.com/Jongwon97">이종원(팀장)</a>|<a href="https://github.com/AtomicLiquors">최효빈</a>|<a href="https://github.com/Park-jong">박종성</a>|<a href="https://github.com/JoonHeeSeo">서준희</a>|<a href="https://github.com/SilvianC">조태규</a>
 |Backend, Frontend|Frontend, Design|CI/CD, 추천 시스템, Backend|Backend, Frontend|추천 시스템, 검색 시스템|
+<div style="display:flex"></div>
 
 ## 💻 기술 스택
 
@@ -98,21 +105,21 @@
 
 <div align="center">
 <center>
-<img src="Documents/erd.png" alt="erd" width="70%" height="70%">
+<img src="Documents/system/erd.png" alt="erd" width="70%" height="70%">
 </center>
 </div>
 
 ## 🔎 시연 영상
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-    <h3>1. 소셜 로그인</h3><img src="Documents/소셜 로그인.gif">
-    <h3>2. 솔로 연주</h3><img src="Documents/솔로 연주.gif">
-    <h3>3. 합주</h3><img src="Documents/합주 시작.gif">
-    <h3>3-1. 볼륨 조절</h3><img src="Documents/볼륨 조절.gif">
-    <h3>3-2. 싱크 조절</h3><img src="Documents/싱크 조절.gif">
-    <h3>4. 영상 검색</h3><img src="Documents/검색.gif">
-    <h3>5. 추천 영상 조회</h3><img src="Documents/추천 영상 조회.gif">
-    <h3>6-1. 영상 댓글</h3><img src="Documents/영상 댓글.gif">
-    <h3>6-2. 유저 팔로잉</h3><img src="Documents/팔로잉.gif">
-    <h3>6-3. 실시간 알림 서비스</h3><img src="Documents/알림.gif">
+<div>
+    <h3>1. 소셜 로그인</h3><img src="Documents/gifs/소셜 로그인.gif">
+    <h3>2. 솔로 연주</h3><img src="Documents/gifs/솔로 연주.gif">
+    <h3>3. 합주</h3><img src="Documents/gifs/합주 시작.gif">
+    <h3>3-1. 볼륨 조절</h3><img src="Documents/gifs/볼륨 조절.gif">
+    <h3>3-2. 싱크 조절</h3><img src="Documents/gifs/싱크 조절.gif">
+    <h3>4. 영상 검색</h3><img src="Documents/gifs/검색.gif">
+    <h3>5. 추천 영상 조회</h3><img src="Documents/gifs/추천 영상 조회.gif">
+    <h3>6-1. 영상별 댓글 등록 및 조회</h3><img src="Documents/gifs/영상 댓글.gif">
+    <h3>6-2. 유저 팔로잉</h3><img src="Documents/gifs/팔로잉.gif">
+    <h3>6-3. 실시간 알림 서비스</h3><img src="Documents/gifs/알림.gif">
 </div>
