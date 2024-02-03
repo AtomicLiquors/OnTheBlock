@@ -1,7 +1,5 @@
 <div align="center">
-<center>
 <img src="Frontend/src/assets/logos/logo_large.png" alt="logo" width="50%" height="50%">
-</center>
 </div>
 
 <div align="center">
@@ -11,6 +9,15 @@
 </div>
 
 ## :clipboard: 개요
+<div align="center">
+    <a href="https://www.youtube.com/watch?v=-pPDEayEY4M">
+        <img src="Documents/motive.png" alt="motive" width="50%" height="50%">
+    </a>
+    
+    <div>OnTheBlock은 다양한 뮤지션들이 자신의 연주 영상을 공유하고, <br>연주 영상들을 하나의 합주 영상으로 만드는 서비스입니다.<br>
+빅데이터를 활용하여 사용자별 음악 취향, 활동 내역에 따른 영상 추천 시스템을 제공하고, <br>
+좋아요 / 댓글 / 팔로우를 통해 사용자들의 커뮤니케이션을 촉진합니다.</div>
+</div>
 
 "SpringBoot + React 기반 온라인 합주 플랫폼"
 - 도메인: 빅데이터(spotify, 영상) 활용 추천 시스템
@@ -54,7 +61,7 @@
 
 ## 💻 기술 스택
 
-<img src="Documents/architecture.png" alt="architecture" width="80%" height="80%">
+<img src="Documents/system/architecture.png" alt="architecture" width="80%" height="80%">
 <br/>
 
 ### Backend
