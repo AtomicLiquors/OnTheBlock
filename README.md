@@ -11,7 +11,7 @@
 ## :clipboard: 개요
 <div align="center">
     <a href="https://www.youtube.com/watch?v=-pPDEayEY4M">
-        <img src="Documents/motive.png" alt="motive" width="50%" height="50%">
+        <img src="Documents/title.png" alt="motive" width="50%" height="50%">
     </a>
     
     
