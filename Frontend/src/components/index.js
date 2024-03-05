@@ -19,6 +19,7 @@ export { default as Player } from './remotion/Player'
 export { default as SyncSlider } from './record/SyncSlider'
 export { default as RecordSessionComponent } from './record/RecordSessionComponent'
 export { default as RecordCompositionComponent } from './record/RecordCompositionComponent'
+export { default as RecordDummyCompositionComponent } from './record/RecordDummyCompositionComponent'
 export { default as SessionSearchComponent } from './search/SessionSearchComponent'
 export { default as VideoSearchResultModal } from "./search/VideoSearchResultModal"
 
