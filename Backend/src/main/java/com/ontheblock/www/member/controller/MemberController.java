@@ -27,7 +27,6 @@ public class MemberController {
 	// 요청 유저의 ID, 닉네임, 자기소개 조회
 	@GetMapping("/me/check")
 	public ResponseEntity<MemberProfileResponse> getMyMemberInfo(HttpServletRequest request) {
-		log.debug("Fuck you from controller");
 
 		Long id = (Long)request.getAttribute("id");
 		MemberProfileResponse member = memberService.getMemberInfoById(id);
@@ -41,9 +40,7 @@ public class MemberController {
 	// 해당 유저의 ID, 닉네임, 자기소개 조회
 	@GetMapping("/check")
 	public ResponseEntity<MemberProfileResponse> getMemberInfo(HttpServletRequest request, Long memberId) {
-		// Long id = (Long)request.getAttribute("id");
-		System.out.println("Fuck you too");
-		log.error("Fuck you");
+
 		MemberProfileResponse member = memberService.getMemberInfoById(memberId);
 		if (member == null) {
 			return ResponseEntity.notFound().build();
