@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getAllInstruments, registMemberInstruments } from '../../api/instrument';
 import { getAllGenres, registMemberGenres } from '../../api/genre';
@@ -9,9 +9,12 @@ import { InputText } from 'primereact/inputtext';
 import { checkDuplicateNickname } from '../../api/member';
 import { registMemberInit } from '../../api/member';
 import InitBanner from "@/assets/banners/init.jpeg";
+import { SearchBarComponent } from '../../components';
+import SelectionTagsComponent from '../../components/gadgets/SelectionTagsComponent';
 
 function MemberInit() {
    const navigate = useNavigate();
+   const inputRef = useRef();
 
    const [nickName, setNickName] = useState('');
    const [nickNameCheck, setNickNameCheck]=useState('');
@@ -19,9 +22,11 @@ function MemberInit() {
 
    const [instruments, setInstruments] = useState([]);
    const [selectedInstruments, setSelectedInstruments] = useState([]);
+   const [ instrumentSearchResult, setInstrumentSearchResult ] = useState(null);
 
    const [genres, setGenres] = useState([]);
    const [selectedGenres, setSelectedGenres] = useState([]);
+   const [ genreSearchResult, setGenreSearchResult ] = useState(null);
 
    // 데이터 랜더링
    useEffect(() => {
@@ -42,7 +47,7 @@ function MemberInit() {
    }
 
    const handleInstrumentChange = (e) => {
-      setSelectedInstruments(e.value)
+      setSelectedInstruments(e.value);
    }
 
    const handleGenreChange = (e) => {
@@ -78,6 +83,14 @@ function MemberInit() {
         })
     }
 
+    const handleSearchInputKeyDown = () => {
+
+    }
+
+    const handleSearchClick = () => {
+
+    }
+
     return (
       <S.Container>
         <S.Title>환영합니다!</S.Title>
@@ -111,8 +124,15 @@ function MemberInit() {
           :
           <div style={{width: "1000px", fontSize: "32px"}}>악기 정보를 불러오지 못했습니다.\n악기 정보는 회원가입 후 "마이페이지"에서도 등록할 수 있습니다.</div>
         }
-        
-        <br />
+        <div>
+        <SearchBarComponent
+              ref={inputRef}
+              handleInputKeyDown={handleSearchInputKeyDown}
+              handleSearchClick={handleSearchClick}
+              placeholder="악기 이름을 검색합니다."
+            />
+        </div>
+        <SelectionTagsComponent data={selectedInstruments}/>
 
         <S.SubTitle>관심있는 장르는 무엇인가요?</S.SubTitle>
         <SelectButton
@@ -159,15 +179,15 @@ const S = {
   `,
 
   Button : styled.button` 
-     padding :10px; 
-     background-color :#ffffff; 
-     border-radius :5px; 
-     
+    padding :10px; 
+    background-color :#ffffff; 
+    border-radius :5px; 
+    
 
-     &:hover { 
-       background-color:#ddd;  
-      }   
-   `
+    &:hover { 
+      background-color:#ddd;  
+    }   
+  `
 };
 
 export default MemberInit;
