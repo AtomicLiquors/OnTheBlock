@@ -29,6 +29,11 @@ public class MemberInstrumentService {
 		return instrumentRepository.findAll();
 	}
 
+	@Transactional
+	public List<Instrument> getInstrumentsByKeyword(String keyword) {
+		return instrumentRepository.findByKeyword(keyword);
+	}
+
 	// 관심있는 악기 등록 - MemberInstrument
 	@Transactional
 	public void addMemberInstrument(Long memberId, List<Instrument> instruments) {

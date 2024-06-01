@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/instrument")
 @RequiredArgsConstructor
-public class MemberInstrumentController {
+public class InstrumentController {
 
 	private final MemberInstrumentService memberInstrumentService;
 
