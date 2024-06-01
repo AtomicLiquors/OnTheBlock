@@ -37,6 +37,18 @@ function MemberInit() {
    // 버튼 관련
    const [loading, setLoading] = useState(false);
 
+   const handleNickNameChange = (e) => {
+
+   }
+
+   const handleInstrumentChange = (e) => {
+      setSelectedInstruments(e.value)
+   }
+
+   const handleGenreChange = (e) => {
+      setSelectedGenres(e.value)
+   }
+
    const load = () => {
         registMemberInit(nickName,selectedInstruments,selectedGenres).then((response)=>{
             //console.log(response.data);
@@ -87,19 +99,25 @@ function MemberInit() {
         {nickNameCheck}
 
         <S.SubTitle>어떤 악기를 연주하고 싶으신가요?</S.SubTitle>
-        <SelectButton
-          value={selectedInstruments}
-          onChange={(e) => setSelectedInstruments(e.value)}
-          optionLabel="instrumentName"
-          options={instruments}
-          multiple
-        />
+        { instruments[0] 
+          ? 
+          <SelectButton
+            value={selectedInstruments}
+            onChange={(e) => handleInstrumentChange(e)}
+            optionLabel="instrumentName"
+            options={instruments}
+            multiple
+          />
+          :
+          <div style={{width: "1000px", fontSize: "32px"}}>악기 정보를 불러오지 못했습니다.\n악기 정보는 회원가입 후 "마이페이지"에서도 등록할 수 있습니다.</div>
+        }
+        
         <br />
 
         <S.SubTitle>관심있는 장르는 무엇인가요?</S.SubTitle>
         <SelectButton
           value={selectedGenres}
-          onChange={(e) => setSelectedGenres(e.value)}
+          onChange={(e) => handleGenreChange(e)}
           optionLabel="genreName"
           options={genres}
           multiple

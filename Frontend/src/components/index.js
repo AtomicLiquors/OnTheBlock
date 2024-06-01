@@ -38,6 +38,8 @@ export { default as Ruler } from "./gadgets/Ruler";
 export { default as GridIcon } from "./gadgets/GridIcon";
 export { default as InputNumberTag } from "./gadgets/InputNumberTag";
 export { default as HorizontalDropdown } from "./gadgets/form/HorizontalDropdown";
+export { default as MultiSelect } from "./gadgets/MultiSelect";
+
 
 export { default as RecordIconBar } from "./record/RecordIconBar";
 export { default as RecordAccordion } from "./record/RecordAccordion";
