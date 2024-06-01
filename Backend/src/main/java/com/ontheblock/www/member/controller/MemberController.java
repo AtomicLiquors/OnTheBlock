@@ -1,7 +1,7 @@
 package com.ontheblock.www.member.controller;
 
 import com.ontheblock.www.genre.service.MemberGenreService;
-import com.ontheblock.www.instrument.service.MemberInstrumentService;
+import com.ontheblock.www.instrument.service.InstrumentService;
 import com.ontheblock.www.member.dto.request.MemberInitRequest;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,7 +21,7 @@ import com.ontheblock.www.member.service.MemberService;
 public class MemberController {
 
 	private final MemberService memberService;
-	private final MemberInstrumentService memberInstrumentService;
+	private final InstrumentService instrumentService;
 	private final MemberGenreService memberGenreService;
 
 	// 요청 유저의 ID, 닉네임, 자기소개 조회
@@ -78,7 +78,7 @@ public class MemberController {
 												 @RequestBody MemberInitRequest memberInitRequest) {
 		Long id = (Long)request.getAttribute("id");
 		memberService.changeMemberNickname(id, memberInitRequest.getNickname());
-		memberInstrumentService.addMemberInstrument(id, memberInitRequest.getInstruments());
+		instrumentService.addMemberInstrument(id, memberInitRequest.getInstruments());
 		memberGenreService.addMemberGenre(id, memberInitRequest.getGenres());
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}

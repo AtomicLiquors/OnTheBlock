@@ -1,13 +1,12 @@
 package com.ontheblock.www.member.controller;
 
 import com.ontheblock.www.JWT.JwtService;
-import com.ontheblock.www.instrument.service.MemberInstrumentService;
+import com.ontheblock.www.instrument.service.InstrumentService;
 import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.dto.response.MemberProfileResponse;
 import com.ontheblock.www.member.interceptor.CheckLoginInterceptor;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.member.service.MemberService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -42,7 +39,7 @@ public class MemberControllerTest {
     private JwtService jwtService;
 
     @MockBean
-    private MemberInstrumentService memberInstrumentService;
+    private InstrumentService instrumentService;
 
     @MockBean
     private CheckLoginInterceptor checkLoginInterceptor;

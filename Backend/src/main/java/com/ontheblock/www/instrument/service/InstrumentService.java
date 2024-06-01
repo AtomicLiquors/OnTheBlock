@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberInstrumentService {
+public class InstrumentService {
 
 	private final MemberRepository memberRepository;
 	private final InstrumentRepository instrumentRepository;
