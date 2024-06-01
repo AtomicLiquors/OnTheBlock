@@ -12,26 +12,30 @@ function MultiSelect({ data, onChange }) {
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
-  
+
   return (
     <>
-      <select 
-          multiple
-          value={data}
-          onChange={(e) => onChange(e)}
-          style={{display: "flex"}}
-        >
-          {data.map((item, index) => (
-            <option onMouseDown={(e) => {
+      <select
+        multiple
+        value={data}
+        onChange={(e) => onChange(e)}
+        style={{ display: "flex" }}
+      >
+        {data.map((item, index) => (
+          <option
+            onMouseDown={(e) => {
               e.preventDefault();
               element.parentElement.focus();
               this.selected = !this.selected;
               return false;
             }}
-            value={item.id}>{item.instrumentName}</option>
-          ))}
-          {/* option 태그 내용이 item의 종류에 종속적! */}
-        </select>
+            value={item.id}
+          >
+            {item.instrumentName}
+          </option>
+        ))}
+        {/* option 태그 내용이 item의 종류에 종속적! */}
+      </select>
     </>
   );
 }
@@ -46,6 +50,5 @@ const S = {
     font-size: 0.8em;
   `,
 };
-
 
 export default MultiSelect;
