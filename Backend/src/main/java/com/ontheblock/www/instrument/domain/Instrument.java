@@ -22,7 +22,7 @@ public class Instrument {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "instrument_name", nullable = false)
+	@Column(name = "instrument_name", nullable = false, unique = true)
 	private String instrumentName;
 
 	public Instrument(MemberInstrument memberInstrument){
