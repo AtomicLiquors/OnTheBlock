@@ -4,8 +4,7 @@ import { getAllInstruments, registMemberInstruments } from '../../api/instrument
 import { getAllGenres, registMemberGenres } from '../../api/genre';
 import styled from 'styled-components';
 import { SelectButton } from 'primereact/selectbutton';
-import { Button } from 'primereact/button';
-import Image from 'react-bootstrap/Image';
+//import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { checkDuplicateNickname } from '../../api/member';
 import { registMemberInit } from '../../api/member';
@@ -81,11 +80,9 @@ function MemberInit() {
             onChange={(e) => setNickName(e.target.value)}
           />
           &nbsp;&nbsp;&nbsp;
-          <Button
-            label="중복 검사"
-            severity="secondary"
+          <S.Button
             onClick={checkNickName}
-          />
+          >중복 검사</S.Button>
         </div>
         {nickNameCheck}
 
@@ -110,13 +107,11 @@ function MemberInit() {
         <br />
         <br />
 
-        <Button
+        <S.Button
           label="Submit"
-          icon="pi pi-check"
-          loading={loading}
           onClick={load}
           disabled={!isNicknameAvailable}
-        />
+        >Submit</S.Button>
       </S.Container>
     );
 }
@@ -144,6 +139,17 @@ const S = {
     margin-top: 1rem;
     margin-bottom: 20px;
   `,
+
+  Button : styled.button` 
+     padding :10px; 
+     background-color :#ffffff; 
+     border-radius :5px; 
+     
+
+     &:hover { 
+       background-color:#ddd;  
+      }   
+   `
 };
 
 export default MemberInit;
