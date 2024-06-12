@@ -10,7 +10,7 @@ import { checkDuplicateNickname } from '@/api/member';
 import { registMemberInit } from '@/api/member';
 import InitBanner from "@/assets/banners/init.jpeg";
 import { SearchBarComponent } from '@/components';
-import SelectionTagsComponent from '@/components/gadgets/SelectionTagsComponent';
+import SelectionTagsComponent, { MultiSelectItemType, MSEnum } from '@/components/gadgets/SelectionTagsComponent';
 
 function MemberInit() {
    const navigate = useNavigate();
@@ -20,22 +20,32 @@ function MemberInit() {
    const [nickNameCheck, setNickNameCheck]=useState('');
    const [isNicknameAvailable, setIsNicknameAvailable] = useState(false); 
 
-   const [instruments, setInstruments] = useState([]);
-   const [selectedInstruments, setSelectedInstruments] = useState([]);
+
+
+   const [instruments, setInstruments] = useState<MultiSelectItemType[]>([]);
+   const [selectedInstruments, setSelectedInstruments] = useState<MultiSelectItemType[]>([]);
    const [ instrumentSearchResult, setInstrumentSearchResult ] = useState(null);
 
-   const [genres, setGenres] = useState([]);
-   const [selectedGenres, setSelectedGenres] = useState([]);
+   const [genres, setGenres] = useState<MultiSelectItemType[]>([]);
+   const [selectedGenres, setSelectedGenres] = useState<MultiSelectItemType[]>([]);
    const [ genreSearchResult, setGenreSearchResult ] = useState(null);
 
-   // 데이터 랜더링
+   const convertMultiSelectableData = (type: MSEnum, data: MultiSelectItemType[]): MultiSelectItemType[] => {
+      const convertedData = data.map(item => ({
+        ...item, type: type
+      }));
+      return convertedData;
+   };
+
    useEffect(() => {
        getAllInstruments().then((response) => {
-           setInstruments(response.data);
+           const data = convertMultiSelectableData(MSEnum.Instrument, response.data);
+           setInstruments(data);
        });
 
        getAllGenres().then((response) => {
-           setGenres(response.data);
+           const data = convertMultiSelectableData(MSEnum.Genre, response.data);
+           setGenres(data);
        });
    }, []);
 
@@ -49,10 +59,12 @@ function MemberInit() {
    */
 
    const handleInstrumentChange = (e: SelectButtonChangeEvent) => {
+      console.log(e.value);
       setSelectedInstruments(e.value);
    }
 
    const handleGenreChange = (e: SelectButtonChangeEvent) => {
+    console.log(e.value);
       setSelectedGenres(e.value)
    }
 
