@@ -18,8 +18,8 @@ function MemberInit() {
    const navigate = useNavigate();
    const inputRef = useRef<HTMLInputElement>(null);
 
-   const [nickName, setNickName] = useState('');
-   const [nickNameCheck, setNickNameCheck]=useState('');
+   const [nickname, setNickname] = useState('');
+   const [nicknameCheck, setNicknameCheck]=useState('');
    const [isNicknameAvailable, setIsNicknameAvailable] = useState(false); 
 
 
@@ -52,7 +52,7 @@ function MemberInit() {
    }, []);
 
    // 버튼 관련
-   const [loading, setLoading] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
 
    /*
    const handleNickNameChange = (e) => {
@@ -71,29 +71,29 @@ function MemberInit() {
    }
 
    const load = () => {
-        registMemberInit(nickName,selectedInstruments,selectedGenres).then((response)=>{
+        registMemberInit(nickname,selectedInstruments,selectedGenres).then((response)=>{
             //console.log(response.data);
         })
-       setLoading(true);
+       setIsLoading(true);
        setTimeout(() => {
-            setLoading(false);
+            setIsLoading(false);
             navigate('/main', { replace:true });
         },500);
     };
 
     const checkNickName=()=>{
-        if (nickName.length < 2 || nickName.length > 10) {
+        if (nickname.length < 2 || nickname.length > 10) {
             alert("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
             return;
         }
-        checkDuplicateNickname(nickName).then((response)=>{
+        checkDuplicateNickname(nickname).then((response)=>{
             //console.log(response.data);
             if(response.data==true){
-                setNickNameCheck("사용 가능한 닉네임입니다!");
+                setNicknameCheck("사용 가능한 닉네임입니다!");
                 setIsNicknameAvailable(true);
             }
             else{
-                setNickNameCheck("이미 존재하는 닉네임입니다.");
+                setNicknameCheck("이미 존재하는 닉네임입니다.");
                 setIsNicknameAvailable(false);
             }
         })
@@ -117,15 +117,15 @@ function MemberInit() {
         <S.SubTitle>닉네임을 설정해 주세요!</S.SubTitle>
         <div>
           <InputText
-            value={nickName}
-            onChange={(e) => setNickName(e.target.value)}
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
           />
           &nbsp;&nbsp;&nbsp;
           <S.Button
             onClick={checkNickName}
           >중복 검사</S.Button>
         </div>
-        {nickNameCheck}
+        {nicknameCheck}
 
         <S.SubTitle>어떤 악기를 연주하고 싶으신가요?</S.SubTitle>
         { instruments[0] 
@@ -164,7 +164,7 @@ function MemberInit() {
         <S.Button
           //label="Submit"
           onClick={load}
-          disabled={!isNicknameAvailable}
+          disabled={!isNicknameAvailable && !isLoading}
         >Submit</S.Button>
       </S.Container>
     );
