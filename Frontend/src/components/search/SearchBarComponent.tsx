@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBarComponent = React.forwardRef((props, ref) => (
+interface SearchBarComponentProps {
+  placeholder: string;
+  handleInputKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {};
+  handleSearchClick: (e: React.MouseEvent<HTMLButtonElement>) => {};
+}
+
+const SearchBarComponent = React.forwardRef((props: SearchBarComponentProps, ref: React.ForwardedRef<HTMLInputElement>) => (
   <>
     <S.SearchBarContainer>
       <S.SearchQueryInput
