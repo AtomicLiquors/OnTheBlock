@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getAllInstruments, registMemberInstruments } from '../../api/instrument';
-import { getAllGenres, registMemberGenres } from '../../api/genre';
+import { getAllInstruments, registMemberInstruments } from '@/api/instrument';
+import { getAllGenres, registMemberGenres } from '@/api/genre';
 import styled from 'styled-components';
 import { SelectButton } from 'primereact/selectbutton';
 import { InputText } from 'primereact/inputtext';
-import { checkDuplicateNickname } from '../../api/member';
-import { registMemberInit } from '../../api/member';
+import { checkDuplicateNickname } from '@/api/member';
+import { registMemberInit } from '@/api/member';
 import InitBanner from "@/assets/banners/init.jpeg";
-import { SearchBarComponent } from '../../components';
-import SelectionTagsComponent from '../../components/gadgets/SelectionTagsComponent';
+import { SearchBarComponent } from '@/components';
+import SelectionTagsComponent from '@/components/gadgets/SelectionTagsComponent';
 
 function MemberInit() {
    const navigate = useNavigate();
