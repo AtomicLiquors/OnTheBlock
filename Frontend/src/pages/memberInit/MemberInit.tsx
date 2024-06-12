@@ -14,7 +14,7 @@ import SelectionTagsComponent from '@/components/gadgets/SelectionTagsComponent'
 
 function MemberInit() {
    const navigate = useNavigate();
-   const inputRef = useRef();
+   const inputRef = useRef<HTMLInputElement>(null);
 
    const [nickName, setNickName] = useState('');
    const [nickNameCheck, setNickNameCheck]=useState('');
@@ -85,12 +85,12 @@ function MemberInit() {
         })
     }
 
-    const handleSearchInputKeyDown = () => {
-
+    const handleSearchInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log(e);
     }
 
-    const handleSearchClick = () => {
-
+    const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      console.log(e);
     }
 
     return (

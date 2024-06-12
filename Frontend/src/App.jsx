@@ -11,7 +11,7 @@ import ProfileError from "./pages/profile/ProfileError.jsx";
 import Header from "@/components/layout/Header.jsx";
 import Footer from "@/components/layout/Footer.jsx";
 import Bridge from "./pages/Bridge.jsx";
-import MemberInit from "./pages/memberInit/MemberInit.jsx";
+import MemberInit from "./pages/memberInit/MemberInit.tsx";
 import VideoModal from "@/components/video/VideoModal.jsx";
 import MyPageGridContent from "@/components/mypage/MyPageGridContent.jsx";
 import MyPageInfoInput from "@/components/mypage/MyPageInfoInput.jsx";
