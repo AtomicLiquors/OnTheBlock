@@ -10,7 +10,9 @@ import { checkDuplicateNickname } from '@/api/member';
 import { registMemberInit } from '@/api/member';
 import InitBanner from "@/assets/banners/init.jpeg";
 import { SearchBarComponent } from '@/components';
-import SelectionTagsComponent, { MultiSelectItemType, MSEnum } from '@/components/gadgets/SelectionTagsComponent';
+import SelectionTagsComponent from '@/components/gadgets/SelectionTagsComponent';
+import { MultiSelectItemType, MSEnum } from '@/types/';
+
 
 function MemberInit() {
    const navigate = useNavigate();

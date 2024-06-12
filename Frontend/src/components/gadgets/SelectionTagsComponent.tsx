@@ -1,17 +1,6 @@
+import { MultiSelectItemType, MSEnum } from '@/types/';
 import React from 'react';
 import styled from "styled-components";
-
-export enum MSEnum{
-  Instrument,
-  Genre
-}
-
-export type MultiSelectItemType = {
-  type: MSEnum;
-  id: number;
-  instrumentName: string;
-  genreName: string;
-};
 
 function getNameFromItem(item: MultiSelectItemType) {
   let name: string = "";
