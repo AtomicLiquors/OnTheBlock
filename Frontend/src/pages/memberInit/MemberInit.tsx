@@ -60,12 +60,12 @@ function MemberInit() {
    }
    */
 
-   const handleInstrumentChange = (e: SelectButtonChangeEvent) => {
+   const handleInstrumentSelect = (e: SelectButtonChangeEvent) => {
       console.log(e.value);
       setSelectedInstruments(e.value);
    }
 
-   const handleGenreChange = (e: SelectButtonChangeEvent) => {
+   const handleGenreSelect = (e: SelectButtonChangeEvent) => {
     console.log(e.value);
       setSelectedGenres(e.value)
    }
@@ -132,7 +132,7 @@ function MemberInit() {
           ? 
           <SelectButton
             value={selectedInstruments}
-            onChange={(e) => handleInstrumentChange(e)}
+            onChange={(e) => handleInstrumentSelect(e)}
             optionLabel="instrumentName"
             options={instruments}
             multiple
@@ -153,7 +153,7 @@ function MemberInit() {
         <S.SubTitle>관심있는 장르는 무엇인가요?</S.SubTitle>
         <SelectButton
           value={selectedGenres}
-          onChange={(e) => handleGenreChange(e)}
+          onChange={(e) => handleGenreSelect(e)}
           optionLabel="genreName"
           options={genres}
           multiple
