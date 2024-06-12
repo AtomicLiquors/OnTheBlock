@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from "styled-components";
 
 export enum MSEnum{
   Instrument,
@@ -33,14 +34,25 @@ const SelectionTagsComponent: React.FC<SelectionTagsComponentProps> = ({ data })
     data && data.length ? 
     <div>
       {data.map((item: MultiSelectItemType, idx: number) => (
-        <div key={idx} style={{ width: '100px', background: 'white', margin: '5px', padding: '5px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+        <S.Tag key={idx}>
           {getNameFromItem(item)}
-        </div>
+        </S.Tag>
       ))}
     </div>
     : 
     <></>
   );
 };
+
+const S = {
+  Tag: styled.div`
+    width: 100px;
+    background: white;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  `
+}
 
 export default SelectionTagsComponent;
