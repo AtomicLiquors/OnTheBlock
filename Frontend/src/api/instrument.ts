@@ -1,4 +1,4 @@
-import { client,clientWithToken } from "./client";
+import { client,clientWithToken } from "@/api/client";
 
 const InstrumentURL = 'instrument/';
 
