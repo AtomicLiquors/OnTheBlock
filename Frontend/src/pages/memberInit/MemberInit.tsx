@@ -1,9 +1,10 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getAllInstruments, registMemberInstruments } from '@/api/instrument';
 import { getAllGenres, registMemberGenres } from '@/api/genre';
 import styled from 'styled-components';
-import { SelectButton } from 'primereact/selectbutton';
+import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton';
 import { InputText } from 'primereact/inputtext';
 import { checkDuplicateNickname } from '@/api/member';
 import { registMemberInit } from '@/api/member';
@@ -41,15 +42,17 @@ function MemberInit() {
    // 버튼 관련
    const [loading, setLoading] = useState(false);
 
+   /*
    const handleNickNameChange = (e) => {
 
    }
+   */
 
-   const handleInstrumentChange = (e) => {
+   const handleInstrumentChange = (e: SelectButtonChangeEvent) => {
       setSelectedInstruments(e.value);
    }
 
-   const handleGenreChange = (e) => {
+   const handleGenreChange = (e: SelectButtonChangeEvent) => {
       setSelectedGenres(e.value)
    }
 
@@ -145,7 +148,7 @@ function MemberInit() {
         <br />
 
         <S.Button
-          label="Submit"
+          //label="Submit"
           onClick={load}
           disabled={!isNicknameAvailable}
         >Submit</S.Button>

@@ -1,6 +1,4 @@
 import axios from 'axios'
-// import * as utils from 'utils'
-// import * as hooks from 'hooks'
 
 axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND + 'ontheblock/api'
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
