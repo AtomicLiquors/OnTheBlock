@@ -1,127 +1,19 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getAllInstruments, registMemberInstruments } from "@/api/instrument";
-import { getAllGenres, registMemberGenres } from "@/api/genre";
 import styled from "styled-components";
 import { SelectButton, SelectButtonChangeEvent } from "primereact/selectbutton";
 //import { InputText } from "primereact/inputtext";
-import { checkDuplicateNickname } from "@/api/member";
 import { registMemberInit } from "@/api/member";
 import InitBanner from "@/assets/banners/init.jpeg";
 import { SearchBarComponent } from "@/components";
 import SelectionTagsComponent from "@/components/gadgets/SelectionTagsComponent";
-import { MultiSelectItemType, MSEnum } from "@/types/";
 import { InputText } from "@/components/gadgets/form/InputText";
+import { load, instruments, genres, nickname, selectedInstruments, selectedGenres, isLoading, setIsLoading, checkNickname, nicknameCheck, handleNicknameChange, isNicknameAvailable, handleGenreRemove, handleGenreSelect, handleInstrumentRemove, handleInstrumentSelect } from './memberInitHooks';
+
 
 function MemberInit() {
-  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const [nickname, setNickname] = useState("");
-  const [nicknameCheck, setNicknameCheck] = useState("");
-  const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
-  const [instruments, setInstruments] = useState<MultiSelectItemType[]>([]);
-  const [selectedInstruments, setSelectedInstruments] = useState<
-    MultiSelectItemType[]
-  >([]);
-  const [instrumentSearchResult, setInstrumentSearchResult] = useState(null);
-
-  const [genres, setGenres] = useState<MultiSelectItemType[]>([]);
-  const [selectedGenres, setSelectedGenres] = useState<MultiSelectItemType[]>(
-    []
-  );
-  const [genreSearchResult, setGenreSearchResult] = useState(null);
-
-  const convertMultiSelectableData = (
-    type: MSEnum,
-    data: MultiSelectItemType[]
-  ): MultiSelectItemType[] => {
-    const convertedData = data.map((item) => ({
-      ...item,
-      type: type,
-    }));
-    return convertedData;
-  };
-
-  useEffect(() => {
-    getAllInstruments().then((response) => {
-      const data = convertMultiSelectableData(MSEnum.Instrument, response.data);
-      setInstruments(data);
-    });
-
-    getAllGenres().then((response) => {
-      const data = convertMultiSelectableData(MSEnum.Genre, response.data);
-      setGenres(data);
-    });
-  }, []);
-
-  // 버튼 관련
-  const [isLoading, setIsLoading] = useState(false);
-
-  
-  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
-    // To-Do : 글자 수, 중복검사 활성화 여부 여기서 발동.
-  }
-  
-
-  // 프라임리액트
-  const handleInstrumentSelect = (e: SelectButtonChangeEvent) => {
-    console.log(e.value);
-    setSelectedInstruments(e.value);
-  };
-
-  // 프라임리액트
-  const handleGenreSelect = (e: SelectButtonChangeEvent) => {
-    console.log(e.value);
-    setSelectedGenres(e.value);
-  };
-
-  const handleInstrumentRemove = (
-    removingItem: MultiSelectItemType,
-    data: MultiSelectItemType[]
-  ) => {
-    setSelectedInstruments([...data.filter((item) => item !== removingItem)]);
-  };
-
-  const handleGenreRemove = (
-    removingItem: MultiSelectItemType,
-    data: MultiSelectItemType[]
-  ) => {
-    setSelectedGenres([...data.filter((item) => item !== removingItem)]);
-  };
-
-  const load = () => {
-    registMemberInit(nickname, selectedInstruments, selectedGenres).then(
-      (response) => {
-        //console.log(response.data);
-      }
-    );
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      navigate("/main", { replace: true });
-    }, 500);
-  };
-
-
-  const checkNickname = () => {
-    if (nickname.length < 2 || nickname.length > 10) {
-      alert("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
-      return;
-    }
-    checkDuplicateNickname(nickname).then((response) => {
-      //console.log(response.data);
-      if (response.data == true) {
-        setNicknameCheck("사용 가능한 닉네임입니다!");
-        setIsNicknameAvailable(true);
-      } else {
-        setNicknameCheck("이미 존재하는 닉네임입니다.");
-        setIsNicknameAvailable(false);
-      }
-    });
-  };
 
   const handleSearchInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>
@@ -149,11 +41,10 @@ function MemberInit() {
         />
         */}
         <InputText
-          placeholder={'이름을 입력하세요.'}
+          placeholder={"이름을 입력하세요."}
           defaultValue={nickname}
           handleChange={handleNicknameChange}
         />
-        
         &nbsp;&nbsp;&nbsp;
         <S.Button onClick={checkNickname}>중복 검사</S.Button>
       </div>
