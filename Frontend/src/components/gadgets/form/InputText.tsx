@@ -1,12 +1,25 @@
-import { forwardRef } from "react"
+import React, {forwardRef} from "react";
 import styled from "styled-components"
 
-const InputText = forwardRef((props, ref) => {
-  return <S.Input ref={ref} placeholder={props.placeholder} />;
+export interface InputProps {
+  placeholder: string;
+  defaultValue?: string;
+}
+
+export interface InputTextProps extends InputProps{
+  handleChange?: (e:React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface InputTextAreaProps extends InputProps{
+  handleChange?: (e:React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const InputText = forwardRef<HTMLInputElement, InputTextProps>(({placeholder, defaultValue="", handleChange}, ref) => {
+  return <S.Input ref={ref} value={defaultValue} placeholder={placeholder} onChange={handleChange}/>;
 });
 
-const InputTextArea = forwardRef((props, ref) => {
-  return <S.Textarea ref={ref} placeholder={props.placeholder} />;
+const InputTextArea = forwardRef<HTMLTextAreaElement, InputTextAreaProps>(({placeholder, defaultValue="", handleChange}, ref) => {
+  return <S.Textarea ref={ref} value={defaultValue} placeholder={placeholder} onChange={handleChange}/>;
 });
 
 const S = {
