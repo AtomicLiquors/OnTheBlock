@@ -21,9 +21,6 @@ function MemberInit() {
    const [nickname, setNickname] = useState('');
    const [nicknameCheck, setNicknameCheck]=useState('');
    const [isNicknameAvailable, setIsNicknameAvailable] = useState(false); 
-
-
-
    const [instruments, setInstruments] = useState<MultiSelectItemType[]>([]);
    const [selectedInstruments, setSelectedInstruments] = useState<MultiSelectItemType[]>([]);
    const [ instrumentSearchResult, setInstrumentSearchResult ] = useState(null);
@@ -60,15 +57,27 @@ function MemberInit() {
    }
    */
 
+   // 프라임리액트
    const handleInstrumentSelect = (e: SelectButtonChangeEvent) => {
       console.log(e.value);
       setSelectedInstruments(e.value);
    }
 
+   // 프라임리액트
    const handleGenreSelect = (e: SelectButtonChangeEvent) => {
-    console.log(e.value);
-      setSelectedGenres(e.value)
+      console.log(e.value);
+      setSelectedGenres(e.value);
    }
+
+   const handleInstrumentRemove = (removingItem: MultiSelectItemType, data: MultiSelectItemType[]) => {
+      setSelectedInstruments([...data.filter(item => item !== removingItem)]);
+   }
+   
+   const handleGenreRemove = (removingItem: MultiSelectItemType, data: MultiSelectItemType[]) => {
+      data.filter(item => item !== removingItem);
+      setSelectedGenres([...data]);
+  }
+
 
    const load = () => {
         registMemberInit(nickname,selectedInstruments,selectedGenres).then((response)=>{
@@ -81,7 +90,7 @@ function MemberInit() {
         },500);
     };
 
-    const checkNickName=()=>{
+    const checkNickname=()=>{
         if (nickname.length < 2 || nickname.length > 10) {
             alert("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
             return;
@@ -114,7 +123,7 @@ function MemberInit() {
         {/* style={{ background: `url(${InitBanner})` }} */}
         {/* <Image src="/src/assets/MemberInit_top.jpg" style={{ width: '500px', height: '550px' }} rounded /> */}
 
-        <S.SubTitle>닉네임을 설정해 주세요!</S.SubTitle>
+        <S.SubTitle>닉네임을 설정해 주세요.</S.SubTitle>
         <div>
           <InputText
             value={nickname}
@@ -122,7 +131,7 @@ function MemberInit() {
           />
           &nbsp;&nbsp;&nbsp;
           <S.Button
-            onClick={checkNickName}
+            onClick={checkNickname}
           >중복 검사</S.Button>
         </div>
         {nicknameCheck}
@@ -148,7 +157,10 @@ function MemberInit() {
               placeholder="악기 이름을 검색합니다."
             />
         </div>
-        <SelectionTagsComponent data={selectedInstruments}/>
+        <SelectionTagsComponent 
+          data={selectedInstruments}
+          handleRemove={handleInstrumentRemove}
+        />
 
         <S.SubTitle>관심있는 장르는 무엇인가요?</S.SubTitle>
         <SelectButton
