@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -9,11 +9,33 @@ import InitBanner from "@/assets/banners/init.jpeg";
 import { SearchBarComponent } from "@/components";
 import SelectionTagsComponent from "@/components/gadgets/SelectionTagsComponent";
 import { InputText } from "@/components/gadgets/form/InputText";
-import { load, instruments, genres, nickname, selectedInstruments, selectedGenres, isLoading, setIsLoading, checkNickname, nicknameCheck, handleNicknameChange, isNicknameAvailable, handleGenreRemove, handleGenreSelect, handleInstrumentRemove, handleInstrumentSelect } from './memberInitHooks';
-
+import nickNameHook from "@/hooks/memberInit/nicknameHook";
+import instrumentHook from "@/hooks/memberInit/instrumentHook";
+import genreHook from "@/hooks/memberInit/genreHook";
 
 function MemberInit() {
+
+  const { nickname, nicknameCheckMsg, checkNickname, handleNicknameChange, isNicknameAvailable } = nickNameHook();
+  const { instruments, selectedInstruments, handleInstrumentSelect, handleInstrumentRemove } = instrumentHook();
+  const { genres, selectedGenres, handleGenreSelect, handleGenreRemove } = genreHook();
+  
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const load = () => {
+    registMemberInit(nickname, selectedInstruments, selectedGenres).then(
+      (response) => {
+        //console.log(response.data);
+      }
+    );
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/main", { replace: true });
+    }, 500);
+  };
 
   const handleSearchInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>
@@ -48,7 +70,7 @@ function MemberInit() {
         &nbsp;&nbsp;&nbsp;
         <S.Button onClick={checkNickname}>중복 검사</S.Button>
       </div>
-      {nicknameCheck}
+      {nicknameCheckMsg}
 
       <S.SubTitle>어떤 악기를 연주하고 싶으신가요?</S.SubTitle>
       {instruments[0] ? (
