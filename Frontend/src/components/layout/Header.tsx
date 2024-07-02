@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "@/assets/logos/logo.png";
 import UserDropPanel from "@/components/layout/UserDropPanel";
 import { ProfileImg } from "@/components"
 import { useEffect } from "react";
+import { getLoginInfo } from "@/hooks";
+import { LoginInfo } from "@/types/userInfo";
 
 function Header() {
   const [userInfoVisibility, setUserInfoVisibility] = useState(false);
@@ -21,7 +23,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [nickName, setNickName] = useState(localStorage.getItem('nickName'));
+  const [nickName, setNickName] = useState(getLoginInfo(LoginInfo.Nickname));
   const [hasNewNotice, setHasNewNotice] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
 
