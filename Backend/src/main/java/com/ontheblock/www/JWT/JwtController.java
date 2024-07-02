@@ -29,10 +29,9 @@ public class JwtController {
 
     String refreshToken = httpServletRequest.getHeader("refreshToken");
     Long memberId = jwtService.getIdFromToken(refreshToken); // token에서 id를 꺼냄
-    Member member=memberService.getMember(memberId);         // member 조회
+    Member member = memberService.getMember(memberId);         // member 조회
 
-    if(member!=null){
-      if (jwtService.isRefreshTokenValid(refreshToken, member.getId())) {
+    if(member!=null && jwtService.isRefreshTokenValid(refreshToken, member.getId())) {
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getId());
         tokenMap.put("nickname", member.getNickname());
@@ -45,7 +44,6 @@ public class JwtController {
         body.put("accessToken", newAccessToken);
         body.put("refreshToken", newRefreshToken);
         return new ResponseEntity<>(body, HttpStatus.OK);
-      }
     }
     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }

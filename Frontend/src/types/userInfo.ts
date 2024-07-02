@@ -1,6 +1,6 @@
-export type localUserInfo = {
-    accessToken: string;
-    refreshToken: string;
-    memberId: string;
-    nickname: string;
-};
+export enum loginUserInfo {
+    AccessToken = 'accessToken',
+    RefreshToken = 'refreshToken',
+    MemberId = 'memberId',
+    Nickname = 'nickname',
+}

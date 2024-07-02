@@ -23,12 +23,15 @@ function Bridge() {
 
   useEffect(() => {
       // 쿠키를 불러옴
+
+      
       const cookieString = document.cookie;
 
       // 쿠키에서 데이터를 분리한 후 데이터 저장
       const [accessToken, refreshToken, memberId] = parseCookie(cookieString);
       console.log(accessToken);
       // 토큰을 로컬에 저장
+      saveAccessToken(accessToken);
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('memberId', memberId);
