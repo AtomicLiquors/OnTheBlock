@@ -1,4 +1,4 @@
-export { default as Header } from './layout/Header'
+export { default as Header } from './layout/Header.tsx'
 export { default as Footer } from './layout/Footer'
 export { default as ModalFooter } from "./layout/ModalFooter"
 export { default as MyPageSidebar } from './mypage/MyPageSidebar'

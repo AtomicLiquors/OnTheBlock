@@ -62,6 +62,7 @@ function Bridge() {
 
   return (
     <div className="Bridge">
+      회원 인증 처리중입니다. 잠시만 기다려주세요...
     </div>
   );
 }

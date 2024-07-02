@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "@/assets/logos/logo.png";
@@ -23,17 +23,26 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [nickName, setNickName] = useState(getLoginInfo(LoginInfo.Nickname));
+  const [isValidRoute, setIsValidRout] = useState(false);
+  const [nickName, setNickName] = useState<string>("");
   const [hasNewNotice, setHasNewNotice] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
 
   useEffect(() => {
     setUserInfoVisibility(false);
+    if(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/))
+      return;
+    
+    const loggedInNickname = getLoginInfo(LoginInfo.Nickname);
+    setNickName(loggedInNickname ? loggedInNickname : "");
+    
   }, [location.pathname]);
 
-  if(location.pathname === "/" || location.pathname === "/memberInit"){
+
+  if(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/)){
     return null;
   }
+
 
   return (
     <S.Wrap>
@@ -48,7 +57,7 @@ function Header() {
 
         </S.ProfileIconWrap>
       </S.LoginInfoTab>
-      {!(location.pathname === "/" || location.pathname == "/memberInit") && (
+      {!(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/)) && (
         <UserDropPanel
           userInfoVisibility={userInfoVisibility}
           onNewNotice={() => setHasNewNotice(true)}

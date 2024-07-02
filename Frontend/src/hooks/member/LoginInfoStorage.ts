@@ -9,15 +9,15 @@ export const saveLoginInfo = (type: LoginInfo, value: string) => {
 
 export const getLoginInfo = (type: LoginInfo) => {
       // 예외처리 하기.
-      const accessToken = sessionStorage.getItem(type);
+      const info = sessionStorage.getItem(type);
       // if(!accessToken) throw new Error();
-      return accessToken;
+      return info;
 }
 
 
 export const removeLoginInfo = (type: LoginInfo) => {
       // 예외처리 하기.
-      const accessToken = sessionStorage.removeItem(type);
+      const info = sessionStorage.removeItem(type);
       // if(!accessToken) throw new Error();
-      return accessToken;
+      return info;
 }

@@ -19,7 +19,7 @@ function UserDropPanel({
 }) {
   const navigate = useNavigate();
 
-  const [nickName, setNickName] = useState(sessionStorage.getItem("nickName"));
+  const [nickname, setNickname] = useState(sessionStorage.getItem("nickname"));
   const [notice, setNotice] = useState([]);
   const [eventSource, setEventSource] = useState(null);
 
@@ -227,6 +227,8 @@ function UserDropPanel({
   const logout = () => {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("memberId");
 
     if (eventSource) {
       eventSource.close();
@@ -250,9 +252,9 @@ function UserDropPanel({
         <S.ProfileContainer onClick={() => {navigate("/mypage/like");scrollToTop();}}>
           <S.PanelTopText>
             <div style={{display: "flex", gap:"5px", marginLeft: "5px"}}>
-              <ProfileImg nickName={nickName} size="32" />
+              <ProfileImg nickName={nickname} size="32" />
               <div style={{ color: "orange", fontSize: "1.2em", marginLeft: "5px" }}>
-                <b>{nickName}</b>
+                <b>{nickname}</b>
               </div>
             </div>
             <div style={{ color: "#d7d7d7", fontSize: "0.8em", marginLeft: "10px"}}>
