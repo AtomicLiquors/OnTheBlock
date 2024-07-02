@@ -3,7 +3,7 @@
 import { loginUserInfo } from "@/types/userInfo";
 
 // 예외처리 : 타입에 해당하지 않는 녀석을 저장하려 할 경우.
-const saveItem = (type: loginUserInfo, value: string) => {
+export const saveItem = (type: loginUserInfo, value: string) => {
       sessionStorage.setItem(type, value);
 }
 
