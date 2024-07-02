@@ -19,7 +19,7 @@ function UserDropPanel({
 }) {
   const navigate = useNavigate();
 
-  const [nickName, setNickName] = useState(localStorage.getItem("nickName"));
+  const [nickname, setNickname] = useState(sessionStorage.getItem("nickname"));
   const [notice, setNotice] = useState([]);
   const [eventSource, setEventSource] = useState(null);
 
@@ -42,7 +42,7 @@ function UserDropPanel({
       });
 
     // 토큰으로 알림 SSE 연결해서 실시간으로 받아오기
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     if (token != null) {
       let eventSource = new EventSourcePolyfill(
         `http://localhost:9999/ontheblock/api/notice/subscribe/check`,
@@ -223,9 +223,12 @@ function UserDropPanel({
   };
 
   // 로그 아웃
+  // To-Do: hook으로 분리하기.
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("memberId");
 
     if (eventSource) {
       eventSource.close();
@@ -249,9 +252,9 @@ function UserDropPanel({
         <S.ProfileContainer onClick={() => {navigate("/mypage/like");scrollToTop();}}>
           <S.PanelTopText>
             <div style={{display: "flex", gap:"5px", marginLeft: "5px"}}>
-              <ProfileImg nickName={nickName} size="32" />
+              <ProfileImg nickName={nickname} size="32" />
               <div style={{ color: "orange", fontSize: "1.2em", marginLeft: "5px" }}>
-                <b>{nickName}</b>
+                <b>{nickname}</b>
               </div>
             </div>
             <div style={{ color: "#d7d7d7", fontSize: "0.8em", marginLeft: "10px"}}>
