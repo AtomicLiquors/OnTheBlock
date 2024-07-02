@@ -1,5 +1,5 @@
-import { saveItem } from '@/hooks';
-import { loginUserInfo } from '@/types/userInfo';
+import { saveLoginInfo } from '@/hooks';
+import { LoginInfo } from '@/types/userInfo';
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -34,9 +34,9 @@ function Bridge() {
       
       if(accessToken && refreshToken && memberId){
         // 토큰을 로컬에 저장
-        saveItem(loginUserInfo.AccessToken, accessToken);
-        saveItem(loginUserInfo.RefreshToken, refreshToken);
-        saveItem(loginUserInfo.MemberId, memberId);
+        saveLoginInfo(LoginInfo.AccessToken, accessToken);
+        saveLoginInfo(LoginInfo.RefreshToken, refreshToken);
+        saveLoginInfo(LoginInfo.MemberId, memberId);
       }
 
       // 쿼리 문자열에서 isNewMember 값을 추출
@@ -45,7 +45,7 @@ function Bridge() {
       
       //To-Do: Parameter 찾지 못할시 예외처리
       if(queryName)
-        saveItem(loginUserInfo.Nickname, queryName);// 닉네임 저장
+        saveLoginInfo(LoginInfo.Nickname, queryName);// 닉네임 저장
 
       // 1인 경우 기존 멤버
       if (isNewMember === '1') {

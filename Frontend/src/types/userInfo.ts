@@ -1,4 +1,4 @@
-export enum loginUserInfo {
+export enum LoginInfo {
     AccessToken = 'accessToken',
     RefreshToken = 'refreshToken',
     MemberId = 'memberId',
