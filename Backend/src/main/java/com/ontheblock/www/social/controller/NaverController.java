@@ -41,7 +41,6 @@ public class NaverController {
         // To-Do : 404 에러 처리
         String code = httpServletRequest.getParameter("code");
         String state = httpServletRequest.getParameter("state");
-        // 여기서 받아오는 거냐, 저장소에서 가져오는 거냐? 확인요망.
 
         String naverToken = naverClient.getToken(code, state); // authCode로 token 요청
 

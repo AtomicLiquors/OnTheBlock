@@ -7,10 +7,7 @@ const nicknameHook = () => {
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
 
   const checkNickname = () => {
-    if (nickname.length < 2 || nickname.length > 10) {
-      alert("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
-      return;
-    }
+    
     checkDuplicateNickname(nickname).then((response) => {
       //console.log(response.data);
       if (response.data == true) {
@@ -24,7 +21,12 @@ const nicknameHook = () => {
   };
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
+    const currentNickname = e.target.value;
+    if (currentNickname.length < 2 || currentNickname.length > 10) {
+      setNicknameCheckMsg("닉네임은 최소 2글자 이상, 10글자 이하여야 합니다.");
+      return;
+    }
+    setNickname(currentNickname);
     // To-Do : 글자 수, 중복검사 활성화 여부 여기서 발동.
   };
 

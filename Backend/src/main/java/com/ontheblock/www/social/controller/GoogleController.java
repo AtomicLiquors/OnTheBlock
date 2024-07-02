@@ -1,6 +1,7 @@
 package com.ontheblock.www.social.controller;
 
 import com.ontheblock.www.JWT.JwtService;
+import com.ontheblock.www.global.exception.GoogleLoginErrorException;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.domain.ResponseLoginMember;
 import com.ontheblock.www.social.domain.google.GoogleClient;
@@ -10,18 +11,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @RequestMapping("/google")
 @RestController
 @RequiredArgsConstructor
@@ -34,18 +31,16 @@ public class GoogleController {
 
     @GetMapping("/login")
     public void googleLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
-
-        System.out.println("구글 로그인");
-
         googleClient.getAuthCode(httpServletResponse);
     }
 
     @GetMapping("/redirect")
-    public ResponseEntity<?> googleRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
-        String googleToken=googleClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
-        System.out.println("구글 토큰: "+googleToken);
+    public ResponseEntity<?> googleRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = false) String error) throws Exception{
+        if(error != null)
+            throw new GoogleLoginErrorException();
+
+        String googleToken = googleClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
         GoogleUserInfo googleUserInfo=googleClient.getUserInfo(googleToken); // token으로 google member data 요청
-        System.out.println("유저 정보:"+googleUserInfo.getEmail());
         ResponseLoginMember member=socialService.googleLoginOrRegister(googleUserInfo);        // GoogleUserInfo 정보로 member 조회 or 저장
 
         Map<String, Object> tokenMap = new HashMap<>();
