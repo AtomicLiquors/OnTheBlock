@@ -147,7 +147,7 @@ function VideoModal() {
       content: commentRef.current.value,
     };
 
-    const response = await videoApi.registComment(commentData);
+    const response = await videoApi.registerComment(commentData);
     if (response) {
       commentRef.current.value = "";
       commentSectionRef.current.scrollTo(0, 0);

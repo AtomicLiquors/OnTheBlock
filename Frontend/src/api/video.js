@@ -48,9 +48,9 @@ export const getSearchVideosByKeywordForCompose = (keyword) => {
 }
 
 // Video 등록
-export const registComment = async (commentRequest) => {
+export const registerComment = async (commentRequest) => {
   return clientWithToken()
-    .post(VideoURL + "/comments/check", commentRequest)
+    .post(`${VideoURL}/comments/check`, commentRequest)
     .then((response)=>{
       return response;
     })
