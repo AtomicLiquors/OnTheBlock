@@ -37,7 +37,7 @@ public class GoogleController {
     @GetMapping("/redirect")
     public ResponseEntity<?> googleRedirect(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = false) String error) throws Exception{
         if(error != null)
-            throw new GoogleLoginErrorException();
+            throw new GoogleLoginErrorException(error);
 
         String googleToken = googleClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
         GoogleUserInfo googleUserInfo=googleClient.getUserInfo(googleToken); // token으로 google member data 요청
