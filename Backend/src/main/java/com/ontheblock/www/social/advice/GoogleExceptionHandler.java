@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class GoogleExceptionHandler {
 
     @Value("${front.scheme}")
