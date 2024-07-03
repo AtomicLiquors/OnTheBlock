@@ -1,5 +1,5 @@
 import { getLoginInfo, removeLoginInfo, saveLoginInfo } from '@/hooks';
-import { LoginInfo } from '@/types/userInfo';
+import { LoginInfo } from '@/types/loginInfo';
 import axios from 'axios'
 
 axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND + 'ontheblock/api'

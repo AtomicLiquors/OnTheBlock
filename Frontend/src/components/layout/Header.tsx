@@ -6,7 +6,7 @@ import UserDropPanel from "@/components/layout/UserDropPanel";
 import { ProfileImg } from "@/components"
 import { useEffect } from "react";
 import { getLoginInfo } from "@/hooks";
-import { LoginInfo } from "@/types/userInfo";
+import { LoginInfo } from "@/types/loginInfo";
 
 function Header() {
   const [userInfoVisibility, setUserInfoVisibility] = useState(false);

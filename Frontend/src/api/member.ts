@@ -1,7 +1,7 @@
 import { MultiSelectItemType } from "@/types";
 import { client, clientWithToken } from "./client";
 import { getLoginInfo } from "@/hooks";
-import { LoginInfo } from "@/types/userInfo";
+import { LoginInfo } from "@/types/loginInfo";
 
 const MemberURL = 'member/';
 

@@ -1,5 +1,5 @@
 import { saveLoginInfo } from '@/hooks';
-import { LoginInfo } from '@/types/userInfo';
+import { LoginInfo } from '@/types/loginInfo';
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';

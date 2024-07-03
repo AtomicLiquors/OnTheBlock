@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import { Logo, Banner, socialLoginBtn } from "@/assets";
 import Button from "react-bootstrap/Button";
+import { ErrorCodes } from "@/types";
+import ErrorMsgContainer from "@/components/common/ErrorMsgContainer";
 
-const kakaoLoginUrl =
-  import.meta.env.VITE_REACT_APP_BACKEND + "ontheblock/api/kakao/login";
-const googleLoginUrl =
-  import.meta.env.VITE_REACT_APP_BACKEND + "ontheblock/api/google/login";
-const naverLoginUrl =
-  import.meta.env.VITE_REACT_APP_BACKEND + "ontheblock/api/naver/login";
+const backEndUrl = `${import.meta.env.VITE_REACT_APP_BACKEND}ontheblock/api`
+
+const kakaoLoginUrl = `${backEndUrl}/kakao/login`;
+const googleLoginUrl = `${backEndUrl}/google/login`;
+const naverLoginUrl = `${backEndUrl}/naver/login`;
 
 const handleLoginButtonClick = (url: string) => {
-    window.location.href = url;
-}
+  window.location.href = url;
+};
 
 const Landing: React.FC = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const [ searchParams ] = useSearchParams();
+
+  const errorParam = searchParams.get('error');
+  const errorState = location.state?.error;
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  
+  useEffect(() => {
+    // 백엔드가 에러 정보를 쿼리스트링에 담아 리디렉션한 경우, location.state에 에러 정보를 담아 랜딩 페이지를 다시 호출
+    if(errorParam)
+      navigate("/", { state: { error: true }, replace: true });
+  }, [errorParam])
+
+  useEffect(() => {
+    if(errorState)
+      setErrorMsg("로그인 에러가 발생했습니다.");
+  }, [errorState])
 
   return (
     <S.Wrap>
@@ -25,11 +44,16 @@ const Landing: React.FC = () => {
         <S.Banner>
           <S.Logo src={Logo.Large}></S.Logo>
           <S.Subtitle>
-            <span style={{fontSize: '1.2rem'}}>나의 소소한 연주가, 색다른 합주로 태어나는 커뮤니티</span>
+            <span style={{ fontSize: "1.2rem" }}>
+              나의 소소한 연주가, 색다른 합주로 태어나는 커뮤니티
+            </span>
             <br />
             다양한 뮤지션들을 만나보세요. 빅데이터로 관심 있는 연주를
             찾아보세요.
           </S.Subtitle>
+          
+          {errorMsg && <ErrorMsgContainer errorMsg={errorMsg}/> }
+
           <S.LoginContainer>
             <S.LoginImage
               onClick={() => handleLoginButtonClick(kakaoLoginUrl)}
