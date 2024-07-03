@@ -1,4 +1,4 @@
-import { saveLoginInfo } from '@/hooks';
+import { saveAccessToken, saveLoginInfo, saveRefreshToken } from '@/hooks';
 import { LoginInfo } from '@/types/loginInfo';
 import React from 'react';
 import { useEffect } from 'react';
@@ -34,8 +34,8 @@ function Bridge() {
       
       if(accessToken && refreshToken && memberId){
         // 토큰을 로컬에 저장
-        saveLoginInfo(LoginInfo.AccessToken, accessToken);
-        saveLoginInfo(LoginInfo.RefreshToken, refreshToken);
+        saveAccessToken(accessToken);
+        saveRefreshToken(refreshToken);
         saveLoginInfo(LoginInfo.MemberId, memberId);
       }
 

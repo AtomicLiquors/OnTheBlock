@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams, useSearchParams } from "react-rout
 
 import { Logo, Banner, socialLoginBtn } from "@/assets";
 import Button from "react-bootstrap/Button";
-import { ErrorCodes } from "@/types";
+import { LandingPageErrors } from '@/types';
 import ErrorMsgContainer from "@/components/common/ErrorMsgContainer";
 
 const backEndUrl = `${import.meta.env.VITE_REACT_APP_BACKEND}ontheblock/api`
@@ -26,16 +26,30 @@ const Landing: React.FC = () => {
   const errorParam = searchParams.get('error');
   const errorState = location.state?.error;
   const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const handleErrorMsg = (error: string) => {
+    switch(error){
+      case LandingPageErrors.accessDenied:
+        setErrorMsg("로그인 인증이 거부되었습니다.");
+        break;
+      case LandingPageErrors.unauthorized:
+        setErrorMsg("로그인 후 이용해주세요.");
+        break;
+      default:
+        setErrorMsg("알 수 없는 에러");
+        break;
+    }
+  }
   
   useEffect(() => {
     // 백엔드가 에러 정보를 쿼리스트링에 담아 리디렉션한 경우, location.state에 에러 정보를 담아 랜딩 페이지를 다시 호출
     if(errorParam)
-      navigate("/", { state: { error: true }, replace: true });
+      navigate("/", { state: { error: LandingPageErrors.accessDenied }, replace: true });
   }, [errorParam])
 
   useEffect(() => {
     if(errorState)
-      setErrorMsg("로그인 에러가 발생했습니다.");
+      handleErrorMsg(errorState);
   }, [errorState])
 
   return (
