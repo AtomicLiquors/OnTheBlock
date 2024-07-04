@@ -55,10 +55,12 @@ public class GoogleController {
 
         // 이동할 프론트 페이지 주소 설정
         String frontURI = googleClient.getFrontURI(member.getIsNewMember(), member.getNickname());
+        /*
+            Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
+            httpServletResponse.addCookie(cookie);
+            보류 : cookie는 쌍따옴표를 허용하지 않으며, JSON에서 쌍따옴표를 빼면 파싱할 때 invalid한 것으로 인식된다.
+         */
 
-        Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
-        httpServletResponse.addCookie(cookie);
-       /*
         Cookie cookie = new Cookie("accessToken", accessToken);
         cookie.setHttpOnly(false);
         cookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
@@ -76,7 +78,7 @@ public class GoogleController {
         cookie3.setMaxAge(3600);
         cookie3.setPath("/");
         httpServletResponse.addCookie(cookie3);
-*/
+
         return ResponseEntity
             .status(HttpStatus.FOUND) // 302
             .location(URI.create(frontURI))

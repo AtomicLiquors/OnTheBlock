@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SocialHelper {
+    // 사용 보류, 미사용시 삭제 요망.
     public String createTokenInfoJson(String accessToken, String refreshToken, Long memberId){
         JSONObject json = new JSONObject();
         json.put("accessToken", accessToken);
