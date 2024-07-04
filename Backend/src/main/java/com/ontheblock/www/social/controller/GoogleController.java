@@ -40,8 +40,8 @@ public class GoogleController {
             throw new GoogleLoginErrorException(error);
 
         String googleToken = googleClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
-        GoogleUserInfo googleUserInfo=googleClient.getUserInfo(googleToken); // token으로 google member data 요청
-        ResponseLoginMember member=socialService.googleLoginOrRegister(googleUserInfo);        // GoogleUserInfo 정보로 member 조회 or 저장
+        GoogleUserInfo googleUserInfo = googleClient.getUserInfo(googleToken); // token으로 google member data 요청
+        ResponseLoginMember member = socialService.googleLoginOrRegister(googleUserInfo);        // GoogleUserInfo 정보로 member 조회 or 저장
 
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getMemberId());
@@ -49,13 +49,11 @@ public class GoogleController {
         String accessToken = jwtService.createAccessToken(tokenMap); // AccessToken 생성
         String refreshToken = jwtService.createRefreshToken(tokenMap);  // RefreshToken 생성
 
-
         memberService.saveRefreshToken(member.getMemberId(), refreshToken); // 토큰 저장
 
         // 이동할 프론트 페이지 주소 설정
         String frontURI = googleClient.getFrontURI(member.getIsNewMember(), member.getNickname());
 
-        // 쿠키로 보내면 자동으로 local에 저장됨.
         Cookie cookie = new Cookie("accessToken", accessToken);
         cookie.setHttpOnly(false);
         cookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
@@ -75,8 +73,9 @@ public class GoogleController {
         httpServletResponse.addCookie(cookie3);
 
         return ResponseEntity
-                .status(HttpStatus.FOUND) // 302
-                .location(URI.create(frontURI))
-                .build();
+            .status(HttpStatus.FOUND) // 302
+            .location(URI.create(frontURI))
+            .build();
+
     }
 }

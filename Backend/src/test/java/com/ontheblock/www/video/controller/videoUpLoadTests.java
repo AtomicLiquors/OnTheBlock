@@ -1,4 +1,4 @@
-package com.ontheblock.www;
+package com.ontheblock.www.video.controller;
 
 import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
