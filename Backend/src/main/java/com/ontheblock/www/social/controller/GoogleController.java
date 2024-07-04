@@ -7,6 +7,7 @@ import com.ontheblock.www.social.domain.ResponseLoginMember;
 import com.ontheblock.www.social.domain.google.GoogleClient;
 import com.ontheblock.www.social.domain.google.GoogleUserInfo;
 import com.ontheblock.www.social.service.SocialService;
+import com.ontheblock.www.social.util.SocialHelper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +29,7 @@ public class GoogleController {
     private final SocialService socialService;
     private final JwtService jwtService;
     private final MemberService memberService;
+    private final SocialHelper socialHelper;
 
     @GetMapping("/login")
     public void googleLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
@@ -54,6 +56,9 @@ public class GoogleController {
         // 이동할 프론트 페이지 주소 설정
         String frontURI = googleClient.getFrontURI(member.getIsNewMember(), member.getNickname());
 
+        Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
+        httpServletResponse.addCookie(cookie);
+       /*
         Cookie cookie = new Cookie("accessToken", accessToken);
         cookie.setHttpOnly(false);
         cookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
@@ -71,7 +76,7 @@ public class GoogleController {
         cookie3.setMaxAge(3600);
         cookie3.setPath("/");
         httpServletResponse.addCookie(cookie3);
-
+*/
         return ResponseEntity
             .status(HttpStatus.FOUND) // 302
             .location(URI.create(frontURI))
