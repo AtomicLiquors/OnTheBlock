@@ -10,12 +10,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
 
 const readAccessToken = () => {
     const accessToken = getAccessToken()
-    return accessToken ? "" : accessToken
+    return accessToken ? accessToken : null
 }
 
 const readRefreshToken = () => {
     const refreshToken = getRefreshToken()
-    return refreshToken ? "" : refreshToken
+    return refreshToken ? refreshToken : null
 }
   
 
