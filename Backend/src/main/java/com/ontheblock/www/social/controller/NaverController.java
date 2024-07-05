@@ -63,24 +63,13 @@ public class NaverController {
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
-        // 쿠키로 보내면 자동으로 local에 저장됨.
-        Cookie accessTokenCookie = new Cookie("accessToken", accessToken);
-        accessTokenCookie.setHttpOnly(false);
-        accessTokenCookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
-        accessTokenCookie.setPath("/");
+        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
+        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
+        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
         httpServletResponse.addCookie(accessTokenCookie);
-
-        Cookie refreshTokenCookie = new Cookie("refreshToken",refreshToken);
-        refreshTokenCookie.setHttpOnly(false);
-        refreshTokenCookie.setMaxAge(3600);
-        refreshTokenCookie.setPath("/");
         httpServletResponse.addCookie(refreshTokenCookie);
-
-        Cookie memberIdCookie = new Cookie("memberId",member.getMemberId().toString());
-        memberIdCookie.setHttpOnly(false);
-        memberIdCookie.setMaxAge(3600);
-        memberIdCookie.setPath("/");
         httpServletResponse.addCookie(memberIdCookie);
+
 
         return ResponseEntity
                 .status(HttpStatus.FOUND) // 302

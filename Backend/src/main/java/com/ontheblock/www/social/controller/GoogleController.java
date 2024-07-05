@@ -61,23 +61,12 @@ public class GoogleController {
             보류 : cookie는 쌍따옴표를 허용하지 않으며, JSON에서 쌍따옴표를 빼면 파싱할 때 invalid한 것으로 인식된다.
          */
 
-        Cookie cookie = new Cookie("accessToken", accessToken);
-        cookie.setHttpOnly(false);
-        cookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
-        cookie.setPath("/");
-        httpServletResponse.addCookie(cookie);
-
-        Cookie cookie2 = new Cookie("refreshToken",refreshToken);
-        cookie2.setHttpOnly(false);
-        cookie2.setMaxAge(3600);
-        cookie2.setPath("/");
-        httpServletResponse.addCookie(cookie2);
-
-        Cookie cookie3 = new Cookie("memberId",member.getMemberId().toString());
-        cookie3.setHttpOnly(false);
-        cookie3.setMaxAge(3600);
-        cookie3.setPath("/");
-        httpServletResponse.addCookie(cookie3);
+        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
+        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
+        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
+        httpServletResponse.addCookie(accessTokenCookie);
+        httpServletResponse.addCookie(refreshTokenCookie);
+        httpServletResponse.addCookie(memberIdCookie);
 
         return ResponseEntity
             .status(HttpStatus.FOUND) // 302

@@ -41,7 +41,7 @@ public class KaKaoController {
     }
 
     @GetMapping("/redirect")
-    public ResponseEntity<?> kakaoRedirect(@RequestParam("code") String authCode,HttpServletResponse response) throws Exception{
+    public ResponseEntity<?> kakaoRedirect(@RequestParam("code") String authCode, HttpServletResponse httpServletResponse) throws Exception{
         String kakaoToken=kakaoClient.getToken(authCode); // authCode로 token 요청
         KakaoProfile kakaoProfile=kakaoClient.getUserInfo(kakaoToken); // token으로 kakao member data 요청
         LoginMemberResponse member=socialService.kakaoLoginOrRegister(kakaoProfile);        // kakaoProfile 정보로 member 조회 or 저장
@@ -57,6 +57,14 @@ public class KaKaoController {
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
+
+        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
+        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
+        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
+        httpServletResponse.addCookie(accessTokenCookie);
+        httpServletResponse.addCookie(refreshTokenCookie);
+        httpServletResponse.addCookie(memberIdCookie);
+        /*
         // 쿠키로 보내면 자동으로 local에 저장됨.
         Cookie cookie = new Cookie("accessToken", accessToken);
         cookie.setHttpOnly(false);
@@ -75,6 +83,7 @@ public class KaKaoController {
         cookie3.setMaxAge(3600);
         cookie3.setPath("/");
         response.addCookie(cookie3);
+        */
 
         return ResponseEntity
                 .status(HttpStatus.FOUND) // 302
