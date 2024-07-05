@@ -58,9 +58,9 @@ const Landing: React.FC = () => {
         <S.Banner>
           <S.Logo src={Logo.Large}></S.Logo>
           <S.Subtitle>
-            <span style={{ fontSize: "1.2rem" }}>
+            <S.SubtitleLargeText>
               나의 소소한 연주가, 색다른 합주로 태어나는 커뮤니티
-            </span>
+            </S.SubtitleLargeText>
             <br />
             다양한 뮤지션들을 만나보세요. 빅데이터로 관심 있는 연주를
             찾아보세요.
@@ -100,6 +100,10 @@ const S = {
     text-align: center;
     color: white;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+  `,
+
+  SubtitleLargeText: styled.span`
+    font-size: 1.2rem;
   `,
 
   Wrap: styled.div`
