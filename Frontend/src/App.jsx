@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Landing from "./pages/landing/Landing.tsx";
 import Main from "./pages/main/Main.jsx";
 import CompositionRecord from "./pages/record/CompositionRecord.jsx";
@@ -46,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Route>
         <Route path="/profile/:memberId" element={<Profile />}></Route>
         <Route path="/profile/error" element={<ProfileError />} />
+        <Route path="*" element={<Navigate to="/main" replace />} />
       </Routes>
       <VideoModal />
       <Footer />
