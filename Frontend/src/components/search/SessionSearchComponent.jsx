@@ -80,7 +80,7 @@ function SessionSearchComponent({setSelectedVideoData}) {
                     color: "#ccc"
                   }}
                 >
-                  <ProfileImg nickName={video.member.nickname} size={24} />
+                  <ProfileImg nickname={video.member.nickname} size={24} />
                   <div>{video.member.nickname}</div>
                 </div>
               </S.SearchItemLeft>

@@ -252,7 +252,7 @@ function UserDropPanel({
         <S.ProfileContainer onClick={() => {navigate("/mypage/like");scrollToTop();}}>
           <S.PanelTopText>
             <div style={{display: "flex", gap:"5px", marginLeft: "5px"}}>
-              <ProfileImg nickName={nickname} size="32" />
+              <ProfileImg nickname={nickname} size="32" />
               <div style={{ color: "orange", fontSize: "1.2em", marginLeft: "5px" }}>
                 <b>{nickname}</b>
               </div>
@@ -271,7 +271,7 @@ function UserDropPanel({
           {notice.map((item, index) => (
             <S.NoticeItem key={index}>
               <ProfileImg
-                nickName={JSON.parse(item.noticeContent).nickname}
+                nickname={JSON.parse(item.noticeContent).nickname}
                 size="24"
                 onClick={() => {
                   handleNoticeProfileClick(JSON.parse(item.noticeContent).id);

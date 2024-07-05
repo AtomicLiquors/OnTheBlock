@@ -41,7 +41,7 @@ function FollowingModal({ followInfoVisibility, memberId }) {
           {followings.length > 0 ? (
             followings.map((following) => (
               <S.ProfileImgWrap key={following.id} onClick={() => handleProfileClick(following.id)}>
-                <ProfileImg nickName={following.nickName} size="42" />
+                <ProfileImg nickname={following.nickName} size="42" />
                 <span style={{ marginLeft: '10px' }}>{following.nickName}</span>
               </S.ProfileImgWrap>
             ))

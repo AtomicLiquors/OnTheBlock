@@ -76,7 +76,7 @@ function Thumbnail({ videoData }) {
                 <div
                   style={{ display: "flex", alignItems: "center", gap: "2px" }}
                 >
-                  <ProfileImg nickName={videoData.member.nickname} size="24" />
+                  <ProfileImg nickname={videoData.member.nickname} size="24" />
                   <small style={{ marginLeft: "5px" }}>{videoData.member.nickname}</small>
                 </div>
                 <S.ActivityInfoTab>

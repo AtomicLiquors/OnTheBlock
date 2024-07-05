@@ -59,16 +59,16 @@ function ProfileInfo() {
           <S.CardBody>
             <div style={{ display: "flex" }}>
               <S.LeftSection>
-                <ProfileImg nickName={userData.nickName} size="128" />
+                <ProfileImg nickname={userData.nickName} size="128" />
               </S.LeftSection>
               <S.Spacer></S.Spacer>
               <S.Spacer></S.Spacer>
               <S.RightSection>
                 {/* 사용자 이름 */}
                 <S.Description>
-                  <div style={{ color: "orange", fontSize: "1.2em" }}>
+                  <S.Nickname>
                     <b>{userData.nickName || ""}</b>
-                  </div>
+                  </S.Nickname>
                 </S.Description>
                 <br />
 
@@ -184,6 +184,11 @@ const S = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  `,
+
+  Nickname: styled.div`
+    color: orange;
+    font-size: 1.2rem;
   `,
 
   Spacer: styled.div`

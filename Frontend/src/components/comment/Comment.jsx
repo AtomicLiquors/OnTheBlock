@@ -60,7 +60,7 @@ function Comment({
       <S.CommentItem key={comment.commentId}>
         <div style={{ marginTop: "5px" }}>
           <ProfileImg
-            nickName={comment.member.nickname}
+            nickname={comment.member.nickname}
             size="24"
             onClick={() => handleSessionMemberClick(comment.member.memberId)}
           />

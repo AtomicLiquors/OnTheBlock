@@ -203,7 +203,7 @@ function VideoModal() {
                   style={{ display: "flex", alignItems: "center", gap: "2px" }}
                 >
                   <ProfileImg
-                    nickName={openVideoData.member.nickname}
+                    nickname={openVideoData.member.nickname}
                     size="24"
                   />
                   <small
@@ -246,7 +246,7 @@ function VideoModal() {
                     <ProfileImg
                       key={index}
                       className="p-icon"
-                      nickName={session.member.nickname}
+                      nickname={session.member.nickname}
                       size="24"
                     />
                   ))}
@@ -268,7 +268,7 @@ function VideoModal() {
                       }
                     >
                       <ProfileImg
-                        nickName={session.member.nickname}
+                        nickname={session.member.nickname}
                         size="24"
                       />
                       &nbsp;
@@ -339,7 +339,7 @@ function VideoModal() {
               ))}
           </S.CommentSection>
           <S.CommentInputContainer>
-            <ProfileImg nickName={localStorage.getItem("nickName")} size="24" />
+            <ProfileImg nickname={localStorage.getItem("nickName")} size="24" />
 
             <S.CommentInput
               ref={commentRef}

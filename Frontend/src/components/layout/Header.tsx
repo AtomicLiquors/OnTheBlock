@@ -52,7 +52,7 @@ function Header() {
           <b>{nickName}</b>님
         </div>
         <S.ProfileIconWrap>
-          <ProfileImg nickName={nickName} size={32}/>
+          <ProfileImg nickname={nickName} size={32}/>
           { (hasNewNotice || hasUnread) && <S.RedMark></S.RedMark> }
 
         </S.ProfileIconWrap>

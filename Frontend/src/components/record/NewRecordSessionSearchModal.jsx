@@ -55,7 +55,7 @@ function NewRecordSessionSearchModal({ isModalOpen, setIsModalOpen }) {
                       }}
                     >
                       <ProfileImg
-                        nickName={selectedVideoData.member.nickname}
+                        nickname={selectedVideoData.member.nickname}
                         size={24}
                       />
                       <div>{selectedVideoData.member.nickname}</div>

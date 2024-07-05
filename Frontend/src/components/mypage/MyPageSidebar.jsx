@@ -11,7 +11,7 @@ function MyPageInfo() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     id: null,
-    nickName: "",
+    nickname: "",
     description: "",
   });
 
@@ -47,13 +47,13 @@ function MyPageInfo() {
         <S.SideBar className="card">
           <S.SideBarBody className="card-body">
             <S.ProfileImgWrap>
-              <ProfileImg nickName={userData.nickName} size="96" />
+              <ProfileImg nickname={userData.nickname} size="96" />
             </S.ProfileImgWrap>
             <br />
 
             {/* 사용자 이름 */}
             <S.Nickname>
-              <b>{userData.nickName}</b>
+              <b>{userData.nickname}</b>
             </S.Nickname>
             <br />
 
