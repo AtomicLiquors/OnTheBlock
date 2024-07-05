@@ -7,6 +7,7 @@ import com.ontheblock.www.social.domain.kakao.KakaoClient;
 import com.ontheblock.www.social.domain.kakao.KakaoProfile;
 import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.service.SocialService;
+import com.ontheblock.www.social.util.SocialHelper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,8 @@ public class KaKaoController {
     private final JwtService jwtService;
     private final MemberService memberService;
 
+    private final SocialHelper socialHelper;
+
     @GetMapping("/login")
     public void getKakaoAuthUrl(HttpServletResponse httpServletResponse) throws Exception{
         kakaoClient.getAuthCode(httpServletResponse);
@@ -52,7 +55,7 @@ public class KaKaoController {
         memberService.saveRefreshToken(member.getMemberId(), refreshToken); // 토큰 저장
 
         // 이동할 프론트 페이지 주소 설정
-        String frontURI = kakaoClient.getFrontURI(member.getIsNewMember(), member.getNickname());
+        String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
         // 쿠키로 보내면 자동으로 local에 저장됨.
         Cookie cookie = new Cookie("accessToken", accessToken);

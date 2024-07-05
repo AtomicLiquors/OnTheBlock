@@ -49,11 +49,10 @@ function Bridge() {
       if(queryName)
         saveLoginInfo(LoginInfo.Nickname, queryName);// 닉네임 저장
 
-      // 1인 경우 기존 멤버, main 페이지로 이동
-      if (isNewMember === '1') {
+      console.log(isNewMember);
+      if (isNewMember === 'false') {
         navigate('/main', { replace: true });
       }
-      // 0인 경우 new 멤버, 멤버 초기 입력 페이지로 이동
       else {
         navigate('/memberInit', { replace: true });
       }

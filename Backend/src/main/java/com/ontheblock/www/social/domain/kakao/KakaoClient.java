@@ -27,11 +27,6 @@ public class KakaoClient {
     @Value("${kakao.url.redirect}")
     private String redirectURL;
 
-    @Value("${front.scheme}")
-    private String frontScheme;
-    @Value("${front.host}")
-    private String frontHost;
-
     // http 요청 편하게 함(Spring에서 제공)
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -94,15 +89,5 @@ public class KakaoClient {
         return restTemplate.postForObject(uriComponents.toString(), request, KakaoProfile.class);
     }
 
-    public String getFrontURI(int isNewMember, String nickName) {
-        return UriComponentsBuilder.newInstance()
-                .scheme(frontScheme)
-                .host(frontHost)
-                .path("/bridge")
-                .queryParam("isNewMember", isNewMember)
-                .queryParam("nickName",nickName)
-                .build()
-                .toString();
-    }
 
 }

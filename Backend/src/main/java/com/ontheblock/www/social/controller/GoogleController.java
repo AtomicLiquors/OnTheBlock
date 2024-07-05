@@ -54,7 +54,7 @@ public class GoogleController {
         memberService.saveRefreshToken(member.getMemberId(), refreshToken); // 토큰 저장
 
         // 이동할 프론트 페이지 주소 설정
-        String frontURI = googleClient.getFrontURI(member.getIsNewMember(), member.getNickname());
+        String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
         /*
             Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
             httpServletResponse.addCookie(cookie);

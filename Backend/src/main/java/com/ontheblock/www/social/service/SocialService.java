@@ -21,21 +21,21 @@ public class SocialService {
 
     // 카카오 로그인
     public LoginMemberResponse kakaoLoginOrRegister(KakaoProfile profile) {
-        return makeResponseLoginMember(profile.getEmail(), profile.getNickname());
+        return makeLoginMemberResponse(profile.getEmail(), profile.getNickname());
     }
 
     // 구글 로그인
     public LoginMemberResponse googleLoginOrRegister(GoogleUserInfo googleUserInfo) {
-        return makeResponseLoginMember(googleUserInfo.getEmail(), googleUserInfo.getNickname());
+        return makeLoginMemberResponse(googleUserInfo.getEmail(), googleUserInfo.getNickname());
     }
 
     public LoginMemberResponse naverLoginOrRegister(NaverProfile profile){
-        return makeResponseLoginMember(profile.getEmail(), profile.getNickname());
+        return makeLoginMemberResponse(profile.getEmail(), profile.getNickname());
     }
 
 
     // ResponseLoginMember 생성 후 반환
-    public LoginMemberResponse makeResponseLoginMember(String email, String nickname){
+    public LoginMemberResponse makeLoginMemberResponse(String email, String nickname){
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         // 새로 가입한 멤버인 경우 새로 생성하여 저장 후 반환
         if (!optionalMember.isPresent()) {
@@ -44,9 +44,9 @@ public class SocialService {
             member.updateNickname(nickname);
 
             memberRepository.save(member);
-            return new LoginMemberResponse(member,0);
+            return new LoginMemberResponse(member, true);
         }
         // 이미 가입한 멤버인 경우 유저 정보 반환
-        return new LoginMemberResponse(optionalMember.get(),1);
+        return new LoginMemberResponse(optionalMember.get(), false);
     }
 }

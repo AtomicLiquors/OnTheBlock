@@ -7,11 +7,12 @@ import lombok.Data;
 public class LoginMemberResponse {
     private Long memberId;
     private String nickname;
-    private int isNewMember;
+    private Boolean isNewMember;
 
-    public LoginMemberResponse(Member member, int isNewMember){
+    public LoginMemberResponse(Member member, boolean isNewMember){
         this.memberId = member.getId();
         this.nickname = member.getNickname();
         this.isNewMember = isNewMember;
     }
+
 }
