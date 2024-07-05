@@ -63,15 +63,11 @@ public class InstrumentService {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new IllegalArgumentException("No such user exists"));
 		List<MemberInstrument> memberInstruments = memberInstrumentRepository.findByMemberInstruments(member);
-		// 불러온 memberInstruments가 비어있는 경우
-		if (!memberInstruments.isEmpty()) {
-			List<Instrument> instruments = new ArrayList<>();
-			for (MemberInstrument m : memberInstruments) {
-				instruments.add(new Instrument(m));
-			}
-			return instruments;
-		} else {
-			return null;
+
+		List<Instrument> instruments = new ArrayList<>();
+		for (MemberInstrument m : memberInstruments) {
+			instruments.add(new Instrument(m));
 		}
+		return instruments;
 	}
 }

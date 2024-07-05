@@ -59,15 +59,12 @@ public class MemberGenreService {
 			.orElseThrow(() -> new IllegalArgumentException("No such user exists"));
 		List<MemberGenre> memberGenres = memberGenreRepository.findByMemberGenres(member);
 		// 불러온 memberGenres 가 비어있는 경우
-		if (!memberGenres.isEmpty()) {
-			List<Genre> genres = new ArrayList<>();
-			for (MemberGenre m : memberGenres) {
-				genres.add(new Genre(m));
-			}
-			return genres;
-		} else {
-			return null;
+
+		List<Genre> genres = new ArrayList<>();
+		for (MemberGenre m : memberGenres) {
+			genres.add(new Genre(m));
 		}
+		return genres;
 	}
 
 }
