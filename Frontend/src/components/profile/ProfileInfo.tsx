@@ -8,49 +8,25 @@ import FollowingModal from "@/components/follow/FollowingModal";
 import { getUserInfo } from "@/api/member";
 import { checkFollow, addFollow, deleteFollow,  } from "@/api/follow";
 import { ProfileImg } from "@/components";
+import profileInfoFollowHook from "@/hooks/profile/profileInfoFollowHook";
 
 function ProfileInfo() {
-  const navigate = useNavigate();
+
+
   const { memberId } = useParams();
 
-  const [userData, setUserData] = useState({id: null, nickname: '', description: ''});
-  const [checkFollowData, setCheckFollowData] = useState(2);
+  //To-Do: memberId 입력하지 않았을 시 리디렉션 또는 에러처리.
+  // 그 후 memberId! 전부 수정.
 
-  useEffect(() => {
-    getUserInfo(memberId).then((response)=>{
-      setUserData(response.data);
-    })
-    checkFollow(memberId).then((response)=>{
-      setCheckFollowData(response.data);
-    })
-  }, [memberId]);
+  const {
+    userData,
+    checkFollowData,
+    handleAddFollow,
+    handleDeleteFollow,
+    followInfoVisibility,
+    toggleFollowInfoMenu,
+  } = profileInfoFollowHook(memberId!);
 
-  const sendAddFollow = async (userId) => {
-    try {
-      const response = await addFollow(userId);
-      setUserData(prevData => ({...prevData, followers: response.data.followers}));
-      const isFollowing = await checkFollow(userId);
-      setCheckFollowData(isFollowing.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  const sendDeleteFollow = async (userId) => {
-    try {
-      const response = await deleteFollow(userId);
-      setUserData(prevData => ({...prevData, followers: response.data.followers}));
-      const isFollowing = await checkFollow(userId);
-      setCheckFollowData(isFollowing.data);  
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const [followInfoVisibility, setFollowInfoVisibility] = useState(false);
-  const toggleFollowInfoMenu = () => {
-    setFollowInfoVisibility(!followInfoVisibility);
-  };
 
   return (
     <>
@@ -96,14 +72,14 @@ function ProfileInfo() {
                 {checkFollowData === 1 ? (
                   <Button
                     variant="outline-danger"
-                    onClick={() => sendDeleteFollow(memberId)}
+                    onClick={() => handleAddFollow(memberId!)}
                   >
                     언팔로우
                   </Button>
                 ) : checkFollowData === 0 ? (
                   <Button
                     variant="outline-primary"
-                    onClick={() => sendAddFollow(memberId)}
+                    onClick={() => handleDeleteFollow(memberId!)}
                   >
                     팔로우
                   </Button>

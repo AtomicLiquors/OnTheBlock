@@ -12,13 +12,13 @@ var result = "hsl(" + h + ", " + s + "%, " + l + "%)";
 return result;
 }
 
-function ProfileImg({nickName, size}) {
+function ProfileImg({nickname, size}) {
     return (
       <>
-        {nickName ? (
+        {nickname ? (
           <S.GeneratedProfileImg
             style={{
-              backgroundColor: stringToHslColor(nickName, 80, 50),
+              backgroundColor: stringToHslColor(nickname, 80, 50),
               minWidth: `${size}px`,
               minHeight: `${size}px`,
               maxWidth: `${size}px`,
@@ -26,7 +26,7 @@ function ProfileImg({nickName, size}) {
             }}
           >
             <div style={{ fontSize: `${size / 2}px` }}>
-              {nickName.charAt(0)}
+              {nickname.charAt(0)}
             </div>
           </S.GeneratedProfileImg>
         ) : (
