@@ -57,7 +57,6 @@ function ProfileInfo() {
       <S.Wrap>
         <S.Card>
           <S.CardBody>
-            <div style={{ display: "flex" }}>
               <S.LeftSection>
                 <ProfileImg nickname={userData.nickname} size="128" />
               </S.LeftSection>
@@ -112,7 +111,6 @@ function ProfileInfo() {
                   <></>
                 )}
               </S.RightSection>
-            </div>
           </S.CardBody>
         </S.Card>
       </S.Wrap>
