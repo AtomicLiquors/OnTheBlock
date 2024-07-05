@@ -6,39 +6,18 @@ import { ProfileImg } from "@/components";
 import FollowerModal from "@/components/follow/FollowerModal";
 import FollowingModal from "@/components/follow/FollowingModal";
 import { getMyUserInfo } from "@/api/member";
+import myPageSidebarNavigate from "@/hooks/mypage/myPageSidebarNavigate";
+import myPageSidebarHook from "@/hooks/mypage/myPageSidebarHook";
 
 function MyPageInfo() {
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState({
-    id: null,
-    nickname: "",
-    description: "",
-  });
 
-  useEffect(() => {   
-    getMyUserInfo().then((response) => {
-      setUserData(response.data);
-    });
-  }, []);
-
-  const [followInfoVisibility, setFollowInfoVisibility] = useState(false);
-  const toggleFollowInfoMenu = () => {
-    setFollowInfoVisibility(!followInfoVisibility);
-  };
-
-  const location = useLocation();
-
+  const { userData, followInfoVisibility, toggleFollowInfoMenu } = myPageSidebarHook();
+  const { navigate, location, pagePaths } = myPageSidebarNavigate();
+  
   if (location.pathname === "/") {
     return null;
   }
 
-  const pagePaths = {
-    profile: "/profile",
-    mypageinformation: "/mypage/information",
-    mypagelike: "/mypage/like",
-    mypagehistory: "/mypage/history",
-    mypagework: "/mypage/work",
-  };
 
   return (
     <>
