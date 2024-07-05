@@ -203,7 +203,7 @@ function MyPageInfoInput() {
         <S.DescriptionWrapper>
           <S.Textarea
             type="textarea"
-            value={description}
+            value={description || ""}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="자기소개를 입력하세요."
           />
