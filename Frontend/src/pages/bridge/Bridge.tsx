@@ -17,6 +17,8 @@ function Bridge() {
       return { [name]: value.trim() };
     });
 
+    alert(cookies);
+
     //To-Do : cookie에서 유효한 값을 찾지 못한 경우 에러처리.
     const accessToken = cookies.find((cookie) => 'accessToken' in cookie)?.accessToken;
     const refreshToken = cookies.find((cookie) => 'refreshToken' in cookie)?.refreshToken;
@@ -40,22 +42,19 @@ function Bridge() {
       }
 
       // 쿼리 문자열에서 isNewMember 값을 추출
-      const isNewMember = queryParams.get('isNewMember');
+      const isNewMember = queryParams.get("isNewMember");
       const queryName = queryParams.get("nickName");
       
       //To-Do: Parameter 찾지 못할시 예외처리
       if(queryName)
         saveLoginInfo(LoginInfo.Nickname, queryName);// 닉네임 저장
 
-      // 1인 경우 기존 멤버
+      // 1인 경우 기존 멤버, main 페이지로 이동
       if (isNewMember === '1') {
-        // main 페이지로 이동
         navigate('/main', { replace: true });
-        //navigate('/memberInit', { replace: true });
       }
-      // 0인 경우 new 멤버
+      // 0인 경우 new 멤버, 멤버 초기 입력 페이지로 이동
       else {
-        // 멤버 초기 입력 페이지로 이동
         navigate('/memberInit', { replace: true });
       }
   }, []);

@@ -3,7 +3,7 @@ package com.ontheblock.www.social.controller;
 import com.ontheblock.www.JWT.JwtService;
 import com.ontheblock.www.global.exception.GoogleLoginErrorException;
 import com.ontheblock.www.member.service.MemberService;
-import com.ontheblock.www.social.domain.ResponseLoginMember;
+import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.domain.google.GoogleClient;
 import com.ontheblock.www.social.domain.google.GoogleUserInfo;
 import com.ontheblock.www.social.service.SocialService;
@@ -43,7 +43,7 @@ public class GoogleController {
 
         String googleToken = googleClient.getToken(httpServletRequest.getParameter("code")); // authCode로 token 요청
         GoogleUserInfo googleUserInfo = googleClient.getUserInfo(googleToken); // token으로 google member data 요청
-        ResponseLoginMember member = socialService.googleLoginOrRegister(googleUserInfo);        // GoogleUserInfo 정보로 member 조회 or 저장
+        LoginMemberResponse member = socialService.googleLoginOrRegister(googleUserInfo);        // GoogleUserInfo 정보로 member 조회 or 저장
 
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getMemberId());

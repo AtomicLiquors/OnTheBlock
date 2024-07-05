@@ -2,7 +2,7 @@ package com.ontheblock.www.social.controller;
 
 import com.ontheblock.www.JWT.JwtService;
 import com.ontheblock.www.member.service.MemberService;
-import com.ontheblock.www.social.domain.ResponseLoginMember;
+import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.domain.naver.NaverClient;
 import com.ontheblock.www.social.domain.naver.NaverProfile;
 import com.ontheblock.www.social.service.SocialService;
@@ -48,7 +48,7 @@ public class NaverController {
         NaverProfile naverProfile = naverClient.getUserInfo(naverToken);
 
         // To-Do : NaverClient가 UserInfo를 받아오지 못한 경우 에러처리
-        ResponseLoginMember member = socialService.naverLoginOrRegister(naverProfile);
+        LoginMemberResponse member = socialService.naverLoginOrRegister(naverProfile);
 
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getMemberId());

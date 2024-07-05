@@ -5,7 +5,7 @@ import com.ontheblock.www.JWT.JwtService;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.domain.kakao.KakaoClient;
 import com.ontheblock.www.social.domain.kakao.KakaoProfile;
-import com.ontheblock.www.social.domain.ResponseLoginMember;
+import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.service.SocialService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,7 +41,7 @@ public class KaKaoController {
     public ResponseEntity<?> kakaoRedirect(@RequestParam("code") String authCode,HttpServletResponse response) throws Exception{
         String kakaoToken=kakaoClient.getToken(authCode); // authCode로 token 요청
         KakaoProfile kakaoProfile=kakaoClient.getUserInfo(kakaoToken); // token으로 kakao member data 요청
-        ResponseLoginMember member=socialService.kakaoLoginOrRegister(kakaoProfile);        // kakaoProfile 정보로 member 조회 or 저장
+        LoginMemberResponse member=socialService.kakaoLoginOrRegister(kakaoProfile);        // kakaoProfile 정보로 member 조회 or 저장
 
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("id", member.getMemberId());
