@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { CgProfile as ProfileIcon } from "react-icons/cg";
+import React from "react";
 import styled from "styled-components";
 import { ProfileImg } from "@/components";
 import FollowerModal from "@/components/follow/FollowerModal";
 import FollowingModal from "@/components/follow/FollowingModal";
-import { getMyUserInfo } from "@/api/member";
 import myPageSidebarNavigate from "@/hooks/mypage/myPageSidebarNavigate";
 import myPageSidebarHook from "@/hooks/mypage/myPageSidebarHook";
 
