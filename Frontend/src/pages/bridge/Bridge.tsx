@@ -10,19 +10,17 @@ function Bridge() {
   const queryParams = new URLSearchParams(location.search); // 쿼리 문자열을 파싱하기 위해 사용
 
   const parseCookie = (cookieString: string) => {
-    //To-Do : cookie 형식이 맞는지 검증하고 아니면 에러처리?
-    
-    const cookies = cookieString.split(';').map((cookie) => {
+    //To-Do : cookieString 형식이 맞는지 검증하고 아니면 에러처리?
+    const cookieMap = new Map();
+    cookieString.split(';').map((cookie) => {
       const [name, value] = cookie.trim().split('=');
-      return { [name]: value.trim() };
+      cookieMap.set(name, value.trim());
     });
 
-    alert(cookies);
-
     //To-Do : cookie에서 유효한 값을 찾지 못한 경우 에러처리.
-    const accessToken = cookies.find((cookie) => 'accessToken' in cookie)?.accessToken;
-    const refreshToken = cookies.find((cookie) => 'refreshToken' in cookie)?.refreshToken;
-    const memberId = cookies.find((cookie) => 'memberId' in cookie)?.memberId;
+    const accessToken = cookieMap.get('accessToken');
+    const refreshToken = cookieMap.get('refreshToken');
+    const memberId = cookieMap.get('memberId');
 
     return [accessToken, refreshToken, memberId];
   }
@@ -49,13 +47,9 @@ function Bridge() {
       if(queryName)
         saveLoginInfo(LoginInfo.Nickname, queryName);// 닉네임 저장
 
-      console.log(isNewMember);
-      if (isNewMember === 'false') {
-        navigate('/main', { replace: true });
-      }
-      else {
-        navigate('/memberInit', { replace: true });
-      }
+      const targetPath = isNewMember === 'false' ? '/main' : '/memberInit';
+      navigate(targetPath, { replace: true });  
+      
   }, []);
 
   return (
