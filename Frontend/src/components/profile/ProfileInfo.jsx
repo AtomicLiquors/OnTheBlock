@@ -13,7 +13,7 @@ function ProfileInfo() {
   const navigate = useNavigate();
   const { memberId } = useParams();
 
-  const [userData, setUserData] = useState({id: null, nickName: '', description: ''});
+  const [userData, setUserData] = useState({id: null, nickname: '', description: ''});
   const [checkFollowData, setCheckFollowData] = useState(2);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function ProfileInfo() {
           <S.CardBody>
             <div style={{ display: "flex" }}>
               <S.LeftSection>
-                <ProfileImg nickname={userData.nickName} size="128" />
+                <ProfileImg nickname={userData.nickname} size="128" />
               </S.LeftSection>
               <S.Spacer></S.Spacer>
               <S.Spacer></S.Spacer>
@@ -67,7 +67,7 @@ function ProfileInfo() {
                 {/* 사용자 이름 */}
                 <S.Description>
                   <S.Nickname>
-                    <b>{userData.nickName || ""}</b>
+                    <b>{userData.nickname || ""}</b>
                   </S.Nickname>
                 </S.Description>
                 <br />
