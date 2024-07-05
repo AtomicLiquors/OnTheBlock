@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { CgProfile as ProfileIcon } from "react-icons/cg";
+import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import FollowerModal from "@/components/follow/FollowerModal";
 import FollowingModal from "@/components/follow/FollowingModal";
-import { getUserInfo } from "@/api/member";
-import { checkFollow, addFollow, deleteFollow,  } from "@/api/follow";
 import { ProfileImg } from "@/components";
 import profileInfoFollowHook from "@/hooks/profile/profileInfoFollowHook";
 

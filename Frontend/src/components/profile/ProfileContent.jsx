@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ThumbnailGrid } from "@/components";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { getMyUploadVideos } from "@/api/video";
-import * as hooks from "@/hooks";
-
 
 function ProfileContent() {
-  const navigate = useNavigate();
   const [ uploadVideoList, setUploadVideoList ] = useState(null);
   const { memberId } = useParams();
 
