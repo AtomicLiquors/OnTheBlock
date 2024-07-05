@@ -1,3 +1,3 @@
 export * from './useStore'
 export * from './video/useStore'
-export * from './member/LoginInfoStorage'
+export * from './member/loginInfoStorage'

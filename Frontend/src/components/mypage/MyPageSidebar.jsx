@@ -17,7 +17,6 @@ function MyPageInfo() {
 
   useEffect(() => {   
     getMyUserInfo().then((response) => {
-    // console.log(response.data); 
       setUserData(response.data);
     });
   }, []);
