@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   changeUserNickname,
   changeUserDescription,
@@ -18,8 +17,6 @@ import { getMyUserInfo } from "@/api/member";
 import { ProfileImg } from "@/components";
 
 function MyPageInfoInput() {
-  const navigate = useNavigate();
-  // const { newNickname, newDescription } = useParams();
 
   const MIN_NICKNAME_LENGTH = 2;
   const MAX_NICKNAME_LENGTH = 10;
@@ -55,6 +52,7 @@ function MyPageInfoInput() {
       }
     });
   }, []);
+
 
   const handleDeleteAccount = () => {
     if (isDeletingAccount) {
