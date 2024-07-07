@@ -57,33 +57,12 @@ public class KaKaoController {
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
-
         Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
         Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
         Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
         httpServletResponse.addCookie(accessTokenCookie);
         httpServletResponse.addCookie(refreshTokenCookie);
         httpServletResponse.addCookie(memberIdCookie);
-        /*
-        // 쿠키로 보내면 자동으로 local에 저장됨.
-        Cookie cookie = new Cookie("accessToken", accessToken);
-        cookie.setHttpOnly(false);
-        cookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (예: 1시간)
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
-        Cookie cookie2 = new Cookie("refreshToken",refreshToken);
-        cookie2.setHttpOnly(false);
-        cookie2.setMaxAge(3600);
-        cookie2.setPath("/");
-        response.addCookie(cookie2);
-
-        Cookie cookie3 = new Cookie("memberId",member.getMemberId().toString());
-        cookie3.setHttpOnly(false);
-        cookie3.setMaxAge(3600);
-        cookie3.setPath("/");
-        response.addCookie(cookie3);
-        */
 
         return ResponseEntity
                 .status(HttpStatus.FOUND) // 302
