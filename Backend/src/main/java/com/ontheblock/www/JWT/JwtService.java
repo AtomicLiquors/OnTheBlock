@@ -35,7 +35,6 @@ public class JwtService {
     }
     public <T> String createRefreshToken(Map<String, T> data) {
         return create(data, "refresh-token", 1000 * 60 * 60 * 24 * 7 * REFRESH_TOKEN_EXPIRE_MINUTES);
-//		return create(key, data, "refresh-token", 1000 * 30 * ACCESS_TOKEN_EXPIRE_MINUTES); // 30초
     }
 
     public <T> String create(Map<String, T> data, String subject, long expire) {
