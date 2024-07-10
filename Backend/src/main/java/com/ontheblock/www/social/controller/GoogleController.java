@@ -55,18 +55,11 @@ public class GoogleController {
 
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
-        /*
-            Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
-            httpServletResponse.addCookie(cookie);
-            보류 : cookie는 쌍따옴표를 허용하지 않으며, JSON에서 쌍따옴표를 빼면 파싱할 때 invalid한 것으로 인식된다.
-         */
 
-        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
-        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
-        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
-        httpServletResponse.addCookie(accessTokenCookie);
-        httpServletResponse.addCookie(refreshTokenCookie);
-        httpServletResponse.addCookie(memberIdCookie);
+        Cookie[] cookies = socialHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
+        for (Cookie cookie : cookies) {
+            httpServletResponse.addCookie(cookie);
+        }
 
         return ResponseEntity
             .status(HttpStatus.FOUND) // 302

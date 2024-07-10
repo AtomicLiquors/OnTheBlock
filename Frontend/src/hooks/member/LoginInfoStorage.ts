@@ -2,8 +2,8 @@
 
 import { LoginInfo } from "@/types/loginInfo";
 
-const accessTokenStorage = sessionStorage;
-const refreshTokenStorage = localStorage;
+const accessTokenStorage = localStorage;
+const refreshTokenStorage = sessionStorage;
 const loginInfoStorage = sessionStorage;
 
 /* AccessToken */
@@ -52,4 +52,8 @@ export const getLoginInfo = (type: LoginInfo) => {
       const info = loginInfoStorage.getItem(type);
       // if(!accessToken) throw new Error();
       return info;
+}
+
+export const removeLoginInfo = (type: LoginInfo) => {
+      loginInfoStorage.removeItem(type);
 }

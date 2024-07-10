@@ -24,7 +24,6 @@ function UserDropPanel({
   const [eventSource, setEventSource] = useState(null);
 
   const { setIsVideoModalOpen } = hooks.videoModalState();
-  const { openVideoData } = hooks.openVideoState();
   const { setOpenVideoData } = hooks.openVideoState();
 
   useEffect(() => {
@@ -222,11 +221,13 @@ function UserDropPanel({
       });
   };
 
-  // 로그 아웃
+  // 로그아웃
   // To-Do: hook으로 분리하기.
   const logout = () => {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("refreshToken");
+    removeAccessToken();
+    removeRefreshToken();
     sessionStorage.removeItem("nickname");
     sessionStorage.removeItem("memberId");
 

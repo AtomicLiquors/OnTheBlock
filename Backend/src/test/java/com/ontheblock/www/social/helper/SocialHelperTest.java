@@ -15,14 +15,4 @@ public class SocialHelperTest {
     @Autowired
     private SocialHelper socialHelper;
 
-    @Test
-    public void createCookieTest(){
-        String accessToken = "sample_random_accesstoken";
-        String refreshToken = "sample_random_refreshToken";
-        Long memberId = 1L;
-
-        String json = socialHelper.createTokenInfoJson(accessToken, refreshToken, memberId);
-        log.info(json);
-        assertThat(json, containsString("accessToken"));
-    }
 }
