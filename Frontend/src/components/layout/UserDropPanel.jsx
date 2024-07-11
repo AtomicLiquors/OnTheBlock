@@ -9,6 +9,7 @@ import {TiDelete} from "react-icons/ti"
 import * as hooks from "@/hooks";
 import { getVideo } from "@/api/video";
 import { FaChevronRight as RightIcon } from "react-icons/fa";
+import { deleteCookie } from '@/utils';
 
 function UserDropPanel({
   userInfoVisibility,
@@ -234,6 +235,9 @@ function UserDropPanel({
     sessionStorage.removeItem("nickname");
     sessionStorage.removeItem("memberId");
     */
+
+    /* To-Do : refreshToken 제거되지 않는 점 확인바람. */
+    deleteCookie("refreshToken");
     
 
     if (eventSource) {
