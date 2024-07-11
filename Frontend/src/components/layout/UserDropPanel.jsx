@@ -9,6 +9,7 @@ import {TiDelete} from "react-icons/ti"
 import * as hooks from "@/hooks";
 import { getVideo } from "@/api/video";
 import { FaChevronRight as RightIcon } from "react-icons/fa";
+import { deleteCookie } from '@/utils';
 
 function UserDropPanel({
   userInfoVisibility,
@@ -24,7 +25,6 @@ function UserDropPanel({
   const [eventSource, setEventSource] = useState(null);
 
   const { setIsVideoModalOpen } = hooks.videoModalState();
-  const { openVideoData } = hooks.openVideoState();
   const { setOpenVideoData } = hooks.openVideoState();
 
   useEffect(() => {
@@ -222,13 +222,23 @@ function UserDropPanel({
       });
   };
 
-  // 로그 아웃
+  // 로그아웃
   // To-Do: hook으로 분리하기.
   const logout = () => {
-    sessionStorage.removeItem("accessToken");
+    
+    /* To-Do : 모든 정보 정상 제거되는지 확인. */
+    localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("memberId");
+    /*
     sessionStorage.removeItem("refreshToken");
     sessionStorage.removeItem("nickname");
     sessionStorage.removeItem("memberId");
+    */
+
+    /* To-Do : refreshToken 제거되지 않는 점 확인바람. */
+    deleteCookie("refreshToken");
+    
 
     if (eventSource) {
       eventSource.close();

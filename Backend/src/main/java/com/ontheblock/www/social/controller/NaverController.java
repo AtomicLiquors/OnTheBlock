@@ -63,13 +63,10 @@ public class NaverController {
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
-        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
-        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
-        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
-        httpServletResponse.addCookie(accessTokenCookie);
-        httpServletResponse.addCookie(refreshTokenCookie);
-        httpServletResponse.addCookie(memberIdCookie);
-
+        Cookie[] cookies = socialHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
+        for (Cookie cookie : cookies) {
+            httpServletResponse.addCookie(cookie);
+        }
 
         return ResponseEntity
                 .status(HttpStatus.FOUND) // 302

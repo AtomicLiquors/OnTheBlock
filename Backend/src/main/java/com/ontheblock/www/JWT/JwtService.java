@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 @Service
 public class JwtService {
-    public static final Logger logger = LoggerFactory.getLogger(JwtService.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
     private static final String SALT = "secretKey";
     private static final int ACCESS_TOKEN_EXPIRE_MINUTES = 60; // 분단위
     private static final int REFRESH_TOKEN_EXPIRE_MINUTES = 2; // 주단위
@@ -35,7 +35,6 @@ public class JwtService {
     }
     public <T> String createRefreshToken(Map<String, T> data) {
         return create(data, "refresh-token", 1000 * 60 * 60 * 24 * 7 * REFRESH_TOKEN_EXPIRE_MINUTES);
-//		return create(key, data, "refresh-token", 1000 * 30 * ACCESS_TOKEN_EXPIRE_MINUTES); // 30초
     }
 
     public <T> String create(Map<String, T> data, String subject, long expire) {

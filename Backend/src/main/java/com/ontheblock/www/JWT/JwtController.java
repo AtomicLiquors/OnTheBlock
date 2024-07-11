@@ -7,27 +7,34 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RequestMapping("/jwt")
 @RestController
 @RequiredArgsConstructor
 public class JwtController {
 
+
   private final JwtService jwtService;
   private final MemberService memberService;
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @GetMapping("/reissue")
   public ResponseEntity<?> reissueTokens(
-      HttpServletRequest httpServletRequest) {
+      HttpServletRequest httpServletRequest, @CookieValue String refreshToken) {
+    //Cookie[] cookies = httpServletRequest.getCookies();
+    logger.info("=====REFRESH TOKEN INFO====");
+    logger.info(refreshToken);
+    //String refreshToken = httpServletRequest.getHeader("refreshToken");
+      // 누군가 여기를 타기도 전에 JWT 서비스를 호출하고 있다.
 
-    String refreshToken = httpServletRequest.getHeader("refreshToken");
     Long memberId = jwtService.getIdFromToken(refreshToken); // token에서 id를 꺼냄
     Member member = memberService.getMember(memberId);         // member 조회
 

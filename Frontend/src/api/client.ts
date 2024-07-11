@@ -27,7 +27,8 @@ const failure = async (error: any) => {
       const config = error.config
       if (config === undefined) return
       // send refresh token in header to get new one
-      return await axios.get("jwt/reissue", {headers:{"refreshToken": readRefreshToken()}})
+      //return await axios.get("jwt/reissue", {headers:{"refreshToken": readRefreshToken()}})
+      return await axios.get("jwt/reissue")
         // if refresh token is valid
         .then(async (response) => {
           // save new tokens

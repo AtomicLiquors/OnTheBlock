@@ -23,25 +23,28 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isValidRoute, setIsValidRout] = useState(false);
+  const [isValidRoute, setIsValidRoute] = useState(false);
   const [nickName, setNickName] = useState<string>("");
   const [hasNewNotice, setHasNewNotice] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
 
+  const shouldHeaderHide = (path: string) => {
+    return path === "/" || path === "/memberInit" || path.match(/\/bridge.*/)
+  }
+
   useEffect(() => {
     setUserInfoVisibility(false);
-    if(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/))
+    if(shouldHeaderHide(location.pathname))
       return;
     
     const loggedInNickname = getLoginInfo(LoginInfo.Nickname);
     setNickName(loggedInNickname ? loggedInNickname : "");
     
   }, [location.pathname]);
-
-
-  if(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/)){
+  
+  if(shouldHeaderHide(location.pathname))
     return null;
-  }
+  
 
 
   return (
@@ -57,7 +60,7 @@ function Header() {
 
         </S.ProfileIconWrap>
       </S.LoginInfoTab>
-      {!(location.pathname === "/" || location.pathname === "/memberInit" || location.pathname.match(/\/bridge.*/)) && (
+      {!(shouldHeaderHide(location.pathname)) && (
         <UserDropPanel
           userInfoVisibility={userInfoVisibility}
           onNewNotice={() => setHasNewNotice(true)}

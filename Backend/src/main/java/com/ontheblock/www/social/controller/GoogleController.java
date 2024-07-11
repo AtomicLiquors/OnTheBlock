@@ -12,6 +12,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RequestMapping("/google")
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class GoogleController {
@@ -55,18 +59,11 @@ public class GoogleController {
 
         // 이동할 프론트 페이지 주소 설정
         String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
-        /*
-            Cookie cookie = socialHelper.createTokenInfoCookie(accessToken, refreshToken, member.getMemberId());
-            httpServletResponse.addCookie(cookie);
-            보류 : cookie는 쌍따옴표를 허용하지 않으며, JSON에서 쌍따옴표를 빼면 파싱할 때 invalid한 것으로 인식된다.
-         */
+        Cookie[] cookies = socialHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
 
-        Cookie accessTokenCookie = socialHelper.createTokenInfoCookie("accessToken", accessToken);
-        Cookie refreshTokenCookie = socialHelper.createTokenInfoCookie("refreshToken", refreshToken);
-        Cookie memberIdCookie = socialHelper.createTokenInfoCookie("memberId", member.getMemberId().toString());
-        httpServletResponse.addCookie(accessTokenCookie);
-        httpServletResponse.addCookie(refreshTokenCookie);
-        httpServletResponse.addCookie(memberIdCookie);
+        for (Cookie cookie : cookies) {
+            httpServletResponse.addCookie(cookie);
+        }
 
         return ResponseEntity
             .status(HttpStatus.FOUND) // 302
