@@ -9,6 +9,10 @@ function Bridge() {
   const location = useLocation(); // useLocation 훅을 사용하여 현재 경로 정보를 가져옴
   const queryParams = new URLSearchParams(location.search); // 쿼리 문자열을 파싱하기 위해 사용
 
+  const deleteCookie = (cookieName: string) => {
+    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  }
+
   const parseCookie = (cookieString: string) => {
     //To-Do : cookieString 형식이 맞는지 검증하고 아니면 에러처리?
     const cookieMap = new Map();
@@ -19,10 +23,10 @@ function Bridge() {
 
     //To-Do : cookie에서 유효한 값을 찾지 못한 경우 에러처리.
     const accessToken = cookieMap.get('accessToken');
-    const refreshToken = cookieMap.get('refreshToken');
+    //const refreshToken = cookieMap.get('refreshToken');
     const memberId = cookieMap.get('memberId');
-
-    return [accessToken, refreshToken, memberId];
+    
+    return [accessToken, memberId];
   }
 
   useEffect(() => {
@@ -30,14 +34,16 @@ function Bridge() {
       const cookieString = document.cookie;
 
       // 쿠키에서 데이터를 분리한 후 데이터 저장
-      const [accessToken, refreshToken, memberId] = parseCookie(cookieString);
+      const [accessToken, memberId] = parseCookie(cookieString);
       
-      if(accessToken && refreshToken && memberId){
+      if(accessToken && memberId){
         // 토큰을 로컬에 저장
         saveAccessToken(accessToken);
-        saveRefreshToken(refreshToken);
         saveLoginInfo(LoginInfo.MemberId, memberId);
       }
+
+      deleteCookie('accessToken');
+      deleteCookie('memberId');
 
       // 쿼리 문자열에서 isNewMember 값을 추출
       const isNewMember = queryParams.get("isNewMember");

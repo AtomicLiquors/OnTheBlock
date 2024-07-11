@@ -224,12 +224,17 @@ function UserDropPanel({
   // 로그아웃
   // To-Do: hook으로 분리하기.
   const logout = () => {
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("refreshToken");
-    removeAccessToken();
-    removeRefreshToken();
+    
+    /* To-Do : 모든 정보 정상 제거되는지 확인. */
+    localStorage.removeItem("accessToken");
     sessionStorage.removeItem("nickname");
     sessionStorage.removeItem("memberId");
+    /*
+    sessionStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("memberId");
+    */
+    
 
     if (eventSource) {
       eventSource.close();
