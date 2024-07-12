@@ -1,6 +1,6 @@
 package com.ontheblock.www.social.helper;
 
-import com.ontheblock.www.social.util.CookieHelper;
+import com.ontheblock.www.global.util.cookie.CookieHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

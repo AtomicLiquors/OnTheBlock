@@ -1,4 +1,4 @@
-package com.ontheblock.www.social.util;
+package com.ontheblock.www.global.util.cookie;
 import jakarta.servlet.http.Cookie;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,6 @@ public class CookieHelper {
         cookies[0] = createCookie("accessToken", accessToken, false, false);
         cookies[1] = createCookie("refreshToken", refreshToken, true, true);
         cookies[2] = createCookie("memberId", memberId, false, false);
-
         return cookies;
     }
     private Cookie createCookie(String key, String value, boolean isHttpOnly, boolean isSecure){
@@ -21,6 +20,4 @@ public class CookieHelper {
 
         return cookie;
     }
-
-
 }

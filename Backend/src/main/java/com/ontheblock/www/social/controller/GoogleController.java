@@ -8,7 +8,7 @@ import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.domain.google.GoogleClient;
 import com.ontheblock.www.social.domain.google.GoogleUserInfo;
 import com.ontheblock.www.social.service.SocialService;
-import com.ontheblock.www.social.util.CookieHelper;
+import com.ontheblock.www.global.util.cookie.CookieHelper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
