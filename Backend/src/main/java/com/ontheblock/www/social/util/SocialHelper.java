@@ -6,8 +6,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class SocialHelper {
-
-
     @Value("${front.scheme}")
     private String frontScheme;
     @Value("${front.host}")
@@ -30,13 +28,13 @@ public class SocialHelper {
         return cookie;
     }
 
-    public String getFrontURI(boolean isNewMember, String nickName) {
+    public String getFrontURI(boolean isNewMember, String nickname) {
         return UriComponentsBuilder.newInstance()
                 .scheme(frontScheme)
                 .host(frontHost)
                 .path("/bridge")
                 .queryParam("isNewMember", isNewMember)
-                .queryParam("nickName",nickName)
+                .queryParam("nickname",nickname)
                 .build()
                 .toString();
     }
