@@ -81,7 +81,7 @@ public class JwtService {
     }
 
     // 로그인을 해야지 볼수 있는 페이지에서 로그인을 한 사람인지 검사하는 코드
-    //	전달 받은 토큰이 제대로 생성된것인지 확인 하고 문제가 있다면 UnauthorizedException을 발생.
+    // 전달받은 토큰이 제대로 생성된것인지 확인하고 문제가 있다면 UnauthorizedException을 발생.
     public boolean checkToken(String jwt) {
         try {
 //			Json Web Signature? 서버에서 인증을 근거로 인증정보를 서버의 private key로 서명 한것을 토큰화 한것
