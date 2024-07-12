@@ -1,6 +1,6 @@
 package com.ontheblock.www.member.interceptor;
 
-import com.ontheblock.www.JWT.JwtService;
+import com.ontheblock.www.JWT.service.JwtService;
 import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.repository.MemberRepository;
 import org.slf4j.Logger;

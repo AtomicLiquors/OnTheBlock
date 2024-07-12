@@ -1,5 +1,6 @@
 package com.ontheblock.www.global.exception;
 
+import com.ontheblock.www.global.exception.ExceptionCode;
 import lombok.Getter;
 
 @Getter

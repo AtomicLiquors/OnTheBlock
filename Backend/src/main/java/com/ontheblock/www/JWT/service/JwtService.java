@@ -1,4 +1,4 @@
-package com.ontheblock.www.JWT;
+package com.ontheblock.www.JWT.service;
 
 import com.ontheblock.www.member.service.MemberService;
 import io.jsonwebtoken.Claims;
@@ -25,7 +25,7 @@ public class JwtService {
     private final MemberService memberService;
     @Autowired
     public JwtService(MemberService memberService){
-        this.memberService=memberService;
+        this.memberService = memberService;
     }
 
 

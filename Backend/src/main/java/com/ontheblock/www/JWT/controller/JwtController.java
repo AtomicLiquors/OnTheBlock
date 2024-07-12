@@ -1,5 +1,6 @@
-package com.ontheblock.www.JWT;
+package com.ontheblock.www.JWT.controller;
 
+import com.ontheblock.www.JWT.service.JwtService;
 import com.ontheblock.www.member.domain.Member;
 import com.ontheblock.www.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;

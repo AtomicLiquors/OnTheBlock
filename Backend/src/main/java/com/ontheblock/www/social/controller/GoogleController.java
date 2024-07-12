@@ -1,20 +1,19 @@
 package com.ontheblock.www.social.controller;
 
-import com.ontheblock.www.JWT.JwtService;
+import com.ontheblock.www.JWT.service.JwtService;
 import com.ontheblock.www.global.exception.GoogleLoginErrorException;
+import com.ontheblock.www.global.util.FrontURIHelper;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.domain.google.GoogleClient;
 import com.ontheblock.www.social.domain.google.GoogleUserInfo;
 import com.ontheblock.www.social.service.SocialService;
-import com.ontheblock.www.social.util.SocialHelper;
+import com.ontheblock.www.social.util.CookieHelper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,9 @@ public class GoogleController {
     private final SocialService socialService;
     private final JwtService jwtService;
     private final MemberService memberService;
-    private final SocialHelper socialHelper;
+    private final CookieHelper cookieHelper;
+
+    private final FrontURIHelper frontURIHelper;
 
     @GetMapping("/login")
     public void googleLoginOrRegister(HttpServletResponse httpServletResponse) throws Exception{
@@ -58,8 +59,8 @@ public class GoogleController {
         memberService.saveRefreshToken(member.getMemberId(), refreshToken); // 토큰 저장
 
         // 이동할 프론트 페이지 주소 설정
-        String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
-        Cookie[] cookies = socialHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
+        String frontURI = frontURIHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
+        Cookie[] cookies = cookieHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
 
         for (Cookie cookie : cookies) {
             httpServletResponse.addCookie(cookie);

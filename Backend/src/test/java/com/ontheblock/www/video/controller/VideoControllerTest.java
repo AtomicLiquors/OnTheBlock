@@ -1,6 +1,6 @@
 package com.ontheblock.www.video.controller;
 
-import com.ontheblock.www.JWT.JwtService;
+import com.ontheblock.www.JWT.service.JwtService;
 import com.ontheblock.www.OntheblockApplication;
 import com.ontheblock.www.member.repository.MemberRepository;
 import com.ontheblock.www.member.service.MemberService;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;

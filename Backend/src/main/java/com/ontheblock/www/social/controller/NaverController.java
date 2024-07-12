@@ -1,12 +1,13 @@
 package com.ontheblock.www.social.controller;
 
-import com.ontheblock.www.JWT.JwtService;
+import com.ontheblock.www.JWT.service.JwtService;
+import com.ontheblock.www.global.util.FrontURIHelper;
 import com.ontheblock.www.member.service.MemberService;
 import com.ontheblock.www.social.dto.response.LoginMemberResponse;
 import com.ontheblock.www.social.domain.naver.NaverClient;
 import com.ontheblock.www.social.domain.naver.NaverProfile;
 import com.ontheblock.www.social.service.SocialService;
-import com.ontheblock.www.social.util.SocialHelper;
+import com.ontheblock.www.social.util.CookieHelper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,7 +32,8 @@ public class NaverController {
     private final SocialService socialService;
     private final JwtService jwtService;
     private final MemberService memberService;
-    private final SocialHelper socialHelper;
+    private final CookieHelper cookieHelper;
+    private final FrontURIHelper frontURIHelper;
 
     @GetMapping("/login")
     public void naverLoginOrRegister(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
@@ -61,9 +63,9 @@ public class NaverController {
         memberService.saveRefreshToken(member.getMemberId(), refreshToken); // 토큰 저장
 
         // 이동할 프론트 페이지 주소 설정
-        String frontURI = socialHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
+        String frontURI = frontURIHelper.getFrontURI(member.getIsNewMember(), member.getNickname());
 
-        Cookie[] cookies = socialHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
+        Cookie[] cookies = cookieHelper.createTokenInfoCookies(accessToken, refreshToken, member.getMemberId().toString());
         for (Cookie cookie : cookies) {
             httpServletResponse.addCookie(cookie);
         }
