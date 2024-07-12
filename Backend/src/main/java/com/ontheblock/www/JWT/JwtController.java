@@ -29,12 +29,8 @@ public class JwtController {
   @GetMapping("/reissue")
   public ResponseEntity<?> reissueTokens(
       HttpServletRequest httpServletRequest, @CookieValue String refreshToken) {
-    //Cookie[] cookies = httpServletRequest.getCookies();
     logger.info("=====REFRESH TOKEN INFO====");
     logger.info(refreshToken);
-    //String refreshToken = httpServletRequest.getHeader("refreshToken");
-      // 누군가 여기를 타기도 전에 JWT 서비스를 호출하고 있다.
-
     Long memberId = jwtService.getIdFromToken(refreshToken); // token에서 id를 꺼냄
     Member member = memberService.getMember(memberId);         // member 조회
 

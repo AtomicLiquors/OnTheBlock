@@ -92,13 +92,7 @@ public class JwtService {
             logger.debug("claims: {}", claims);
             return true;
         } catch (Exception e) {
-//			if (logger.isInfoEnabled()) {
-//				e.printStackTrace();
-//			} else {
             logger.error(e.getMessage());
-//			}
-//			throw new UnauthorizedException();
-//			개발환경
             return false;
         }
     }

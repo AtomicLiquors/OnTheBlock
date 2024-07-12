@@ -43,12 +43,14 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
 
     String accessToken = request.getHeader("accessToken"); // 헤더에서 토큰 꺼냄
     logger.debug(accessToken);
-    // AcessToken이 유효한지 체크
+    // AccessToken이 유효한지 체크
     if (jwtService.checkToken(accessToken)) {
       Long id = jwtService.getIdFromToken(accessToken); // 토큰에서 id값을 꺼냄
       Optional<Member> member = memberRepository.findById(id);
+
       if (member.isPresent()) {
-        request.setAttribute("id", id); // reqeust에 id를 담아서 controller로 보냄
+        request.setAttribute("id", id);
+        // reqeust에 id를 담아서 controller로 보냄
         return true;
       } else {
         logger.error(NOT_REGISTERED_MSG);
