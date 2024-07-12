@@ -3,7 +3,6 @@
 import { LoginInfo } from "@/types/loginInfo";
 
 const accessTokenStorage = localStorage;
-const refreshTokenStorage = sessionStorage;
 const loginInfoStorage = sessionStorage;
 
 /* AccessToken */
@@ -22,25 +21,6 @@ export const removeAccessToken = () => {
 }
 
 
-/* RefreshToken */
-export const saveRefreshToken = ( value: string) => {
-      refreshTokenStorage.setItem("refreshToken", value);
-}
-
-export const getRefreshToken = () => {
-      // 예외처리 하기.
-      const info = refreshTokenStorage.getItem("refreshToken");
-      // if(!accessToken) throw new Error();
-      return info;
-}
-
-export const removeRefreshToken = () => {
-      // 예외처리 하기.
-      refreshTokenStorage.removeItem("refreshToken");
-      // if(!accessToken) throw new Error();
-}
-
-
 /* LoginInfo */
 // 예외처리 : 타입에 해당하지 않는 녀석을 저장하려 할 경우.
 export const saveLoginInfo = (type: LoginInfo, value: string) => {
@@ -50,7 +30,6 @@ export const saveLoginInfo = (type: LoginInfo, value: string) => {
 export const getLoginInfo = (type: LoginInfo) => {
       // 예외처리 하기.
       const info = loginInfoStorage.getItem(type);
-      // if(!accessToken) throw new Error();
       return info;
 }
 

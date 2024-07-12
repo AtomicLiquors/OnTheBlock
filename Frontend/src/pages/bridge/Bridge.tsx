@@ -1,4 +1,4 @@
-import { saveAccessToken, saveLoginInfo, saveRefreshToken } from '@/hooks';
+import { saveAccessToken, saveLoginInfo } from '@/hooks';
 import { LoginInfo } from '@/types/loginInfo';
 import { deleteCookie, parseCookie } from '@/utils';
 import React from 'react';
@@ -29,7 +29,7 @@ function Bridge() {
 
       // 쿼리 문자열에서 isNewMember 값을 추출
       const isNewMember = queryParams.get("isNewMember");
-      const queryName = queryParams.get("nickName");
+      const queryName = queryParams.get("nickname");
       
       //To-Do: Parameter 찾지 못할시 예외처리
       if(queryName)

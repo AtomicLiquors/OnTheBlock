@@ -1,4 +1,4 @@
-import { getAccessToken, getLoginInfo, getRefreshToken, removeAccessToken, removeRefreshToken, saveAccessToken, saveLoginInfo, saveRefreshToken } from '@/hooks';
+import { getAccessToken, removeAccessToken, saveAccessToken, saveLoginInfo } from '@/hooks';
 import { LandingPageErrors } from '@/types';
 import { LoginInfo } from '@/types/loginInfo';
 import axios from 'axios'
@@ -12,12 +12,6 @@ const readAccessToken = () => {
     const accessToken = getAccessToken()
     return accessToken ? accessToken : null
 }
-
-const readRefreshToken = () => {
-    const refreshToken = getRefreshToken()
-    return refreshToken ? refreshToken : null
-}
-  
 
 // To-Do: any 타입 대체하기.
 const success = (response: any) => {return response}
@@ -33,7 +27,7 @@ const failure = async (error: any) => {
         .then(async (response) => {
           // save new tokens
           saveAccessToken(response.data.accessToken)
-          saveRefreshToken(response.data.refreshToken)
+          //saveRefreshToken(response.data.refreshToken)
           // do original work
           config.headers["accessToken"] = readAccessToken()
           return await axios(config)
@@ -43,7 +37,6 @@ const failure = async (error: any) => {
           /* 로그인 정보 만료 시, 또는 비로그인 상태에서 경로 접근 */
           
           removeAccessToken()
-          removeRefreshToken()
           
           const state = { error: LandingPageErrors.unauthorized }
           

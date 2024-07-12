@@ -23,8 +23,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isValidRoute, setIsValidRoute] = useState(false);
-  const [nickName, setNickName] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
   const [hasNewNotice, setHasNewNotice] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
 
@@ -38,7 +37,7 @@ function Header() {
       return;
     
     const loggedInNickname = getLoginInfo(LoginInfo.Nickname);
-    setNickName(loggedInNickname ? loggedInNickname : "");
+    setNickname(loggedInNickname ? loggedInNickname : "");
     
   }, [location.pathname]);
   
@@ -52,12 +51,11 @@ function Header() {
       <S.Logo onClick={() => navigate("/main")} src={Logo}></S.Logo>
       <S.LoginInfoTab onClick={() => toggleUserInfoMenu()}>
         <div className="login-info">
-          <b>{nickName}</b>님
+          <b>{nickname}</b>님
         </div>
         <S.ProfileIconWrap>
-          <ProfileImg nickname={nickName} size={32}/>
+          <ProfileImg nickname={nickname} size={32}/>
           { (hasNewNotice || hasUnread) && <S.RedMark></S.RedMark> }
-
         </S.ProfileIconWrap>
       </S.LoginInfoTab>
       {!(shouldHeaderHide(location.pathname)) && (
