@@ -15,6 +15,8 @@
     "@ffmpeg/ffmpeg": "^0.12.6",
     "@reduxjs/toolkit": "^1.9.5",
     "@remotion/player": "4.0.32",
+    "@swc/core": "^1.7.0",
+    "@swc/jest": "^0.2.36",
     "@types/node": "^20.10.5",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.1",
