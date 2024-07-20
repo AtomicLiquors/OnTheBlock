@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Accordion, Button, Spinner } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import { IoOptionsOutline, IoPlaySkipForwardSharp } from "react-icons/io5";
 import { BiSolidVolumeFull } from "react-icons/bi"
 import { AiFillPicture } from "react-icons/ai"

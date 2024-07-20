@@ -1,0 +1,1 @@
+export type CallbackWithEvent = (event: Event) => any;

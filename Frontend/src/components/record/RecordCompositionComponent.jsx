@@ -7,7 +7,6 @@ import { Player, Thumbnail as RecordThumbnail } from "@remotion/player";
 import { Img, Video, AbsoluteFill, Sequence } from "remotion";
 import { Button, Spinner } from "react-bootstrap";
 import styled from "styled-components";
-import { BsRecord2Fill, BsFillStopCircleFill } from "react-icons/bs";
 import { ImUpload2 as UploadIcon } from "react-icons/im";
 import SyncSlider from "./SyncSlider";
 import { BsMusicNote, BsFillRecordFill } from "react-icons/bs";
