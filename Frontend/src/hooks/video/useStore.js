@@ -1,4 +1,3 @@
-import { forEach } from "lodash";
 import { create } from "zustand";
 
 export const videoModalState = create((set) => ({

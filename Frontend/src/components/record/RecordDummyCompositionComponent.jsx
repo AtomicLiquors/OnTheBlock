@@ -22,8 +22,6 @@ import {
   InputNumberTag,
 } from "@/components/";
 import html2canvas from "html2canvas";
-import _ from "lodash";
-
 function RecordDummyCompositionComponent() {
   const [isUploadRecordOpen, setIsUploadRecordOpen] = useState(false);
   const [maxFrameCount, setMaxFrameCount] = useState(9000);
