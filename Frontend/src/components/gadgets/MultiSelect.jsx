@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Button, Spinner } from "react-bootstrap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function MultiSelect({ data, onChange }) {
   const [opacity, setOpacity] = useState(1);
@@ -21,7 +20,7 @@ function MultiSelect({ data, onChange }) {
         onChange={(e) => onChange(e)}
         style={{ display: "flex" }}
       >
-        {data.map((item, index) => (
+        {data.map((item, _) => (
           <option
             onMouseDown={(e) => {
               e.preventDefault();

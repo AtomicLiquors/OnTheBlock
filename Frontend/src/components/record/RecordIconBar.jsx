@@ -1,5 +1,4 @@
-import { BsRecord2Fill, BsFillStopCircleFill } from "react-icons/bs";
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import styled from "styled-components";
 
 import { ImUpload2 as UploadIcon } from "react-icons/im";

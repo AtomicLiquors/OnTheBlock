@@ -1,6 +1,5 @@
 
 import styled from "styled-components";
-import Logo from "@/assets/logos/logo_white.png";
 
 function ErrorMsgContainer({ errorMsg, height="auto", width = "auto" }) {
     return (

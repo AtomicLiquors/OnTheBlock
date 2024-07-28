@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import styled from "styled-components";
-import { getFollower } from "../../api/follow";
+import { getFollower } from "@/api/follow";
 import { ProfileImg } from "@/components";
 
 

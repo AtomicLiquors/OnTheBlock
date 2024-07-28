@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Button, Spinner } from "react-bootstrap";
-import { useState, useRef, useEffect } from "react";
+import { Spinner } from "react-bootstrap";
+import { useState, useEffect } from "react";
 
 function LoadingComponent() {
   const [opacity, setOpacity] = useState(1);

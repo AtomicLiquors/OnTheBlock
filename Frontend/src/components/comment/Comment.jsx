@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect, useRef, memo } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import {
   RiPencilFill as PencilIcon,
