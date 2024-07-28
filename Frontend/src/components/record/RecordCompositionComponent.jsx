@@ -22,7 +22,6 @@ import {
   InputNumberTag,
 } from "@/components/";
 import html2canvas from "html2canvas";
-import _ from "lodash";
 
 function RecordCompositionComponent() {
   const [isUploadRecordOpen, setIsUploadRecordOpen] = useState(false);
@@ -33,14 +32,9 @@ function RecordCompositionComponent() {
   const thumbnailRef = useRef(null);
   const resultVideoRef = useRef(null);
 
-  const { data } = hooks.recordVideoState();
-  const { setData } = hooks.recordVideoState();
   const { setSession } = hooks.recordVideoState();
-  const { thumbnailBlobUrl } = hooks.recordVideoState();
   const { setThumbnailBlobUrl } = hooks.recordVideoState();
-  const { videoBlobUrl } = hooks.recordVideoState();
   const { setVideoBlobUrl } = hooks.recordVideoState();
-  const { origins } = hooks.recordVideoState();
   const { setOrigins } = hooks.recordVideoState();
 
   const [startPointBG, setStartPointBG] = useState(0);

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import _ from "lodash";
+import { debounce } from "@/utils";
 import FilmStrip from "@/assets/filmstrip.png";
 import { SquareSlider, Ruler, GridIcon, InputNumberTag } from "@/components";
 
@@ -17,7 +17,7 @@ function SyncSlider({ position, startPoint, setStartPoint, totalFrame, max }) {
     setVideoStartPointByDebounce();
   };
 
-  const setVideoStartPointByDebounce = _.debounce(() => {
+  const setVideoStartPointByDebounce = debounce(() => {
     setStartPoint(tagValue);
   }, 300);
 

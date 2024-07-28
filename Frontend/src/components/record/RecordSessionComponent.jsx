@@ -19,22 +19,15 @@ import {
   RecordAccordion,
   InputNumberTag,
 } from "@/components/";
-import _ from "lodash";
-import { current } from "@reduxjs/toolkit";
 
 function RecordSessionComponent() {
   const [isUploadRecordOpen, setIsUploadRecordOpen] = useState(false);
   const [totalFrame, setTotalFrame] = useState(9000);
 
-  const { data } = hooks.recordVideoState();
-  const { setData } = hooks.recordVideoState();
   const { setSession } = hooks.recordVideoState();
-  const { thumbnailBlobUrl } = hooks.recordVideoState();
   const { setThumbnailBlobUrl } = hooks.recordVideoState();
-  const { videoBlobUrl } = hooks.recordVideoState();
   const { setVideoBlobUrl } = hooks.recordVideoState();
-  const { origins } = hooks.recordVideoState();
-  const { setOrigins } = hooks.recordVideoState();
+  
 
   const fps = 30;
   const { status, startRecording, stopRecording, mediaBlobUrl, previewStream } =
