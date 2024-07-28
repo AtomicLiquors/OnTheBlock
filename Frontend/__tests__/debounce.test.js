@@ -1,4 +1,5 @@
-import {debounce as lodashDebounce} from 'lodash';
+import { debounce } from '../src/utils/debounce';
+//import { debounce } from 'lodash';
 
 // Mock callback function
 const mockCallback = jest.fn((event) => {
@@ -16,7 +17,7 @@ describe('debounce test', () => {
     });
 
     it('should delay the execution of the callback', () => {
-        const debouncedFunction = lodashDebounce(mockCallback, 1000);
+        const debouncedFunction = debounce(mockCallback, 1000);
 
         // Call the debounced function
         debouncedFunction(new Event("click"));
@@ -28,7 +29,7 @@ describe('debounce test', () => {
     });
 
     it('should reset the delay if called again within the delay period', () => {
-        const debouncedFunction = lodashDebounce(mockCallback, 1000);
+        const debouncedFunction = debounce(mockCallback, 1000);
 
         // Call the debounced function multiple times
         debouncedFunction(new Event("click"));
@@ -42,7 +43,7 @@ describe('debounce test', () => {
     });
 
     it('should call the callback with the latest event', () => {
-        const debouncedFunction = lodashDebounce(mockCallback, 1000);
+        const debouncedFunction = debounce(mockCallback, 1000);
         const event1 = new Event("click");
         const event2 = new Event("keydown");
 

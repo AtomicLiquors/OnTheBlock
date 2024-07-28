@@ -1,6 +1,4 @@
-import { CallbackWithEvent } from "@/types";
-
-const debounce = (callback, delay) => {
+export const debounce = (callback, delay) => {
     let timerId;
 
     return (event) => {        
