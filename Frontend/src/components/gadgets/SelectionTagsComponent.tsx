@@ -14,17 +14,18 @@ function getNameFromItem(item: MultiSelectItemType) {
   return name;
 }
 
-export interface SelectionTagsComponentProps {
+export interface SelectionTagsComponentProps<MultiSelectItemType> {
   data: MultiSelectItemType[];
   handleRemove: (removingItem: MultiSelectItemType, data: MultiSelectItemType[]) => void;
 }
 
-const SelectionTagsComponent: React.FC<SelectionTagsComponentProps> = ({
-  data, handleRemove
-}) => {
+const SelectionTagsComponent = <T extends MultiSelectItemType>({
+  data,
+  handleRemove
+}: SelectionTagsComponentProps<T>) => {
   return data && data.length ? (
     <S.TagContainer>
-      {data.map((item: MultiSelectItemType, idx: number) => (
+      {data.map((item: T, idx: number) => (
         <S.Tag key={idx}>
           {getNameFromItem(item)}
           <S.TagDeleteBtn onClick={() => handleRemove(item, data)}>x</S.TagDeleteBtn>
