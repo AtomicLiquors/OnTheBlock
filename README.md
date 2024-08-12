@@ -7,8 +7,7 @@
 <b>“나의 소소한 연주가, 새로운 음악으로 다시 태어나는 플랫폼”</b>
 </center>
 </div>
-
-## :clipboard: 개요
+<br>
 <div align="center">
     <a href="https://www.youtube.com/watch?v=-pPDEayEY4M">
         <img src="Documents/title.png" alt="motive" width="50%" height="50%">
@@ -21,13 +20,20 @@
 좋아요 / 댓글 / 팔로우를 통해 사용자들의 활발한 커뮤니케이션을 돕습니다.</div>
 
 &nbsp;  
-### [상세정보]
-- Back-end : SpringBoot
-- Front-end : React.js
-- 도메인: 빅데이터 추천 시스템(Spotify 곡 정보, 업로드된 영상 정보 기반) 
-- 개발 기간 : 2023. 08. 21. ~ 2023. 10. 06.
-- 🏆 SSAFY 9기 특화 프로젝트 우수상 🏆
-- 🎉 SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 🎉
+<div align="center">
+    <div>
+    - 개발 기간 : 2023. 08. 21. ~ 2023. 10. 06. -
+    </div>
+    <div>
+        <div>[도메인: 빅데이터 추천 시스템]</div>
+        <div>(사용 데이터 : Spotify 곡 정보, 웹 서비스 내 등록된 영상 정보) </div>
+    </div>
+    <br>
+    <div>
+        <div>- 🏆 SSAFY 9기 특화 프로젝트 우수상 🏆 -</div>
+        <div>- 🎉 SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 🎉 -</div>
+    </div>
+</div>
 
 &nbsp;  
 <!--
