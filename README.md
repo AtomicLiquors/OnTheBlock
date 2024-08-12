@@ -68,9 +68,6 @@
 
 ## 💻 기술 스택
 
-<img src="Documents/system/architecture.png" alt="architecture" width="80%" height="80%">
-<br/>
-
 ### Backend
 
 ![Java](https://img.shields.io/badge/JDK_17.0.7-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -86,7 +83,9 @@
 
 ![Node.js](https://img.shields.io/badge/Node.js_18.17.0-43853D?style=for-the-badge&logo=node.js&logoColor=white) 
 ![React](https://img.shields.io/badge/React.js_18-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-<img src="https://img.shields.io/badge/Zustand-yellow?style=for-the-badge&logo=zustand&logoColor=blue"/></a>
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-yellow?style=for-the-badge&logo=zustand&logoColor=blue)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ### CI/CD
 
@@ -100,6 +99,9 @@
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx_1.18.0-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+
+<img src="Documents/system/architecture.png" alt="architecture" width="80%" height="80%">
+<br/>
 
 ## ERD
 
