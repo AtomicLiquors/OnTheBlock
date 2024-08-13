@@ -30,8 +30,8 @@
     </div>
     <br>
     <div>
-        <div>- 🏆 SSAFY 9기 특화 프로젝트 우수상 🏆 -</div>
-        <div>- 🎉 SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 🎉 -</div>
+        <div>🏆 SSAFY 9기 특화 프로젝트 우수상 🏆</div>
+        <div>🎉 SSAFY 특화 프로젝트 UCC 경진대회 전국 1등 🎉</div>
     </div>
 </div>
 
