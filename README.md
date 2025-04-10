@@ -129,5 +129,5 @@
     <h3>5. 추천 영상 조회</h3><img src="Documents/gifs/추천 영상 조회.gif">
     <h3>6-1. 영상별 댓글 등록 및 조회</h3><img src="Documents/gifs/영상 댓글.gif">
     <h3>6-2. 유저 팔로잉</h3><img src="Documents/gifs/팔로잉.gif">
-    <h3>6-3. 실시간 알림 서비스</h3><img src="Documents/gifs/알림.gif">
+    <h3>6-3. 실시간 소셜 알림</h3><img src="Documents/gifs/알림.gif">
 </div>
