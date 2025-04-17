@@ -35,7 +35,7 @@
     </div>
     <br>
     <div>
-        <div>📝<a href="https://dot-shift-674.notion.site/OnTheBlock-b739d2e8c70e41f08680c82ea193384a" target="_blank">관련 노션 페이지</a></div>
+        <div>📝<a href="https://dot-shift-674.notion.site/OnTheBlock-b739d2e8c70e41f08680c82ea193384a" target="_blank">노션 페이지 링크</a></div>
     </div>
 </div>
 
